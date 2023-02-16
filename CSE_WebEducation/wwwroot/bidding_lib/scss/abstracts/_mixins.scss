@@ -1,0 +1,85 @@
+// ======================================================
+// Abstracts :: Mixins
+// ======================================================
+@mixin desktop{
+  @media only screen and (min-width: 1280px) {
+    @content
+  }
+}
+
+@mixin desktop-1366 {
+    @media only screen and (max-width: 1366px) {
+        @content
+    }
+}
+
+@mixin desktop-1430 {
+    @media only screen and (max-width: 1430px) {
+        @content
+    }
+}
+
+@mixin desktop-1470 {
+    @media only screen and (max-width: 1474px) {
+        @content
+    }
+}
+
+@mixin desktop-1320 {
+    @media only screen and (max-width: 1320px) {
+        @content
+    }
+}
+
+@mixin desktop-1280{
+  @media only screen and (max-width: 1280px) {
+    @content
+  }
+}
+@mixin desktop-1060 {
+    @media only screen and (max-width: 1060px) {
+        @content
+    }
+}
+
+@mixin tablet-horizontal{
+  @media only screen and (max-width: 1180px) {
+    @content
+  }
+}
+@mixin tablet{
+  @media only screen and (max-width: 991px) {
+    @content
+  }
+}
+@mixin mobile-horizontal{
+  @media only screen and (max-width: 767px) {
+    @content
+  }
+}
+@mixin mobile{
+  @media only screen and (max-width: 576px){
+    @content
+  }
+}
+@mixin setup-text($fs,$fw){
+  font-size: $fs;
+  font-weight: $fw;
+  color: $c-wh;
+}
+@mixin mb-50(){
+  margin-bottom: 50px;
+}
+@mixin resize-img(){
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+@mixin resize-before($pdb){
+  content: '';
+  display: block;
+  padding-bottom: $pdb;
+}
+
+

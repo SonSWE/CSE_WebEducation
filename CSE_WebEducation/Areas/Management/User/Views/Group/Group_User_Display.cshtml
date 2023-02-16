@@ -1,0 +1,347 @@
+﻿@using ObjectInfo
+@using CommonLib
+@{
+    ViewData["Title"] = "Gán/ gỡ người sử dụng";
+    Layout = "~/Views/Shared/Management/_ManaLayout.cshtml";
+
+    var groupInfo = new CSE_GroupsInfo();
+    if (ViewBag.Group_Info != null)
+    {
+        groupInfo = ViewBag.Group_Info;
+    }
+}
+<style>
+    .filepost {
+        border: none !important;
+        width: 60% !important;
+        margin-top: 20px !important;
+    }
+
+    .btnAction {
+        width: 100px !important;
+        margin-right: 10px !important;
+    }
+</style>
+
+<div class="block-search-light">
+    <div class="head-search" style="margin-top: 15px;">
+        <h3 class="title">Thông tin nhóm người sử dụng</h3>
+    </div>
+    <div class="body-search">
+        <div class="box-search">
+            <div class="item-search">
+                <label>Tên nhóm</label>
+                <input value="@groupInfo.Group_Name" type="text" disabled>
+            </div>
+            <div class="item-search">
+                <label>Loại nhóm</label>
+                <input value="@groupInfo.Group_Type_Text" type="text" disabled>
+            </div>
+            <div class="item-search">
+                <label>Mô tả</label>
+                <input value="@groupInfo.Note" type="text" disabled>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-investor">
+    <div class="investor-beside">
+        <input type="hidden" id="hdfGroupID" value="@groupInfo.Group_Id" name="Group_Id" />
+        <h3 class="title-investor">Danh sách NSD</h3>
+
+        <div class="body-search">
+            <div class="box-search align-items-end">
+                <div class="item-search" style="max-width: calc(20% - -179px);">
+                    <label>Tài khoản</label>
+                    <input type="text" id="txtUsernameNone" placeholder="Từ khóa tìm kiếm">
+
+                </div>
+                <div class="head-search mb-0">
+                    <div class="search-right">
+                        <button class="btn-search" onclick="SearchUserNotInGroup();"><img src="~/bidding_lib/img/icon-search.svg" alt="img"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-investor">
+            <div id="divListInvestor_None" class="tbl-data over-flow-x" style="height: 400px">
+                @Html.Partial("~/Areas/Management/User/Views/Group/_Partial_List_Not_In_Group.cshtml")
+            </div>
+            <div class="foot-investor">
+                <div class="foot-investor-left" id="lbl_none_register">
+                </div>
+                <div class="foot-investor-right">
+                    <button class="btn-green" type="button" onclick="addUserToGroup()">Thêm vào nhóm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="investor-beside">
+        <h3 class="title-investor">Danh sách NSD thuộc nhóm</h3>
+
+        <div class="body-search">
+            <div class="box-investor">
+                <div class="box-search align-items-end">
+                    <div class="item-search" style="max-width: calc(20% - -179px);">
+                        <label>Tài khoản</label>
+                        <input type="text" id="txtUsername" placeholder="Từ khóa tìm kiếm">
+
+                    </div>
+                    <div class="head-search mb-0">
+                        <div class="search-right">
+                            <button class="btn-search" onclick="SearchUserInGroup();"><img src="~/bidding_lib/img/icon-search.svg" alt="img"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-investor">
+            <div id="divListUserOfGroup" class="tbl-data over-flow-x" style="height:400px">
+                @Html.Partial("~/Areas/Management/User/Views/Group/_Partial_List_User_In_Group.cshtml")
+            </div>
+            <div class="foot-investor">
+                <div class="foot-investor-right">
+                    <button class="btn-green" type="button" onclick="removeUserFromGroup()">Xóa khỏi nhóm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-form">
+    <div class="container">
+        <button class="btn-cancel" type="button" onclick="BackList();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img">Quay lại</button>
+    </div>
+</div>
+
+
+<div class="modal modal-popup" id="dPopup"></div>
+
+<script>
+    $(document).ready(function () {
+        
+    })
+
+    function SearchUserInGroup() {
+
+        $('#trNullDataDefault').css('display', 'none');
+
+        //tìm dòng thông báo không có dữ liệu
+        const trNoneData = Array.from(document.querySelectorAll('#tbodyUserInGroup > tr#trNullData'));
+      
+        //nếu có dữ liệu
+        if(trNoneData.length == 0){
+            //danh sách dữ liệu trên các dòng
+            const els = Array.from(document.querySelectorAll('#tbodyUserInGroup > tr.body-process'));
+            els.splice(0, 1); 
+            //Tên nđt trên mỗi dòng
+            var _labels = [];
+           
+            els.forEach(function(e, k){
+                _labels.push(e.childNodes[5].textContent);
+            })
+
+            //danh sách index chứa từ khóa tìm kiếm
+            const matching = _labels.map((label, idx, arr) => label.toLowerCase().includes( $("#txtUsername").val().trim().toLowerCase() ) ? idx : null).filter(el => el != null);
+
+            var isHaveData = false;;
+            els.forEach((el, idx) => {
+                if (matching.includes(idx)) {
+                  els[idx].style.display = 'table-row';
+                  isHaveData = true;
+                } else {
+                  els[idx].style.display = 'none';
+                }
+            });
+
+            //nếu từ khóa tìm kiếm không có trong danh sách
+            if(!isHaveData){
+                $('#trNullDataDefault').css('display', 'table-row');
+            }
+        }
+    }
+
+    function SearchUserNotInGroup() {
+
+        $('#trNullDataDefault1').css('display', 'none');
+
+        //tìm dòng thông báo không có dữ liệu
+        const trNoneData = Array.from(document.querySelectorAll('#tbodyUserNotIn > tr#trNullData1'));
+      
+        //nếu có dữ liệu
+        if(trNoneData.length == 0){
+            //danh sách dữ liệu trên các dòng
+            const els = Array.from(document.querySelectorAll('#tbodyUserNotIn > tr'));
+            els.splice(0, 1); 
+            //Tên nđt trên mỗi dòng
+            var _labels = [];
+            els.forEach(function(e, k){
+                _labels.push(e.childNodes[5].textContent);
+            })
+
+            //danh sách index chứa từ khóa tìm kiếm
+            const matching = _labels.map((label, idx, arr) => label.toLowerCase().includes( $("#txtUsernameNone").val().trim().toLowerCase() ) ? idx : null).filter(el => el != null);
+
+            var isHaveData = false;;
+            els.forEach((el, idx) => {
+                if (matching.includes(idx)) {
+                  els[idx].style.display = 'table-row';
+                  isHaveData = true;
+                } else {
+                  els[idx].style.display = 'none';
+                }
+            });
+
+            //nếu từ khóa tìm kiếm không có trong danh sách
+            if(!isHaveData){
+                $('#trNullDataDefault1').css('display', 'table-row');
+            }
+        }
+    }
+
+     function addUserToGroup() {
+        let userId = "";
+        $('input[name="notright"]:checked').each(function () {
+             userId = userId + "," + $(this).val()
+        });
+
+        if (userId == "" || userId == null ) {
+            showError("Chưa chọn người sử dụng");
+            return false;
+        }
+
+        try {
+            $.ajax({
+                type: "POST",
+                url: "/quan-tri/nhom-nguoi-dung/xep-nhom-nguoi-dung",
+                data: {
+                    act: 1,
+                    groupId: $('#hdfGroupID').val(),
+                    userId: userId
+                },
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                success: function (data) {
+                    if (preHandleDataResult(data)) {
+                        if (data.success == 1) {
+                            //showSuccess("Thêm người dùng vào nhóm thành công");
+                            setTimeout(function () {
+                                    window.location.reload(true);
+                                }, 200);
+                            refreshData();
+                            getUsersByGroupId();
+                        } else if (data.success == 2) {
+                            //showSuccess("Cập nhật thông tin thành công");
+                            refreshData();
+                            //getUsersByGroupId();
+                            setTimeout(function () {
+                                    window.location.reload(true);
+                                }, 1000);
+                        } else {
+                            //showError("Lỗi, không thực hiện được thao tác!")
+                        }
+                    }
+                },
+                error: function (data) {
+                    console.log(data.error);
+                },
+                complete: function () {
+                    SpinLoading(false);
+                }
+            });
+
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+    function getUsersByGroupId() {
+        try {
+            $.ajax({
+                type: "Get",
+                url: "/quan-tri/nhom-nguoi-dung/nguoi-dung-trong-nhom",
+                data: {
+                    groupId: $('#hdfGroupID').val(),
+                },
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                success: function (data) {
+                    if (preHandleDataResult(data)) {
+                        $('#divListUserOfGroup').html(data);
+                    }
+                },
+                error: function (data) {
+                    console.log(data.error);
+                },
+                complete: function () {
+                    SpinLoading(false);
+                }
+            });
+
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+    function removeUserFromGroup() {
+        let userId = "";
+        $('input[name="right"]:checked').each(function () {
+             userId = userId + "," + $(this).val()
+        });
+        nvsConfirm("Bạn chắc chắn muốn xóa người dùng khỏi nhóm?", function () {
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "/quan-tri/nhom-nguoi-dung/xep-nhom-nguoi-dung",
+                    data: {
+                        act: 2,
+                        groupId: $('#hdfGroupID').val(),
+                        userId: userId
+                    },
+                    beforeSend: function () {
+                        SpinLoading(true);
+                    },
+                    success: function (data) {
+                        if (preHandleDataResult(data)) {
+                            if (data.success >= 0) {
+                                showSuccess("Đã xóa người dùng khỏi nhóm thành công!");
+                                getUsersByGroupId();
+                                setTimeout(function () {
+                                    window.location.reload(true);
+                                }, 500);
+                            }
+                            else {
+                                showError("Lỗi,Không xóa được người dùng khỏi nhóm!")
+                            }
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data.error);
+                    },
+                    complete: function () {
+                        SpinLoading(false);
+                    }
+                });
+
+            } catch (e) {
+                console.log(e.message);
+            }
+        });
+    }
+
+    function refreshData() {
+        $('input[name="notright"]').each(function () {
+                $(this).prop("checked", false);
+        });
+    }
+
+    function BackList() {
+        //window.location = '/giai-ma-xac-thuc-phieu-du-thau/danh-sach';
+        history.back();
+    }
+
+</script>

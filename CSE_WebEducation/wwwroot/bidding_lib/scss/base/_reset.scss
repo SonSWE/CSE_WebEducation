@@ -1,0 +1,42 @@
+// ======================================================
+// Base :: Reset
+// ======================================================
+ul,ol{
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  color: #1e1633;
+}
+a,a:hover,a:focus{
+  text-decoration: none;
+}
+p{
+  margin: 0;
+}
+input,textarea{
+  //outline: none;
+}
+img{
+  max-width: 100%;
+}
+input, textarea, button, button:active, button:focus, select, select:focus {
+    outline-color: #a6e7a5;
+}
+
+
+select:focus-visible, select:focus,
+input:focus-visible, input:focus {
+    outline: 1px solid #a6e7a5;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+    width: 12px;
+    height: 12px;
+}
+

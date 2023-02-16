@@ -1,0 +1,289 @@
+// ======================================================
+// Base :: Global
+// ======================================================
+
+*,*:before,*:after{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #2A312F;
+  font-family: 'Roboto';
+  direction: ltr;
+  font-size: 14px;
+  line-height: 16px;
+  unicode-bidi: embed;
+
+}
+input:focus,textarea:focus{
+  //outline: none;
+  //box-shadow: 0 0 4px 1px #164989;
+}
+//#wrapper{
+//  background: #f0f2f5;
+//  min-height: 100vh;
+//  height: 100%;
+//}
+input:focus{
+  //outline: none !important;
+}
+
+.fs-14{
+    font-size: 14px;
+}
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.row{
+    margin: 0 -10px;
+}
+
+
+//-------------width title table ------------------
+/*.mw-30 {
+    min-width: 30px;
+}
+.mw-40{
+    min-width: 40px;
+}
+.mw-50{
+    min-width: 50px;
+}
+.mw-60{
+    min-width: 60px;
+}
+.mw-70{
+    min-width: 70px;
+}
+.mw-80{
+    min-width: 80px;
+}
+.mw-90{
+    min-width: 90px;
+}
+.mw-100{
+    min-width: 100px;
+}
+.mw-110{
+    min-width: 110px;
+}
+.mw-120{
+    min-width: 120px;
+}
+.mw-130{
+    min-width: 130px;
+}
+.mw-140{
+    min-width: 140px;
+}
+.mw-150{
+    min-width: 150px;
+}
+.mw-160{
+    min-width: 160px;
+}
+.mw-170{
+    min-width: 170px;
+}
+.mw-180{
+    min-width: 180px;
+}
+.mw-190{
+    min-width: 190px;
+}
+.mw-200{
+    min-width: 200px;
+}
+.mw-210 {
+    min-width: 210px;
+}
+.mw-220{
+    min-width: 220px;
+}
+.mw-230{
+    min-width: 230px;
+}
+.mw-240{
+    min-width: 240px;
+}
+.mw-250{
+    min-width: 250px;
+}
+.mw-260{
+    min-width: 260px;
+}
+.mw-270{
+    min-width: 270px;
+}
+.mw-280{
+    min-width: 280px;
+}
+.mw-290{
+    min-width: 290px;
+}
+.mw-300{
+    min-width: 300px;
+}
+.mw-310{
+    min-width: 310px;
+}
+.mw-320{
+    min-width: 320px;
+}
+.mw-330{
+    min-width: 330px;
+}
+.mw-340{
+    min-width: 340px;
+}
+.mw-350{
+    min-width: 350px;
+}*/
+/*END*/
+
+
+#d_page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 0px;
+
+    @include mobile {
+        flex-direction: column;
+    }
+
+    #d_total_rec {
+        color: #6E6B7B;
+
+        @include mobile {
+            margin-bottom: 10px;
+        }
+    }
+
+    #d_number_of_page {
+        button {
+            display: inline-block;
+            cursor: pointer;
+            margin-left: 4px;
+            border: none;
+            background: none;
+            padding: 0;
+            outline: none;
+
+            &:after {
+                outline: none;
+            }
+
+            span {
+                min-width: 32px;
+                padding: 0 11px;
+                height: 32px;
+                text-align: center;
+                line-height: 32px;
+                border-radius: 5px;
+                display: inline-block;
+                color: #C4C4C4;
+                border: 1px solid transparent;
+
+                &.a-active {
+                    background: #A73733;
+                    color: $c-wh;
+                    border: 1px solid #A73733;
+
+                    &:hover {
+                        background: #A73733;
+                        color: $c-wh;
+                        border: 1px solid #A73733;
+                    }
+                }
+            }
+
+
+            &:hover span {
+                background: #fff;
+                color: #A73733;
+                border: 1px solid #A73733;
+            }
+        }
+    }
+}
+
+
+
+//style table fixed
+
+.dataTables_length select {
+    width: auto;
+}
+
+table.DTFC_Cloned thead, table.DTFC_Cloned tfoot {
+    /*background-color: #f9f9f9;*/
+}
+
+table.dataTable tbody tr {
+    /*background-color: #f9f9f9;*/
+    border-bottom: none !important;
+}
+
+/*table.dataTable tbody tr:hover {
+    background: rgba(138, 138, 138, 0.2);
+}*/
+/*.DTFC_ScrollWrapper tr:hover {
+    background: rgba(138, 138, 138, 0.2);
+}*/
+table.dataTable thead th, table.dataTable thead td {
+    /*padding: 10px 7px !important;*/
+    border-bottom: none !important;
+}
+table.dataTable thead th {
+    height: 31px;
+
+
+}
+table.dataTable thead td {
+    height: 35px;
+
+
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 6px !important;
+    border-bottom: none !important;
+}
+
+table.dataTable tbody tr:last-child th,
+table.dataTable tbody tr:last-child td {
+    border-bottom: 1px solid #cecece !important;
+}
+
+table.dataTable thead tr th:not(:first-child),
+table.dataTable thead tr td:not(:first-child),
+table.dataTable tbody tr th:not(:first-child),
+table.dataTable tbody tr td:not(:first-child) {
+    border-left-color: transparent !important;
+}
+
+/*.dataTables_scrollBody table.dataTable thead tr th:last-child,
+.dataTables_scrollBody table.dataTable thead tr td:last-child,
+.dataTables_scrollBody table.dataTable tbody tr th:last-child,
+.dataTables_scrollBody table.dataTable tbody tr td:last-child{
+    border-left: none !important;
+}*/
+
+table.dataTable.no-footer {
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    /*padding: 0.25em 0.5em !important;*/
+}
+table.dataTable tbody th, table.dataTable tbody td,table.dataTable thead th, table.dataTable thead td{
+    vertical-align: middle;
+}
+

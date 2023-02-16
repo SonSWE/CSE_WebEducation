@@ -1,0 +1,48 @@
+﻿@using CSE_WebEducation.Helper
+@using ObjectInfo
+
+@{
+    List<CSE_FunctionsInfo> lstTreeFunctions = new List<CSE_FunctionsInfo>();
+    if (ViewBag.TreeFunctions != null)
+    {
+        lstTreeFunctions = ViewBag.TreeFunctions;
+    }
+    CSE_FunctionsInfo function = ViewBag.CurrFunction ?? new CSE_FunctionsInfo();
+}
+
+<style>
+    .fecha {
+        padding: 7px 10px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: "Roboto";
+        color: #22313f;
+        font-size: 15px;
+        border-radius: 5px;
+        background: #ffffff;
+        border: 1px solid #e8e8e8;
+        box-shadow: 0 4px 20px 2px rgb(0 0 0 / 5%)
+    }
+
+    .bread-crumb {
+        justify-content: space-between;
+    }
+</style>
+
+<div class="bread-crumb" id="_maintime">
+
+    @if (lstTreeFunctions?.Count > 0)
+    {
+        <div>
+            @Html.CreateBreadCrumb(lstTreeFunctions)
+        </div>
+    }
+</div>
+<script src="~/js/vue.js"></script>
+<script>
+
+
+</script>

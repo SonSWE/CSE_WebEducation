@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/Management/_ManaLayout.cshtml";
+
+
+    var user = this.Context.GetCurrentUser();
+    if(user != null)
+    {
+        ViewBag.Title = "Trang chủ";
+    }
+    else
+    {
+         ViewBag.Title = "Đăng nhập";
+    }
+}
+
+@if (user == null)
+{
+    @Html.Partial("~/Views/Management/Login.cshtml")
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Khoa công nghệ thông tin đại học thủy lợi</a>.</p>
+    </div>
+}
+
+

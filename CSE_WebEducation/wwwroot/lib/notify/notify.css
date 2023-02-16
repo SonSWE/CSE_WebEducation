@@ -1,0 +1,269 @@
+﻿.alert[data-notify="container"] {
+    
+    padding: 15px 33px 15px 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    width: 350px;
+    background-color: #fff;
+    /*-webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.75);*/
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding-left: 70px;
+    position: relative;
+    min-height: 70px;
+    color: #444;
+    z-index: 9999999999 !important;
+    align-items: center;
+}
+
+@media (max-width: 567px) {
+    .alert[data-notify="container"] {
+        width: 250px;
+        padding-left: 60px;
+    }
+}
+
+
+.alert.alert-info {
+    /*color: #2874A6;*/
+}
+
+.alert.alert-success {
+    /*color: #239B56;*/
+}
+
+.alert.alert-warning {
+    /*color: #D68910;*/
+}
+
+.alert.alert-error {
+    /*color: #e61414;*/
+}
+.alert{
+    box-shadow: none;
+}
+.alert button[data-notify="dismiss"] span{
+    display: none;
+    
+}
+/*font-family: "Font Awesome 5 Free"; font-weight: 400; content: "\f1ea";*/
+    .alert button[data-notify="dismiss"]:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f00d";
+        color: #FBCDCD;
+    }
+
+.alert button[data-notify="dismiss"] span {
+    display: none;
+}
+
+.alert.alert-error {
+    background: #FAEFEF;
+    border: 2px solid #F50000;
+}
+
+.alert.alert-success {
+    background: #FAFDFB;
+    border: 2px solid #22B242;
+}
+
+.alert.alert-error span[data-notify="message"] {
+    /*color: #e61414;*/
+    color: #F50000;
+    font-weight: 700;
+}
+    .alert.alert-success span[data-notify="message"] {
+        /*color: #e61414;*/
+        color: #22B242;
+        font-weight: 700;
+    }
+    .alert.alert-success button[data-notify="dismiss"]:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f00d";
+        color: #B9EBC4;
+    }
+
+
+
+
+.alert [data-notify="title"],
+.alert [data-notify="message"] {
+    display: block;
+}
+
+.alert [data-notify="title"] {
+    font-size: 1.15em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: none;
+}
+
+.alert [data-notify="message"] {
+    color: #606060;
+}
+.alert-error .alert [data-notify="message"] {
+    letter-spacing: 0.03em;
+    color: #F50000;
+    font-weight: 700;
+}
+
+
+
+.alert [data-notify="dismiss"] {
+    height: 22px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    right: 9px !important;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    top: 50% !important;
+    transform: translateY(-50%);
+    opacity: 1;
+}
+
+    .alert [data-notify="dismiss"] span {
+        position: relative;
+        /*bottom: 3px;*/
+        color: #444;
+        font-weight: bold;
+    }
+
+.alert.alert-info [data-notify="dismiss"] {
+    /*color: #2874A6;*/
+    /*border-color: #2874A6;*/
+}
+
+.alert.alert-success [data-notify="dismiss"] {
+    /*color: #239B56;*/
+    /*border-color: #239B56;*/
+}
+
+.alert.alert-warning [data-notify="dismiss"] {
+    /*color: #D68910;*/
+    /*border-color: #D68910;*/
+}
+
+.alert.alert-error [data-notify="dismiss"] {
+    /*color: #CB4335;*/
+    /*border-color: #CB4335;*/
+}
+
+
+
+.alert [data-notify="icon"] {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    height: 32px;
+    width: 32px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+    /* ERROR */
+    .alert [data-notify="icon"].icon-error {
+        /*background-color: #e61414;*/
+        background: url('../../version_2/img/alert-error.svg') no-repeat center center;
+        background-size: cover;
+    }
+
+    .alert [data-notify="icon"].icon-success {
+        /*background-color: #e61414;*/
+        background: url('../../version_2/img/alert-success.svg') no-repeat center center;
+        background-size: cover;
+    }
+
+
+        .alert [data-notify="icon"].icon-error::before, .alert [data-notify="icon"].icon-error::after {
+            /*content: "";
+            color: #fff;
+            position: relative;
+            height: 3px;
+            width: 20px;
+            background-color: #fff;
+            display: block;
+            top: 17px;
+            border-radius: 2px;*/
+        }
+
+        .alert [data-notify="icon"].icon-error::before {
+            transform: rotate(45deg);
+            left: 8px;
+        }
+
+        .alert [data-notify="icon"].icon-error::after {
+            transform: rotate(-45deg);
+            right: -8px;
+            top: 14px;
+        }
+
+    /* INFO */
+    .alert [data-notify="icon"].icon-info {
+        background-color: #2874A6;
+    }
+
+        .alert [data-notify="icon"].icon-info::before {
+            content: "i";
+            font-size: 20px;
+            color: #fff;
+            position: relative;
+            left: 16px;
+            top: 7px;
+        }
+
+
+    /* WARNING */
+    .alert [data-notify="icon"].icon-warning {
+        background-color: #D68910;
+    }
+
+        .alert [data-notify="icon"].icon-warning::before {
+            content: "!";
+            font-size: 20px;
+            color: #fff;
+            position: relative;
+            left: 16px;
+            top: 7px;
+        }
+
+
+    /* SUCCESS */
+
+    .alert [data-notify="icon"].icon-success {
+        /*background-color: #239B56;*/
+    }
+
+        .alert [data-notify="icon"].icon-success::before,
+        .alert [data-notify="icon"].icon-success::after {
+            /*content: "";
+            color: #fff;
+            position: relative;
+            height: 3px;
+            background-color: #fff;
+            display: block;
+            border-radius: 2px;*/
+        }
+
+        .alert [data-notify="icon"].icon-success::before {
+            width: 8px;
+            top: 20px;
+            transform: rotate(45deg);
+            left: 9px;
+        }
+
+        .alert [data-notify="icon"].icon-success::after {
+            width: 17px;
+            top: 14px;
+            transform: rotate(-45deg);
+            left: 12px;
+        }

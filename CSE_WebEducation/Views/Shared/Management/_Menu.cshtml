@@ -1,0 +1,47 @@
+﻿@using CSE_WebEducation.Helper
+@using CommonLib
+@using ObjectInfo
+
+
+@{
+	CSE_UsersInfo loggedUser = this.Context.GetCurrentUser();
+	CSE_FunctionsInfo function = new CSE_FunctionsInfo();
+	List<CSE_FunctionsInfo> lstTreeFunctions = new List<CSE_FunctionsInfo>();
+	if (ViewBag.TreeFunctions != null)
+	{
+		lstTreeFunctions = ViewBag.TreeFunctions;
+	}
+	if (ViewBag.CurrFunction != null)
+	{
+		function = ViewBag.CurrFunction;
+	}
+	decimal rootFunctionId = 0;
+	if (ViewBag.RootFunctionId != null)
+	{
+		rootFunctionId = ViewBag.RootFunctionId;
+	}
+	decimal functionLev1 = 0;
+	decimal functionLev2 = 0;
+
+	functionLev1 = lstTreeFunctions.FirstOrDefault(o => o.Lev == 1)?.Function_Id ?? 0;
+	functionLev2 = lstTreeFunctions.FirstOrDefault(o => o.Lev == 2)?.Function_Id ?? 0;
+}
+@{
+	if (loggedUser != null && loggedUser.List_User_Functions?.Count > 0)
+	{
+		@Html.CreateMenuLeft(loggedUser.List_User_Functions, 0, rootFunctionId, functionLev1)
+	}
+}
+<style>
+	.noneactive {
+		transition: none !important;
+	}
+</style>
+<script>
+	$(document).ready(function () {
+		//Nếu là trang chủ thì gán active
+		if('@functionLev1' == '0' && '@rootFunctionId' == '0'){
+			$(".menu-parent li:first").addClass("active");
+		}
+	});
+</script>

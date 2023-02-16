@@ -1,0 +1,123 @@
+﻿@using ObjectInfo;
+@using CommonLib;
+@{
+    List<CSE_UsersInfo> lstUsersOfGroup = ViewBag.ListUsersInGroup ?? new List<CSE_UsersInfo>();
+    var groupInfo = new CSE_GroupsInfo();
+    if (ViewBag.Group_Info != null)
+    {
+        groupInfo = ViewBag.Group_Info;
+    }
+
+    decimal _groupType = groupInfo.Group_Type;
+}
+
+<style>
+    .tbl-record table {
+        border-spacing: 0;
+        border-collapse: separate;
+    }
+
+    tr.bdy {
+        display: none;
+    }
+
+        tr.bdy.open {
+            display: table-row;
+        }
+</style>
+
+<div class="wrapper-editor tbl-record fixed-head">
+    <table cellspacing="0" width="100%" id="test-tb">
+        <thead>
+            <tr>
+                <th class="mw-40">
+                    <input type="checkbox" style="margin: 0px;" class="allInGroup" onchange="ChangeAllInGroup()" />
+                </th>
+                <th class="mw-100">STT</th>
+                <th class="mw-100">Tài khoản</th>
+                <th class="mw-100">Tên người dùng</th>
+                <th class="mw-100">Trạng thái</th>
+                <th class="mw-100">Loại người dùng</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyUserInGroup">
+            <tr id="trNullDataDefault" style="display: none;">
+                <td colspan="8">Không có dữ liệu</td>
+            </tr>
+            @if (lstUsersOfGroup != null && lstUsersOfGroup.Count > 0)
+            {
+                int i = 0;
+                foreach (CSE_UsersInfo item in lstUsersOfGroup)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input name="right" type="checkbox" style="margin: 0px;" id='@item.User_Id.ToNumberStringN0()' value="@item.User_Id.ToNumberStringN0()" onchange="ChangeItemInGroup()" />
+                        </td>
+                        <td class="text-center">@(i + 1)</td>
+                        <td>@item.User_Name</td>
+                        <td>@item.Full_Name</td>
+                        @if (item.Status.ToUpper() == CSE_User_Status.Active)
+                        {
+                            <td class="text-success">@item.Status_Text</td>
+                        }
+                        else if (item.Status.ToUpper() == CSE_User_Status.UnActive)
+                        {
+                            <td class="text-danger">@item.Status_Text</td>
+                        }
+                        <td>@item.User_Type_Text</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7">Không có dữ liệu</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    $(function () {
+        $("tr.title-process.tit").on("click", function () {
+            if ($(this).hasClass("open")) {
+                $(this).removeClass("open active").nextUntil('.title-process.tit').removeClass("open");
+            } else {
+                $(".title-process.tit").removeClass("open active").nextUntil('.title-process.tit').removeClass("open");
+                $(this).addClass("open active").nextUntil('.title-process.tit').addClass("open");
+            }
+        });
+    });
+
+    function ChangeAllInGroup() {
+        var _checkAll = $(".allInGroup").prop("checked");
+        if (_checkAll == true) {
+            $('input[name="right"]').each(function () {
+                $(this).prop("checked", true);
+            });
+        } else {
+            $('input[name="right"]').each(function () {
+                $(this).prop("checked", false);
+            });
+        }
+    }
+
+    function ChangeItemInGroup() {
+        var _item = 1;
+        $('input[name="right"]').each(function () {
+            var _check = $(this).prop("checked");
+            if (_check == false) {
+                _item = -1;
+                return false;
+            }
+        });
+        if (_item == 1) {
+            $(".allInGroup").prop("checked", true);
+        } else {
+            $(".allInGroup").prop("checked", false);
+        }
+
+    }
+</script>

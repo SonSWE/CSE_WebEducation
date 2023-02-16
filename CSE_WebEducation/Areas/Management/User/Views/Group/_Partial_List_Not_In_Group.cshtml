@@ -1,0 +1,181 @@
+﻿@using ObjectInfo;
+@using CommonLib;
+@using System.Linq;
+@{
+    List<CSE_UsersInfo> lstUserNotIn = new List<CSE_UsersInfo>();
+    if (ViewBag.ListUserNotIn != null)
+    {
+        lstUserNotIn = ViewBag.ListUserNotIn;
+    }
+
+
+    var groupInfo = new CSE_GroupsInfo();
+    if (ViewBag.Group_Info != null)
+    {
+        groupInfo = ViewBag.Group_Info;
+    }
+    decimal _groupType = groupInfo.Group_Type;
+}
+
+<style>
+    .tbl-record table tbody tr td {
+        border-left: 0;
+    }
+
+    .tbl-record table tbody tr td:not(:last-child) {
+        border-top: 0;
+    }
+
+    .tbl-record table thead tr th:last-child, .tbl-record table tbody tr td:last-child {
+        border-top: 0;
+        border-left: 0 !important;
+    }
+
+    .tbl-record table {
+        border-spacing: 0;
+        border-collapse: separate;
+    }
+
+    tr.fold {
+        display: none;
+    }
+
+        tr.fold.open {
+            display: table-row;
+        }
+
+    .tbl-record table thead tr th:first-child {
+        position: -webkit-sticky;
+        position: sticky;
+        background: #EBEBEB;
+        left: 0;
+        z-index: 99;
+    }
+
+    tr > :first-child {
+        position: -webkit-sticky;
+        position: sticky;
+        background: #fff;
+        left: 0;
+    }
+
+    .tbl-record table tbody tr:hover, .tbl-record table tbody tr:focus {
+        background: #EBEBEB;
+    }
+
+    .tbl-record table tr:hover {
+        background-color: #EBEBEB;
+    }
+
+        .tbl-record table tr:hover > *:first-child {
+            background-color: #EBEBEB;
+        }
+
+    .hover-ac {
+        background: #EBEBEB !important;
+    }
+
+    .tbl-record table tr.hover-ac > *:first-child {
+        background-color: #EBEBEB;
+    }
+</style>
+
+<div class="wrapper-editor scroll-tb tbl-record fixed-head">
+    <table cellspacing="0" width="100%" id="test-tb" style="border-collapse: separate;">
+        <thead>
+            <tr>
+                <th class="mw-40">
+                    <input type="checkbox" style="margin: 0px;" class="allNotInGroup" onchange="ChangeallNotInGroup()" />
+                </th>
+                <th class="mw-100">STT</th>
+                <th class="mw-100">Tài khoản</th>
+                <th class="mw-100">Tên người dùng</th>
+                <th class="mw-100">Trạng thái</th>
+                <th class="mw-100">Loại người dùng</th>
+                <th class="mw-100">Tổ chức trực thuộc</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyUserNotIn">
+            <tr id="trNullDataDefault1" style="display: none;">
+                <td colspan="8">Không có dữ liệu</td>
+            </tr>
+            @if (lstUserNotIn != null && lstUserNotIn.Count > 0)
+            {
+                int i = 0;
+                foreach (CSE_UsersInfo item in lstUserNotIn)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input name="notright" type="checkbox" style="margin: 0px;" id='@item.User_Id.ToNumberStringN0()' value="@item.User_Id.ToNumberStringN0()" onchange="ChangeItemNotInGroup()" />
+                        </td>
+                        <td class="text-center">@(i + 1)</td>
+                        <td>@item.User_Name</td>
+                        <td>@item.Full_Name</td>
+                        @if (item.Status.ToUpper() == CSE_User_Status.Active)
+                        {
+                            <td class="text-success">@item.Status_Text</td>
+                        }
+                        else if (item.Status.ToUpper() == CSE_User_Status.UnActive)
+                        {
+                            <td class="text-danger">@item.Status_Text</td>
+                        }
+                        <td>@item.User_Type_Text</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7">Không có dữ liệu</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(function() {
+        $("tr.title-process.view").on("click", function() {
+            if ($(this).hasClass("open")) {
+
+                $(this).removeClass("open active").nextUntil('.title-process.view').removeClass("open");
+
+            } else {
+                $(".title-process.view").removeClass("open active").nextUntil('.title-process.view').removeClass("open");
+                $(this).addClass("open active").nextUntil('.title-process.view').addClass("open");
+            }
+
+        });
+    });
+
+    function ChangeallNotInGroup() {
+        var _checkAll = $(".allNotInGroup").prop("checked");
+        if (_checkAll == true) {
+            $('input[name="notright"]').each(function() {
+                $(this).prop("checked", true);
+            });
+        } else {
+            $('input[name="notright"]').each(function() {
+                $(this).prop("checked", false);
+            });
+        }
+    }
+
+    function ChangeItemNotInGroup() {
+        var _item = 1;
+        $('input[name="notright"]').each(function() {
+            var _check = $(this).prop("checked");
+            if (_check == false) {
+                _item = -1;
+                return false;
+            }
+        });
+        if (_item == 1) {
+            $(".allNotInGroup").prop("checked", true);
+        } else {
+            $(".allNotInGroup").prop("checked", false);
+        }
+
+    }
+
+</script>

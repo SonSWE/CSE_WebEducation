@@ -1,0 +1,186 @@
+﻿@using CSE_WebEducation
+@using ObjectInfo;
+@using CommonLib;
+
+@{
+    //Layout = "_Layout";
+    //ViewBag.Title = "Thêm mới nhóm người dùng";
+    decimal user_type = ViewBag.User_Type;
+}
+
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="header-report">
+            <h3>Thêm mới nhóm người dùng</h3>
+            <button class="btn-close" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-close.svg" alt="img"></button>
+        </div>
+
+        <form id="formAddGroupUser" enctype="multipart/form-data">
+            <div class="body-report">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Tên nhóm NSD <span class="clr-red">(*)</span></div>
+                            <div class="field-report">
+                                <input type="text" id="txtGroup_Name" name="txtGroup_Name" autocomplete="off" maxlength="100" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Loại nhóm <span class="clr-red">(*)</span></div>
+                            <div class="field-report">
+                                <select id="slGroupType" multiple>
+                                    @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "TYPE"))
+                                    {
+
+                                        <option value="@item.CDVal">@item.Content</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Trạng thái <span class="clr-red">(*)</span></div>
+                            <div class="field-report">
+                                <select id="slGroupStatus" multiple>
+                                    @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "STATUS"))
+                                    {
+                                        <option value="@item.CDVal">@item.Content</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Mô tả</div>
+                            <div class="field-report">
+                                <input type="text" id="txtNote" name="txtNote" autocomplete="off" maxlength="500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="foot-report text-right">
+                <input type="hidden" id="Status" name="Status" />
+                <button class="btn-save" type="submit" id="btnSend"><img src="~/bidding_lib/img/icon-save.svg" alt="img">Lưu</button>
+                <button class="btn-cancel" type="button" id="btnExit" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img">Thoát</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<script>
+    var _Group_Name = "";
+    var _Note = "";
+    var _Group_Type = "";
+    var _Status = "";
+
+    $(document).ready(function () {
+        $('#txtGroup_Name').focus();
+    })
+
+    $('#slGroupType').multipleSelect({
+        width: '100%',
+        single: true,
+        filter: true,
+        placeholder: "-- Chọn loại nhóm --",
+    });
+
+    $('#slGroupStatus').multipleSelect({
+        width: '100%',
+        single: true,
+        filter: true,
+        placeholder: "-- Trạng thái --",
+    });
+
+    $('#formAddGroupUser').on('submit', function (e) {
+        try {
+      
+                /* e = window.event || e;*/
+                e.preventDefault();
+
+      
+                if (!validateAdd()) return false;
+
+                var formData = new FormData();
+                collectDataToAdd(formData);
+
+                $.ajax({
+                    type: "POST",
+                    enctype: "multipart/form-data",
+                    url: '/quan-tri/nhom-nguoi-dung/them-moi',
+                    data: formData,
+                    beforeSend: function () {
+                        SpinLoading(true);
+                    },
+                    contentType: false, processData: false, async: false,
+                    success: function (data) {
+                        if (data && preHandleDataResult(data)) {
+                            if (data.success > 0) {
+                                showSuccess(data.responseMessage);
+                                setTimeout(function () {
+                                    window.location.href = '/quan-tri/nhom-nguoi-dung/danh-sach';
+                                }, 1000);
+                            }
+                            else {
+                                showError(data.responseMessage);
+                            }
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data.error);
+                    },
+                    complete: function () {
+                        SpinLoading(false);
+                    }
+                });
+
+        } catch (e) {
+            console.log(e);
+        }
+
+    });
+
+    function collectDataToAdd(formData) {
+        formData.append('info.Group_Name', _Group_Name);
+        formData.append('info.Note', _Note);
+        formData.append('info.Group_Type', _Group_Type);
+        formData.append('info.Status', _Status);
+    }
+
+    function validateAdd() {
+        try {
+            _Group_Name = $("#txtGroup_Name").val().trim();
+            _Note = $("#txtNote").val().trim();
+            _Group_Type = $("#slGroupType").val();
+            _Status = $("#slGroupStatus").val();
+
+            if (_Group_Name == null || _Group_Name == "") {
+                showError('Tên nhóm không được để trống')
+                $("#txtGroup_Name").focus();
+                return false;
+            }
+
+            if (_Group_Type == null || _Group_Type == "") {
+                showError('Loại nhóm không được để trống')
+                $("#slGroupType").focus();
+                return false;
+            }
+
+            if (_Status == null || _Status == "") {
+                showError('Trạng thái nhóm không được để trống')
+                $("#slGroupStatus").focus();
+                return false;
+            }
+
+            return true;
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+</script>

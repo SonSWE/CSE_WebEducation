@@ -1,0 +1,321 @@
+﻿@using CSE_WebEducation
+@using CommonLib;
+@{
+    Layout = "~/Views/Shared/Management/_ManaLayout.cshtml";
+    ViewBag.Title = "Danh sách người dùng";
+}
+
+<div id="pupup"></div>
+
+<div class="block-search-light">
+    <div class="head-search">
+        <h3 class="title">Điều kiện tìm kiếm</h3>
+        <div class="search-right">
+            <button class="btn-additem" type="button" onclick="gotoAdd()"><img src="~/bidding_lib/img/plus.svg" />Thêm mới</button>
+
+            <button class="btn-search" onclick="Search(@CommonData.pageDefaut);"><img src="~/bidding_lib/img/icon-search.svg" alt="img"></button>
+        </div>
+    </div>
+    <div class="body-search">
+        <div class="box-search">
+            <div class="item-search">
+                <label>Tên nhóm NSD</label>
+                <input type="text" id="txtName" placeholder="Từ khóa tìm kiếm">
+
+            </div>
+            <div class="item-search">
+                <label>Loại nhóm</label>
+                <select id="slUserType" multiple>
+                    <option value="-1" selected>-- Tất cả --</option>
+                    @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "TYPE"))
+                    {
+                        <option value="@item.CDVal">@item.Content</option>
+                    }
+                </select>
+            </div>
+            <div class="item-search">
+                <label>Trạng thái</label>
+                <select id="slStatus" multiple>
+                    <option value="-1" selected>-- Tất cả --</option>
+                    @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "STATUS"))
+                    {
+                        <option value="@item.CDVal">@item.Content</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="block-record" id="tableData">
+    @*@Html.Partial("_Partial_List.cshtml")*@
+</div>
+
+
+<div class="modal modal-report" id="dPopup"></div>
+
+<script>
+    $(document).ready(function () {
+        Search(@CommonData.pageDefaut);
+    })
+
+    $('#slUserType').multipleSelect({
+        width: '100%',
+        single: true,
+        filter: true,
+        placeholder: "-- Chọn loại người dùng --",
+    });
+
+     $('#slStatus').multipleSelect({
+        width: '100%',
+        single: true,
+        filter: true,
+        placeholder: "-- Chọn trạng thái --",
+    });
+
+    $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+            Search('@CommonData.pageDefaut');
+        }
+    });
+
+    function ChangePage(curentPage) {
+        Search(curentPage);
+    }
+
+    function Search(curentPage) {
+        try {
+            var keySearch = $('#txtName').val().trim() + '|' + $('#slUserType').val() + '|' + $('#slStatus').val();
+            $.ajax({
+                type: 'POST',
+                url: '/quan-tri/nguoi-dung/tim-kiem',
+                data: {
+                    keysearch: keySearch,
+                    curentPage: curentPage,
+                    p_record_on_page: $("#cbo_record_on_page").val()
+                },
+                async: true, cache: false, traditional: true,
+                beforeSend: function () {
+                    //SpinLoading(true);
+                },
+                success: function (data) {
+                    //SpinLoading(false);
+                    if (preHandleDataResult(data)) {
+                        $("#tableData").html(data);
+                    }
+                }
+            });
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    function onChange_Record_on_page() {
+        Search(1);
+    }
+
+    function LoadInsert() {
+        try {
+            $.ajax({
+                type: 'GET',
+                url: '/quan-tri/nnguoi-dung/them-moi',
+                async: false, cache: false, traditional: true,
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                success: function (data) {
+                    SpinLoading(false);
+                    $("#dPopup").html(data);
+                    ShowPopupDialog("dPopup", "");
+                }
+            });
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    function LoadEdit(user_id) {
+        try {
+            $.ajax({
+                type: 'GET',
+                url: '/quan-tri/nguoi-dung/cap-nhat',
+                data: {
+                    user_id: user_id
+                },
+                async: false, cache: false, traditional: true,
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                success: function (data) {
+                    SpinLoading(false);
+                    $("#dPopup").html(data);
+                    ShowPopupDialog("dPopup", "");
+                }
+            });
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    function LoadView(user_id) {
+        try {
+            $.ajax({
+                type: 'GET',
+                url: '/quan-tri/nguoi-dung/chi-tiet',
+                data: {
+                    user_id: user_id
+                },
+                async: true, cache: false, traditional: true,
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                success: function (data) {
+                    SpinLoading(false);
+                    if (preHandleDataResult(data)) {
+                        $("#dPopup").html(data);
+                        ShowPopupDialog("dPopup", "");
+                    }
+                }
+            });
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    function Delete(user_id) {
+        try {
+            nvsConfirm("Bạn có chắc chắn muốn xóa người dùng này không?", function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'quan-tri/nhom-nguoi-dung/xoa',
+                    data: {
+                        user_id: user_id
+                    },
+                    async: true, cache: false, traditional: true,
+                    beforeSend: function () {
+                        SpinLoading(true);
+                    },
+                    success: function (data) {
+                        if (preHandleDataResult(data)) {
+                            if (data.success > 0) {
+                                showSuccess(data.responseMessage)
+                                Search('@CommonData.pageDefaut');
+                            } else {
+                                showError(data.responseMessage)
+                            }
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    },
+                    complete: function () {
+                        SpinLoading(false);
+                    }
+                });
+            })
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    //function unactive_Group(group_id, status) {
+    //    try {
+    //        nvsConfirm("Bạn có chắc chắn muốn kích hoạt hết hiệu lực nhóm người dùng này không?", function () {
+    //            $.ajax({
+    //                type: 'PUT',
+    //                url: '/nhom-nguoi-dung/thay-doi-trang-thai',
+    //                data: {
+    //                    group_id: group_id,
+    //                    group_status: status
+    //                },
+    //                async: true, cache: false, traditional: true,
+    //                beforeSend: function () {
+    //                    SpinLoading(true);
+    //                },
+    //                success: function (data) {
+    //                    if (preHandleDataResult(data)) {
+    //                        if (data.success > 0) {
+    //                            showSuccess(data.responseMessage)
+    //                            Search('@CommonData.pageDefaut');
+    //                        } else {
+    //                            showError(data.responseMessage)
+    //                        }
+    //                    }
+    //                },
+    //                error: function (data) {
+    //                    console.log(data);
+    //                },
+    //                complete: function () {
+    //                    SpinLoading(false);
+    //                }
+    //            });
+    //        })
+    //    } catch (ex) {
+    //        console.log(ex);
+    //    }
+    //}
+
+    //function active_Group(group_id, status) {
+    //    try {
+    //        nvsConfirm("Bạn có chắc chắn muốn kích hoạt hiệu lực cho nhóm người sử dụng này không?", function () {
+    //            $.ajax({
+    //                type: 'PUT',
+    //                url: '/nhom-nguoi-dung/thay-doi-trang-thai',
+    //                data: {
+    //                    group_id: group_id,
+    //                    group_status: status
+    //                },
+    //                async: true, cache: false, traditional: true,
+    //                beforeSend: function () {
+    //                    SpinLoading(true);
+    //                },
+    //                success: function (data) {
+    //                    if (preHandleDataResult(data)) {
+    //                        if (data.success > 0) {
+    //                            showSuccess(data.responseMessage)
+    //                            Search('@CommonData.pageDefaut');
+    //                        } else {
+    //                            showError(data.responseMessage)
+    //                        }
+    //                    }
+    //                },
+    //                error: function (data) {
+    //                    console.log(data);
+    //                },
+    //                complete: function () {
+    //                    SpinLoading(false);
+    //                }
+    //            });
+    //        })
+    //    } catch (ex) {
+    //        console.log(ex);
+    //    }
+    //}
+
+    function LoadSetFunction(userId) {
+        try {
+            $.ajax({
+                type: "GET",
+                data: { userId: userId },
+                url: "/quan-tri/nguoi-dung/phan-quyen",
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                success: function (data) {
+                    SpinLoading(false);
+                    if (data != null) {
+                        if (preHandleDataResult(data)) {
+                            $("#dPopup").html(data);
+                            ShowPopupDialog("dPopup", "Phân quyền nhóm");
+                        }
+                    }
+                },
+                error: function (data) {
+                    console.log(data.error);
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+</script>

@@ -1,0 +1,111 @@
+﻿@using CSE_WebEducation.Helper
+@using CommonLib
+@{
+    var user = this.Context.GetCurrentUser();
+
+    int timeoutStatus = 0;
+    if (ViewBag.TimeOutStatus != null)
+    {
+        timeoutStatus = ViewBag.TimeOutStatus;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CSE</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CSE_WebEducation.styles.css" asp-append-version="true" />
+
+    @*<link rel="icon" href="~/bidding_lib/img/logo.svg" sizes="any" type="image/svg+xml">*@
+    <link rel="icon" type="image/x-icon" href="~/img/logo.ico">
+    <link rel="stylesheet" href="~/bidding_lib/libs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/bidding_lib/libs/css/all.css">
+    <link rel="stylesheet" href="~/bidding_lib/libs/css/swiper.css">
+    <link rel="stylesheet" href="~/bidding_lib/libs/css/animate.css">
+    <link rel="stylesheet" href="~/bidding_lib/libs/css/multiple-select.css">
+    <link rel="stylesheet" href="~/bidding_lib/libs/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="~/bidding_lib/scss/main.min.css" asp-append-version="true">
+
+    <link href="~/fonts/stylesheet.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/popup.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/bidding_lib/libs/css/datepicker.min.css" rel="stylesheet" />
+
+    @*datatables*@
+    <script type="text/javascript" src="~/bidding_lib/libs/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/bidding_lib/libs/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/bidding_lib/libs/js/swiper.js"></script>
+    <script type="text/javascript" src="~/bidding_lib/libs/js/jquery.multiple.select.js"></script>
+    <script type="text/javascript" src="~/bidding_lib/libs/js/jquery.datetimepicker.full.min.js"></script>
+
+    @* datetimepicker month year *@
+    <script type="text/javascript" src="~/bidding_lib/libs/js/bootstrap-datepicker-my.min.js"></script>
+    <script src="~/lib/datetimepicker/jquery.datetimepicker.full.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/bidding_lib/libs/js/script.js"></script>
+
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+    <script src="~/lib/sweetalert/sweetalert2-init.js"></script>
+    <script src="~/lib/sweetalert/sweetalert2.js"></script>
+    <script src="~/lib/sweetalert/es6-promise.auto.min.js"></script>
+    <link href="~/lib/sweetalert/sweetalert2.css" rel="stylesheet" />
+    <link href="~/lib/notify/animate.min.css" rel="stylesheet" />
+    <link href="~/lib/notify/notify.css" rel="stylesheet" />
+    <script src="~/lib/notify/bootstrap-notify.min.js"></script>
+    <script src="~/lib/notify/bootstrap-notify-init.js"></script>
+</head>
+<body>
+    <style>
+        .display-none {
+            display: none;
+        }
+    </style>
+    @if (user == null)
+    {
+        @RenderBody()
+    }
+    else
+    {
+        <div id="wrapper">
+            <partial name="~/Views/Shared/Management/_Header.cshtml" />
+
+            <main class="main">
+                <div class="container">
+                    @*<partial name="~/Views/Shared/Management/_BreadcrumbAndSearch.cshtml" />*@
+                    @RenderBody()
+                </div>
+
+            </main>
+        </div>
+
+        <div id="divLoader" class="loader-wrap" style="display:none">
+            <div class="loader">
+                <div class="inner one"></div>
+                <div class="inner two"></div>
+                <div class="inner three"></div>
+            </div>
+        </div>
+    }
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script>
+    function preHandleDataResult(data) {
+        if (data.success == '@ActionResultConfig.TIME_OUT') {
+            window.location.href = '@RouteConfig.TIME_OUT';
+        } else if (data.success == '@ActionResultConfig.UNAUTHORIZED_AJAX') {
+            nvsAlert("Thông báo", "Không có quyền thực hiện chức năng này");
+        } else {
+            return true;
+        }
+        return false;
+    }
+
+</script>

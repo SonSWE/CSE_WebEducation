@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="~/css/StyleLogin.css">
+<div class="container-login">
+    <div class="wrapper">
+        <div class="logo text-center">
+            <img width="100%" src="http://rubee.com.vn/admin/webroot/upload/image/images/logo/rubee/logo-dai-hoc-thuy-loi.png" alt="">
+        </div>
+        <div class="inner-warpper text-center">
+            <h2 class="title">Hệ thống quản lý website khoa CNTT</h2>
+            <form action="" id="frmLogin">
+                <div class="input-group">
+                    <label class="palceholder" for="txtUserName">Tài khoản</label>
+                    <input class="form-control" name="txtUserName" id="txtUserName" type="text" placeholder="" />
+                    <span class="lighting"></span>
+                </div>
+                <div class="input-group">
+                    <label class="palceholder" for="txtPassword">Mật khẩu</label>
+                    <input class="form-control" name="txtPassword" id="txtPassword" type="password" placeholder="" />
+                    <span class="lighting"></span>
+                </div>
+
+                <button type="submit" id="login" class="login-btn">
+                    @*<div class="loading"></div>*@
+                    Đăng nhập
+                </button>
+                <div class="clearfix supporter">
+                    <div class="pull-left remember-me">
+                        <input id="rememberMe" type="checkbox">
+                        <label for="rememberMe">Nhớ tài khoản</label>
+                    </div>
+                    <a class="forgot pull-right" href="#">Quên mật khẩu?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+      + function($) {
+      $('.palceholder').click(function() {
+        $(this).siblings('input').focus();
+      });
+
+      $('.form-control').focus(function() {
+        $(this).parent().addClass("focused");
+      });
+
+      $('.form-control').blur(function() {
+        var $this = $(this);
+        if ($this.val().length == 0)
+          $(this).parent().removeClass("focused");
+      });
+      $('.form-control').blur();
+
+      //// validetion
+      //$.validator.setDefaults({
+      //  errorElement: 'span',
+      //  errorClass: 'validate-tooltip'
+      //});
+
+      //$("#frmLogin").validate({
+      //  rules: {
+      //    userName: {
+      //      required: true,
+      //      minlength: 6
+      //    },
+      //    userPassword: {
+      //      required: true,
+      //      minlength: 6
+      //    }
+      //  },
+      //  messages: {
+      //    userName: {
+      //      required: "Please enter your username.",
+      //      minlength: "Please provide valid username."
+      //    },
+      //    userPassword: {
+      //      required: "Enter your password to Login.",
+      //      minlength: "Incorrect login or password."
+      //    }
+      //  }
+      //});
+
+    }(jQuery);
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#txtUserName').focus();
+    });
+
+    $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+            Login();
+        }
+    });
+    // hàm login viết tại đây
+    // Submit form
+    $('#frmLogin').on("submit", function (e) {
+
+        try {
+            e = window.event || e;
+            e.preventDefault();
+
+            Login();
+        }
+        catch (e) {
+            console.log(e);
+        }
+    });
+
+    function Login() {
+        try {
+
+            var txt_username = $('#txtUserName').val().trim();
+            if (txt_username == "") {
+                showError("Tài khoản không được để trống");
+                return false;
+            }
+
+            var txt_password = $('#txtPassword').val().trim();
+            if (txt_password == "") {
+                showError("Mật khẩu không được để trống");
+                return false;
+            }
+
+            var _url = "/login/do-login";
+
+            $.ajax({
+                url: _url,
+                type: "POST",
+                data: {
+                    userName: txt_username,
+                    password: txt_password
+                },
+                async: true, cache: false, traditional: true,
+                success: function (data) {
+                    if (data.success >= 0) {
+                        window.location.href = "/quan-tri/trang-chu";
+                    }
+                    else {
+                        alert(data.responseMessage);
+                        $('#txtUserName').focus();
+                    }
+                },
+                error: function (data) {
+                    console.log(data.error);
+                },
+                complete: function () {
+                }
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+</script>
+
+
+
