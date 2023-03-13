@@ -2,8 +2,17 @@ using CommonLib;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Logging;
+
+using log4net;
+using log4net.Config;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+
 
 // Add services to the container.
 builder.Services.AddCors();
@@ -30,7 +39,16 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddMvc();
 
+builder.Services.AddLogging(builder =>
+            {
+                builder.SetMinimumLevel(LogLevel.Trace);
+                builder.AddFilter("Microsoft", LogLevel.Warning);
+                builder.AddFilter("System", LogLevel.Error);
+            });
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

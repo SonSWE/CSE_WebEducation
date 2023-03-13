@@ -2,7 +2,16 @@
 using CSE_WebEducation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+using log4net;
+using log4net.Config;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+
+Logger.log.Error("hello");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
