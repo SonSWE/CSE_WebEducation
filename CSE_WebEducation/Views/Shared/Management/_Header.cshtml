@@ -8,63 +8,8 @@
     string _version = GetType().Assembly.GetName().Version.ToString();
 }
 
-<header class="header">
+@Html.Partial("~/Views/Shared/Management/_Menu.cshtml")
 
-    <div class="container">
-        <div class="flex-header">
-            <div class="head-left">
-                @Html.Partial("~/Views/Shared/Management/_Menu.cshtml")
-                <button class="toggle" onclick="myFunction(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </button>
-
-                <div class="overlay"></div>
-            </div>
-        </div>
-        <div class="head-right ml-auto">
-            <div class="user">
-                <div class="name-user">
-                    <div>@user_Info.Full_Name</div>
-                    @*<div>@user_Info.User_Name - @user_Info.User_Type_Text</div>*@
-                </div>
-                <div class="avt"><img src="~/bidding_lib/img/avtadmin.png" alt="img"></div>
-                <div class="block-utility">
-                    <div class="box-utility">
-                        <a href="javascript:0;" data-toggle="modal" onclick="showFormChangePassword(0);">
-                            <span><img src="~/bidding_lib/img/icon-mk.svg" alt="img"></span>
-                            <span>Đổi mật khẩu</span>
-                        </a>
-                        <a href="/logout">
-                            <span><img src="~/bidding_lib/img/icon-dx.svg" alt="img"></span>
-                            <span>Đăng xuất</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    @if (user_Info?.User_Id > 0)
-    {
-
-        <div class="modal md-vsd" id="dPopupShowGAQrImage">
-            <div class="md-dialog">
-                <div class="modal-content">
-                    <div class="mdl-head">
-                        <h3 class="title-popup">Google Authenticator</h3>
-                        <button type="button" onclick="ClosePopupDialog('dPopupShowGAQrImage', false);"><img src="~/version_2/img/icon-close-pp.svg" alt="img"></button>
-                    </div>
-                    <div class="text-center">
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-</header>
 <script>
 
     function myFunction(x) {

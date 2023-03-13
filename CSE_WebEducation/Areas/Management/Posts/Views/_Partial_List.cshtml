@@ -1,0 +1,104 @@
+﻿@using CSE_WebEducation
+@using CommonLib
+@using ObjectInfo;
+@{
+    List<CSE_PostsInfo> _LstData = new List<CSE_PostsInfo>();
+    if (ViewBag.LstData != null)
+    {
+        _LstData = ViewBag.LstData;
+    }
+
+    int _record_on_page = CommonData.RecordsPerPage;
+    if (ViewBag.Record_On_Page != null)
+    {
+        _record_on_page = ViewBag.Record_On_Page;
+    }
+}
+<h3 class="title">
+    <span>Kết quả tìm kiếm</span>
+    <div class="d-flex">
+        @*<button class="render" onclick="exportData()">Kết xuất dữ liệu <img src="~/bidding_lib/img/icon-render.svg" alt="img"></button>*@
+        <div class="show-record">
+            Hiển thị
+            <select onchange="onChange_Record_on_page()" id="cbo_record_on_page">
+                @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("DISPLAY", "RECORD_ON_PAGE"))
+                {
+                    <option @(item.CDVal == _record_on_page.ToString() ? "selected" : "") value="@item.CDVal">@item.Content</option>
+                }
+            </select>
+            bản ghi
+        </div>
+    </div>
+</h3>
+
+<div class="over-flow-x ">
+    <div class="wrapper-editor scroll-tbl tbl-record">
+        <table id="test-tb">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-80px text-center">STT</th>
+                    <th scope="col">Ảnh bìa</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Ngày tạo</th>
+                    <th scope="col">Người tạo</th>
+                    <th scope="col" class="text-center">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (_LstData != null && _LstData.Count > 0)
+                {
+                    foreach (CSE_PostsInfo item in _LstData)
+                    {
+                        <tr>
+
+                            <td class="text-center">@item.STT</td>
+                            <td><img class="img-preview" id="imgPreview" src="@item.Thumbnail" alt="pic" width=200 height=200/></td>
+                            <td>@item.Title</td>
+                            <td class="text-right">@item.Description</td>
+                            <td class="text-center">@item.Created_Date</td>
+                            <td>@item.Created_By</td>
+                            <td>
+                                <a href="javascript:;" data-toggle="modal" data-target="#formViewUser" class="btn-function" onclick="LoadView('@item.Id');">
+                                    <span>
+                                        <img class="imgbefore-hv" src="~/bidding_lib/img/icon-info.svg" alt="img">
+                                    </span>
+                                    <div class="name-function-fix">Xem</div>
+                                </a>
+                                <a href="javascript:;" class="btn-function" onclick="LoadEdit('@item.Id')">
+                                    <span>
+                                        <img class="imgbefore-hv" src="~/bidding_lib/img/icon-edit.svg" alt="img">
+                                    </span>
+                                    <div class="name-function-fix">Sửa</div>
+                                </a>
+
+                                <a href="javascript:;" class="btn-function" onclick="delete(@item.Id);">
+                                    <span>
+                                        <img class="imgbefore-hv" src="~/bidding_lib/img/icon-delete.svg" alt="img">
+
+                                    </span>
+                                    <div class="name-function-fix">Xóa</div>
+                                </a>
+
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10" class="text-left">Không có dữ liệu</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="foot-record">
+    @Html.Raw(ViewBag.Paging)
+</div>
+
+<script>
+
+</script>

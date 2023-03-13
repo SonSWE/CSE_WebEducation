@@ -1,0 +1,48 @@
+﻿@using CSE_WebEducation
+@using ObjectInfo;
+@using CommonLib;
+
+@{
+
+    List<CSE_Posts_CategoriesInfo> _LstCategory = new List<CSE_Posts_CategoriesInfo>();
+    if (ViewBag.LstCategory != null)
+    {
+        _LstCategory = ViewBag.LstCategory;
+    }
+}
+@functions {
+    void RenderCategoryAsTree(List<CSE_Posts_CategoriesInfo> lstMenu, string prid, int level)
+    {
+        List<CSE_Posts_CategoriesInfo> lstSubMenu = new List<CSE_Posts_CategoriesInfo>();
+        lstSubMenu = lstMenu.Where(t => t.PrId.Equals(prid)).OrderBy(t => t.LstOdr).ToList();
+
+        foreach (CSE_Posts_CategoriesInfo _category in lstSubMenu)
+        {
+            if (level == 0)
+            {
+                <option value="@_category.Id" data-flevel="@(_category.Lev +1)" disabled><b>@string.Empty.PadLeft(level * 10, '.')@_category.Name</b></option>
+            }
+            else
+            {
+                <option value="@_category.Id" data-flevel="@(_category.Lev +1)">@string.Empty.PadLeft(level * 10, '.')@_category.Name</option>
+            }
+            RenderCategoryAsTree(lstMenu, _category.Id, level + 1);
+        }
+    }
+}
+
+
+<select name="slCategory" id="slCategory" class="items-select" multiple>
+    @{
+        RenderCategoryAsTree(_LstCategory, "0", 0);
+    }
+</select>
+
+<script>
+    $('#slCategory').multipleSelect({
+            width: '100%',
+            single: true,
+            filter: true,
+            placeholder: "-- Chọn danh mục --",
+        });
+</script>

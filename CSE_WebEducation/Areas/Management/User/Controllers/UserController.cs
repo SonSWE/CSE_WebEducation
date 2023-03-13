@@ -70,7 +70,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("them-moi"), HttpGet]
-        //[CustomActionFilter(FunctionCode = "AU_DO_ADD_GROUP")]
+        [CustomActionFilter(FunctionCode = "AU_DO_ADD_GROUP")]
         public IActionResult Insert()
         {
             try
@@ -86,7 +86,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("them-moi"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Insert(CSE_UsersInfo info)
         {
             decimal _success = -1;
@@ -119,7 +119,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("cap-nhat"), HttpGet]
-        //[CustomActionFilter(FunctionCode = "AU_EDIT_GROUP")]
+        [CustomActionFilter(FunctionCode = "AU_EDIT_GROUP")]
         public IActionResult Update(decimal user_id)
         {
             try
@@ -136,7 +136,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("cap-nhat"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Update(CSE_UsersInfo info)
         {
             decimal _success = -1;
@@ -171,7 +171,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("xoa"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Delete(decimal user_id)
         {
             decimal _id = -1;
@@ -198,7 +198,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
 
 
         [HttpGet, Route("phan-quyen")]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult SetUpFunctionsInGroup(decimal userId)
         {
             var user = this.HttpContext.GetCurrentUser();
@@ -220,7 +220,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [HttpPost, Route("phan-quyen")]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult SetUpFunctionsInGroup(List<CSE_User_Function_Info> lstFunctionsOfUser, decimal userId)
         {
             var user = this.HttpContext.GetCurrentUser();

@@ -1835,12 +1835,14 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
 }
 
 .container {
+    margin-left:30px;
   max-width: 1695px;
   width: 100%;
   margin: 0 auto;
   padding: 0 15px;
 }
-
+/*hearder cũ*/
+/*
 .header {
   padding: 8px 0;
   box-shadow: 0px 4px 20px 2px rgba(0, 0, 0, 0.1);
@@ -2032,7 +2034,7 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
   .navigation > ul > li:hover > a {
     background: rgba(205, 204, 204, 0.26);
   }
-}
+}*/
 .navigation > ul > li:hover .block-dropdown {
   display: block;
 }
@@ -2041,7 +2043,7 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
     display: none;
   }
 }
-.navigation > ul > li.active > a {
+/*.navigation > ul > li.active > a {
   background: linear-gradient(93.37deg, #52B850 47.88%, #79EA77 117.7%);
   box-shadow: 0px 2px 10px rgba(60, 172, 58, 0.3);
   color: #fff;
@@ -2064,7 +2066,7 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
   .navigation.active {
     max-width: 100%;
   }
-}
+}*/
 
 .toggle {
   display: none;
@@ -2151,8 +2153,8 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
   width: 194px;
   overflow-y: auto;
   max-height: calc(100vh - 180px);
-  /* Handle */
-  /* Handle on hover */
+   Handle 
+   Handle on hover 
 }
 @media only screen and (max-width: 991px) {
   .block-dropdown ul {
@@ -2349,6 +2351,7 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
   background: #F1F1F1;
   padding-bottom: 93px;
   position: relative;
+
 }
 @media only screen and (max-width: 1280px) {
   .main {
@@ -2488,6 +2491,7 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
   margin-bottom: 19px;
   color: #4E8336;
 }
+
 
 .footer-form {
   padding: 15px 0 16px;
@@ -3093,6 +3097,8 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
     font-size: 14px;
   }
 }
+
+
 
 @media only screen and (max-width: 991px) {
   .tbl-record {

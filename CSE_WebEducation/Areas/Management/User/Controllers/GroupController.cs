@@ -149,7 +149,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                 _success = ApiClient_Group.Update(info, user.Token);
 
-                if (_success < 0)
+                if (_success > 0)
                 {
                     _str_error = "Chỉnh sửa nhóm người dùng thành công!";
                     //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");

@@ -211,3 +211,50 @@ function CreateFixedTable($tabletarget, $fixColumnOptions, $options) {
         //console.log(e);
     }
 }
+
+function StringToDate_ddMMyyyy(strDate, strDelemiter) {
+    strDelemiter = strDelemiter || '/';
+
+    if (isDate_ddMMyyyy(strDate) == false) {
+        return null;
+    }
+
+    var dateParts = strDate.split(strDelemiter);
+    var year = dateParts[2];
+    var month = dateParts[1];
+    var day = dateParts[0];
+
+    if (isNaN(day) || isNaN(month) || isNaN(year))
+        return null;
+
+    return new Date(year, month - 1, day);
+}
+
+//0: Sai định dạng 1: Ngày không tồn tại 2: Thành công
+function isDate_ddMMyyyy(strDate) {
+    var currVal = strDate;
+    //var rxDatePattern = /^(\d{2})(\/|-)(\d{2})(\/|-)(\d{4})$/;
+    var rxDatePattern = /^(\d{2})(\/)(\d{2})(\/)(\d{4})$/;
+    var dtArray = currVal.match(rxDatePattern); // is format OK?
+    if (dtArray == null) {
+        return 0;
+    }
+    dtDay = dtArray[1];
+    dtMonth = dtArray[3];
+    dtYear = dtArray[5];
+    if (dtYear < 1000)
+        return 1;
+    else if (dtMonth < 1 || dtMonth > 12)
+        return 1;
+    else if (dtDay < 1 || dtDay > 31)
+        return 1;
+    else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11) && dtDay == 31)
+        return 1;
+    else if (dtMonth == 2) {
+        var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+        if (dtDay > 29 || (dtDay == 29 && !isleap))
+            return 1;
+    }
+    return 2;
+}
+

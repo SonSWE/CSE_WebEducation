@@ -50,7 +50,7 @@ namespace CSE_WebEducation.Helper
                     {
                         displayLev2 = " style=\"display:block\"";
                     }
-                    
+
                     sb.Append("<ul class=\"" + menu + "\"" + displayLev2 + ">");
 
 
@@ -75,7 +75,7 @@ namespace CSE_WebEducation.Helper
                             sb.Append("<li class=\"" + classActive + "\">");
                             sb.Append("<a href='" + (item.Function_Url != null && item.Function_Url.Length > 0 ? item.Function_Url : "javascript:;") + "'>" + item.Function_Name);
                         }
-                        
+
                         sb.Append("</a>");
 
                         // Get childs
@@ -84,6 +84,91 @@ namespace CSE_WebEducation.Helper
                     }
                     sb.Append("</ul>");
                     sb.Append("</div>");
+
+                }
+
+
+            }
+            catch (Exception)
+            {
+                sb = new StringBuilder();
+            }
+
+            return sb.ToString();
+        }
+
+        public static IHtmlContent CreateMenuLeft2(this IHtmlHelper htmlHelper, List<CSE_FunctionsInfo> lstAllFunctionsByUser, decimal rootId, decimal functionLev1, decimal funcLev2)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<div class=\"sidebar\"><div class=\"logo-details\"> <i class='bx bxl-c-plus-plus'></i> <span class=\"logo_name\">CSE admin</span></div>");
+            string htmlString = GetTreeMenuLeft2(lstAllFunctionsByUser, rootId, functionLev1, funcLev2);
+            sb.Append(htmlString);
+            //sb.Append("</nav>");
+            sb.Append("</div>");
+            return new HtmlString(sb.ToString());
+        }
+        private static string GetTreeMenuLeft2(List<CSE_FunctionsInfo> lstAllFunctionsByUser, decimal rootId, decimal functionLev1, decimal functionLev2)
+        {
+            StringBuilder sb = new StringBuilder();
+            try
+            {
+
+                List<CSE_FunctionsInfo> lstChilds = lstAllFunctionsByUser.Where(f => f.Prid == rootId && f.Display_On_Menu == 1).OrderBy(f => f.Position).ToList();
+
+                if (lstChilds?.Count > 0)
+                {
+
+                    var lev = lstChilds.First()?.Lev ?? 0;
+                    string displayLev2 = "";
+                    string classname = lev == 0 ? "navigation" : "block-dropdown";
+
+                    sb.Append("<div class=\"" + classname + "\">");
+
+                    string menu = lev == 0 ? "nav-links" : "sub-nav-links";
+                    if (rootId == functionLev1 && lev == 1)
+                    {
+                        displayLev2 = "";
+                    }
+
+                    sb.Append("<ul class=\"" + menu + "\"" + displayLev2 + ">");
+
+
+                    foreach (CSE_FunctionsInfo item in lstChilds)
+                    {
+                        bool hasChild = (lstAllFunctionsByUser.Any(o => o.Prid == item.Function_Id && o.Display_On_Menu == 1));
+                        string classActive = "", classRotateDown = "";
+                        if (functionLev1 == item.Function_Id)
+                        {
+                            classActive = "active";
+                            classRotateDown = "rotate-down";
+                        }
+
+                        if (functionLev2 == item.Function_Id) classActive = "active";
+                        if (hasChild)
+                        {
+                            sb.Append("<li class=\"nav-links-item " + classRotateDown + "\">");
+                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href=\"javascript:;\">" + "<img class=\"icon-nav\" src=\"" + item.Function_Icon + "\" alt=\"img\">" + "<span class=\"links-name\">" + item.Function_Name + "</span>" + "<i class='bx bxs-chevron-down arrow' ></i>");
+                        }
+                        else if (hasChild == false && item.Prid == 0)
+                        {
+                            sb.Append("<li class=\"nav-links-item\">");
+                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href='" + (item.Function_Url != null && item.Function_Url.Length > 0 ? item.Function_Url : "javascript:;") + "'>" + "<img class=\"icon-nav\" src=\"" + item.Function_Icon + "\" alt=\"img\">" + "<span class=\"links-name\">" + item.Function_Name + "</span>");
+                        }
+                        else
+                        {
+                            sb.Append("<li class=\"nav-links-item\">");
+                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href='" + (item.Function_Url != null && item.Function_Url.Length > 0 ? item.Function_Url : "javascript:;") + "'>" + "<span class=\"links-name\">" + item.Function_Name + "</span>");
+                        }
+
+                        sb.Append("</a></div>");
+
+                        // Get childs
+                        sb.Append(GetTreeMenuLeft2(lstAllFunctionsByUser, item.Function_Id, functionLev1, functionLev2));
+                        sb.Append("</li>");
+                    }
+                    sb.Append("</ul>");
+                    sb.Append("</div>");
+                    //sb.Append("</div>");
 
                 }
 
@@ -107,7 +192,7 @@ namespace CSE_WebEducation.Helper
             foreach (var item in lstTreeFunctions)
             {
                 requestUrl = item.Full_Request_Url ?? item.Function_Url;
-                
+
                 if (i != 0)
                 {
 

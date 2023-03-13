@@ -10,6 +10,9 @@ namespace CommonLib
         public static string JwtKey = "";
         public static string JwtIssuer = "";
 
+        public static string ContentRootPath = "";
+        public static string FileAttach = "";
+
         public static int pageDefaut = 1;
         public static int RecordsPerPage = 10;
 

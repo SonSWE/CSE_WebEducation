@@ -1,12 +1,12 @@
 ﻿using CommonLib;
 using DataAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ObjectInfo;
 using System.Data;
 
 namespace CSE_WebEducation_Service.Controllers.System
 {
-    [ApiController]
     public class SystemController : Controller
     {
         [HttpGet]

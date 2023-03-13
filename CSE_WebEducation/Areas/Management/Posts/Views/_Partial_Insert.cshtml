@@ -1,0 +1,289 @@
+﻿@using CSE_WebEducation
+@using ObjectInfo;
+@using CommonLib;
+
+@{
+    ViewData["Title"] = "Thêm mới bài viết";
+    Layout = "~/Views/Shared/Management/_ManaLayout.cshtml";
+}
+<style>
+    .holder {
+        height: 300px;
+        width: 300px;
+        border: 1px solid gray;
+    }
+
+    .img-preview {
+        max-width: 300px;
+        max-height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    .heading {
+        font-family: Montserrat;
+        font-size: 45px;
+        color: green;
+    }
+</style>
+
+<form id="formAddPosts" enctype="multipart/form-data">
+    <div class="block-add">
+        <div class="box-top">
+            <h3 class="title-add">Thêm mới tin tức</h3>
+        </div>
+        <div class="body-report pt-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Danh mục <span class="clr-red">(*)</span></div>
+                        <div class="field-report" id="div_function">
+                            @Html.Partial("~/Areas/Management/Posts/Views/_Partial_Category_Tree.cshtml")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Tiêu đề <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="txtTitle" name="" autocomplete="off" autofocus maxlength="1000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Ảnh bìa <span class="clr-red">(*)</span></div>
+                        <div class="holder">
+                            <img class="img-preview" id="imgPreview" src="~/img/upload.jpg" alt="pic" />
+                        </div>
+                        <input type="file" name="photograph" id="thumbnail" class="cs-input-file" />
+
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Mô tả <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Ngày bắt đầu </div>
+                        <div class="field-report">
+                            <input type="text" id="dtStartDate" placeholder="__/__/____">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Địa điểm </div>
+                        <div class="field-report">
+                            <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Nội dung <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <textarea type="file" id="Content" name="Content" maxlength="4000"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer-form">
+        <div class="container-footer">
+            <button class="btn-save" type="button" id="btnSend" onclick="confirmSubmit();"><img src="~/bidding_lib/img/icon-save.svg" alt="img">Lưu</button>
+            <button class="btn-cancel" type="button" id="btnExit" onclick="closeFormAdd();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img">Hủy</button>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    var file;
+    CKEDITOR.replace( 'Content', {
+        extraPlugins: 'timestamp',
+        removeButtons: 'Underline',
+        removePlugins: 'image'
+    });
+
+    $('#dtStartDate').datetimepicker({
+        format: 'd/m/Y',
+        formatDate: 'd/m/Y',
+        timepicker: false,
+        mask: '39/19/9999',
+        validateOnBlur: false,
+        scrollInput: false
+    });
+
+
+
+    $('#thumbnail').change(function(){
+        file = this.files[0];
+        console.log(file);
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            $('#imgPreview').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+
+    $('#formAddPosts').on('submit', function (e) {
+        try {
+            var that = this;
+            /* e = window.event || e;*/
+            e.preventDefault();
+
+            //trimInputValue(this);
+            if (!validateAdd()) return false;
+
+            var formData = new FormData();
+            collectDataToAdd(formData);
+
+            $.ajax({
+                type: "POST",
+                enctype: "multipart/form-data",
+                url: '/trang-khoa/bai-viet/them-moi',
+                data: formData,
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                contentType: false, processData: false, async: false,
+                success: function (data) {
+                    if (data && preHandleDataResult(data)) {
+                        if (data.success > 0) {
+                            showSuccess(data.responseMessage);
+                            setTimeout(function () {
+                                window.location.href = '/trang-khoa/bai-viet/danh-sach';
+                            }, 1000);
+                        }else if(data.success == -600011)
+                        {
+                            $("#txtTitle").focus();
+                            showError(data.responseMessage);
+                        }
+                        else {
+                            showError(data.responseMessage);
+                        }
+                    }
+                },
+                error: function (data) {
+                    console.log(data.error);
+                },
+                complete: function () {
+                    SpinLoading(false);
+                }
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
+    function collectDataToAdd(formData) {
+        formData.append('info.Category_Id', $("#slCategory").val());
+        formData.append('info.Title', $("#txtTitle").val().trim());
+        formData.append('info.Description', $("#txtDescription").val().trim());
+        formData.append('info.Start_Date', $('#dtStartDate').val().replace("__/__/____", ""));
+        formData.append('info.Content', CKEDITOR.instances["Content"].getData());
+        formData.append('func.Prid', $("#slCategory").val());
+
+        if (file) {
+            formData.append('file_Content', file);
+        }
+    }
+
+    function validateAdd() {
+        try {
+            var _category = $("#slCategory").val();
+            var _title = $("#txtTitle").val().trim();
+            var _descripttion = $("#txtDescription").val().trim();
+            var _start_date = $('#dtStartDate').val().replace("__/__/____", "");
+            var _content = CKEDITOR.instances["Content"].getData();
+
+            if (_category == null || _category == "") {
+                showError('Danh mục không được để trống.')
+                $("#slCategory").focus();
+                return false;
+            }
+
+            if (!_title) {
+                showError('Tiêu đề không được để trống.')
+                $("#txtTitle").focus();
+                return false;
+            }
+
+            if (!file) {
+                showError('Phải chọn ảnh bìa cho bài viết.')
+                return false;
+            }
+
+            if (!_descripttion) {
+                showError('Mô tả không được để trống.')
+                $("#txtDescription").focus();
+                return false;
+            }
+
+            if (_start_date)
+            {
+                var tmp_start_date = StringToDate_ddMMyyyy(_start_date);
+                var currDate = new Date();
+
+                if(tmp_start_date.setHours(0, 0, 0, 0) < currDate.setHours(0, 0, 0, 0)){
+                    showError('Ngày bắt đầu lớn hơn hoặc bằng ngày hiện tại.');
+                    $("#dtStartDate").focus();
+                    return false;
+                }
+            }
+
+            if (!_content) {
+                showError("Nội dung không được để trống.");
+                $('#content').focus();
+                return false;
+            }
+
+            return true;
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+    function BackList() {
+        history.back();
+    }
+
+    function confirmSubmit()
+    {
+        try {
+            nvsConfirm("Bạn có chắc chắn muốn lưu thông tin không?", function () {
+                $('#formAddPosts').submit();
+            })
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+
+    function closeFormAdd()
+    {
+        try {
+            nvsConfirm("Bạn có chắc chắn muốn thoát không?", function () {
+                BackList();
+            })
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+
+
+</script>
+

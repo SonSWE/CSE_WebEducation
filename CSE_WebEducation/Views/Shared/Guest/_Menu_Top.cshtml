@@ -1,0 +1,171 @@
+﻿@using CSE_WebEducation
+@using ObjectInfo;
+@using CommonLib;
+@using System.Text
+
+@{
+
+    List<CSE_Posts_CategoriesInfo> _LstCategory = new List<CSE_Posts_CategoriesInfo>();
+    _LstCategory = ApiClient_Posts_Category.GetAll();
+
+    string active_id = "";
+    if (ViewBag.curTab != null)
+    {
+        active_id = ViewBag.curTab;
+    }
+
+}
+@functions {
+    void RenderCategoryAsTree(List<CSE_Posts_CategoriesInfo> lstMenu, string prid, decimal lev, string active_id)
+    {
+        List<CSE_Posts_CategoriesInfo> lstSubMenu = new List<CSE_Posts_CategoriesInfo>();
+        if (lstMenu?.Count > 0)
+        {
+            lstSubMenu = lstMenu.Where(t => t.PrId.Equals(prid)).OrderBy(t => t.LstOdr).ToList();
+            string ul_classname = lev == 0 ? "header-main-menu" : "sub-menu";
+            string li_classname = lev == 0 ? "header-menu-item" : "sub-menu-item";
+            string class_active = "";
+            @if (lstSubMenu?.Count > 0)
+            {
+                <ul class="@ul_classname">
+                    @foreach (CSE_Posts_CategoriesInfo _category in lstSubMenu)
+                    {
+
+                        @if (_category.Id == active_id)
+                        {
+                            class_active = " active";
+                        }
+                        <li class="@li_classname @class_active">
+                            <div>
+                                <a href="@_category.Get_Url">@_category.Name</a>
+                            </div>
+                            @{
+                                RenderCategoryAsTree(lstMenu, _category.Id, lev + 1, active_id);
+                            }
+                        </li>
+                    }
+                    @if (lev == 0)
+                    {
+                        <div class="header-navigation-bar"></div>
+                    }
+                </ul>
+            }
+        }
+    }
+}
+
+<header id="navbar-header" class="header-container">
+    <div class="header-container-inner container-xxl">
+        <div class="header-logo">
+            <img width="40%" src="~/Guest_Assets/Img/ces_icon.png" alt="">
+        </div>
+        <div class="header-navigation-wrapper">
+            <div class="header-navigation-menu">
+                @{
+                    RenderCategoryAsTree(_LstCategory, "0", 0, active_id);
+                }
+            </div>
+            <div class="header-find-icon">
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<script type="text/javascript"
+        src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript"
+        src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    // slider events
+    $(document).ready(function(){
+      $('.events-list').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: true,
+        draggable: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        prevArrow: `<button type='button' class='slick-prev slick-arrow'><</button>`,
+        nextArrow: `<button type='button' class='slick-next slick-arrow'>></button>`,
+        dots: true,
+      });
+
+
+      var lastScollTop = 0
+    var navbar = document.getElementById("navbar-header")
+    window.addEventListener("scroll",()=>{
+        var scrollTop = window.pageYOffset
+        if(scrollTop > 400){
+            navbar.classList.add("sticky-header")
+        }
+        else{
+            navbar.classList.remove("sticky-header")
+        }
+        lastScollTop = scrollTop
+    })
+
+
+    // hover transition
+    var navbarItem = document.querySelectorAll(".header-menu-item")
+    var navbarList = document.querySelector(".header-main-menu")
+    var bar = document.querySelector(".header-navigation-bar")
+    let trans = 0
+    var width = navbarItem[0].offsetWidth;
+    var left = navbarItem[0].offsetLeft;
+     $(".header-navigation-bar").css("left", left + 'px');
+      $(".header-navigation-bar").css("width", width + 'px');
+    for(let i = 0; i < navbarItem.length;i++){
+            navbarItem[i].addEventListener("mouseover",()=>{
+            var width = navbarItem[i].offsetWidth;
+            var left = navbarItem[i].offsetLeft
+            $(".header-navigation-bar").css("left", left + 'px');
+            $(".header-navigation-bar").css("width", width + 'px');
+       })
+
+    }
+    navbarList.addEventListener("mouseout",()=>{
+        var width = navbarItem[0].offsetWidth;
+            var left = navbarItem[0].offsetLeft;
+            $(".header-navigation-bar").css("left", left + 'px');
+            $(".header-navigation-bar").css("width", width + 'px');
+    })
+
+
+    // open header response sive
+    const menuBtn = document.querySelector("#menu-btn")
+    const mobileOverlay = document.querySelector(".overlay-mobile")
+    const menuMobile = document.querySelector("#navbar-header-mobile")
+    const closeBtn = document.querySelector(".close-mobile-button")
+
+    menuBtn.addEventListener("click",()=>{
+        menuMobile.classList.add("active")
+        mobileOverlay.classList.add("active")
+    })
+    closeBtn.addEventListener("click",()=>{
+        menuMobile.classList.remove("active")
+        mobileOverlay.classList.remove("active")
+    })
+
+
+    // open sub menu
+    const item_menu = document.querySelector(".header-menu-item-mobile-inner")
+    const  sub_menu_header = document.querySelector(".sub-menu-mobile")
+    item_menu.addEventListener("click",()=>{
+        if( sub_menu_header.classList.contains("active")){
+            sub_menu_header.classList.remove("active")
+        }
+        else{
+            sub_menu_header.classList.add("active")
+        }
+
+
+    })
+    });
+
+
+</script>

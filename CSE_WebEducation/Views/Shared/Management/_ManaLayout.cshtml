@@ -16,8 +16,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CSE</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/LeftMenu.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CSE_WebEducation.styles.css" asp-append-version="true" />
 
     @*<link rel="icon" href="~/bidding_lib/img/logo.svg" sizes="any" type="image/svg+xml">*@
@@ -59,6 +60,8 @@
     <link href="~/lib/notify/notify.css" rel="stylesheet" />
     <script src="~/lib/notify/bootstrap-notify.min.js"></script>
     <script src="~/lib/notify/bootstrap-notify-init.js"></script>
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <style>
@@ -75,13 +78,56 @@
         <div id="wrapper">
             <partial name="~/Views/Shared/Management/_Header.cshtml" />
 
-            <main class="main">
-                <div class="container">
-                    @*<partial name="~/Views/Shared/Management/_BreadcrumbAndSearch.cshtml" />*@
-                    @RenderBody()
-                </div>
 
-            </main>
+            <section class="home-section">
+                <nav>
+                    <div class="sidebar-button">
+                        <i class='bx bx-menu sidebarBtn' id="sidebarbtn">
+
+                        </i>
+                        <span class="dashboard">Trang chủ</span>
+                        <script>
+                            
+                        </script>
+                    </div>
+
+                    <div class="head-right ml-auto">
+                        <div class="user">
+                            <div class="name-user">
+                                <div>@user.Full_Name</div>
+                            </div>
+                            <div class="avt"><img src="~/bidding_lib/img/avtadmin.png" alt="img"></div>
+                            <div class="block-utility">
+                                <div class="box-utility">
+                                    <a href="javascript:0;" data-toggle="modal" onclick="showFormChangePassword(0);">
+                                        <span><img src="~/bidding_lib/img/icon-mk.svg" alt="img"></span>
+                                        <span>Đổi mật khẩu</span>
+                                    </a>
+                                    <a href="/logout">
+                                        <span><img src="~/bidding_lib/img/icon-dx.svg" alt="img"></span>
+                                        <span>Đăng xuất</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="home-content">
+                    <main class="main">
+                        <div class="container">
+                            @*<partial name="~/Views/Shared/Management/_BreadcrumbAndSearch.cshtml" />*@
+                            @RenderBody()
+                        </div>
+                    </main>
+
+
+
+
+                </div>
+            </section>
+
+
         </div>
 
         <div id="divLoader" class="loader-wrap" style="display:none">
@@ -97,6 +143,18 @@
 </body>
 </html>
 <script>
+    $( "#sidebarbtn" ).click(function() {
+        if($(".sidebar").hasClass("hide")){
+            $(".sidebar").removeClass("hide");
+            $(".links-name").removeClass("hide")
+            $(".icon-agldown").removeClass("hide")
+        }else{
+            $(".sidebar").addClass("hide");
+            $(".links-name").addClass("hide")
+            $(".icon-agldown").addClass("hide")
+        }
+    });
+
     function preHandleDataResult(data) {
         if (data.success == '@ActionResultConfig.TIME_OUT') {
             window.location.href = '@RouteConfig.TIME_OUT';

@@ -24,6 +24,61 @@
 
   <ItemGroup>
     <Folder Include="Areas\Guest\" />
+    <Folder Include="wwwroot\file_attach\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\bidding_lib\img\arrow-down.svg" />
+    <None Include="wwwroot\bidding_lib\img\arrow-down1.svg" />
+    <None Include="wwwroot\bidding_lib\img\arrow-up.svg" />
+    <None Include="wwwroot\bidding_lib\img\arrow-up1.svg" />
+    <None Include="wwwroot\bidding_lib\img\check-solid.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-activate.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-add.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-agldowndark.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-agldownnav.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-angledown.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-angleleft.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-bc.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-bcdk.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-cancel.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-cancel2.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-close.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-deactivate.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-delete.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-down.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-dt.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-dx.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-edit.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-hd.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-home.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-info.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-lg-pass.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-lg-user.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-mk.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-notify.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-ppdetail.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-qt.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-render.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-reset.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-save.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-search.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-tc.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-tk.svg" />
+    <None Include="wwwroot\bidding_lib\img\icon-tkct.svg" />
+    <None Include="wwwroot\bidding_lib\img\logo.svg" />
+    <None Include="wwwroot\bidding_lib\img\plus.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-1.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-2.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-3.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-4.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-5.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-6.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-7.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-8.svg" />
+    <None Include="wwwroot\bidding_lib\img\process-9.svg" />
+    <None Include="wwwroot\bidding_lib\img\users.svg" />
+    <None Include="wwwroot\bidding_lib\img\wrench.svg" />
   </ItemGroup>
 
 </Project>

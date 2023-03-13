@@ -40,6 +40,9 @@ builder.Services.AddAuthentication(options =>
                     options.SlidingExpiration = true;
                 });
 
+CommonData.ContentRootPath = builder.Environment.ContentRootPath;
+CommonData.FileAttach = Path.Combine(CommonData.ContentRootPath, "wwwroot\\file_attach");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -70,6 +73,7 @@ app.MapControllerRoute(
 
 //get param from config file
 ConstData.httpApiClientHost = builder.Configuration.GetValue<string>("ApiClient_WebEducation");
+
 
 
 app.Run();
