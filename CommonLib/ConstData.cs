@@ -63,4 +63,10 @@ namespace CommonLib
         public const string amdin = "C";
         public const string siteuser = "A";
     }
+
+    public class CSE_Post_Type
+    {
+        public const decimal posts = 1;
+        public const decimal events = 2;
+    }
 }

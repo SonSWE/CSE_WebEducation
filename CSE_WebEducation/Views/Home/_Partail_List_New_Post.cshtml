@@ -1,0 +1,24 @@
+﻿@using ObjectInfo
+
+@{
+    List<CSE_PostsInfo> _LstData = new List<CSE_PostsInfo>();
+    if (ViewBag.LstFourPostsNew != null)
+    {
+        _LstData = ViewBag.LstFourPostsNew;
+    }
+}
+
+@if (_LstData != null && _LstData.Count > 0)
+{
+    foreach (CSE_PostsInfo item in _LstData)
+    {
+        <div class="more-news-card">
+            <img width="100%" src="@item.Thumbnail" alt="">
+            <div class="more-news-card-content">
+                <h3>@item.Title</h3>
+                <span>Ngày đăng: @item.Created_By</span>
+            </div>
+        </div>
+    }
+}
+

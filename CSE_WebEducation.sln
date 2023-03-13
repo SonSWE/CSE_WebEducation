@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectInfo", "ObjectInfo\Ob
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSE_WebEducation_Service", "CSE_WebEducation_Service\CSE_WebEducation_Service.csproj", "{8D4FFAED-A191-4850-AEEA-C442A85B063B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE_WebEducation_Guest", "CSE_WebEducation_Guest\CSE_WebEducation_Guest.csproj", "{F6190003-B9E7-4EAF-81F8-55B16E6150D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8D4FFAED-A191-4850-AEEA-C442A85B063B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D4FFAED-A191-4850-AEEA-C442A85B063B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D4FFAED-A191-4850-AEEA-C442A85B063B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6190003-B9E7-4EAF-81F8-55B16E6150D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6190003-B9E7-4EAF-81F8-55B16E6150D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6190003-B9E7-4EAF-81F8-55B16E6150D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6190003-B9E7-4EAF-81F8-55B16E6150D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

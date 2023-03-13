@@ -72,17 +72,32 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="flex-report">
-                        <div class="title-report">Ngày bắt đầu </div>
+                        <div class="title-report">Loại bài viết <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input type="text" id="dtStartDate" placeholder="__/__/____">
+                            <select id="slPost_Type">
+                                @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("POSTS", "POST_TYPE"))
+                                {
+                                    <option value="@item.CDVal">@item.Content</option>
+                                }
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="flex-report">
-                        <div class="title-report">Địa điểm </div>
-                        <div class="field-report">
-                            <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000">
+                <div>
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
+                            <div class="field-report">
+                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
+                            <div class="field-report">
+                                <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000" disabled>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +122,9 @@
 </form>
 
 <script>
-
+    $(document).ready(function(){
+        $("#slPost_Type").val(1);
+    });
     var file;
     CKEDITOR.replace( 'Content', {
         extraPlugins: 'timestamp',
@@ -124,8 +141,6 @@
         scrollInput: false
     });
 
-
-
     $('#thumbnail').change(function(){
         file = this.files[0];
         console.log(file);
@@ -137,6 +152,16 @@
           reader.readAsDataURL(file);
         }
       });
+
+    $('#slPost_Type').change(function(){
+        if($("#slPost_Type").val() == 2){
+            $("#dtStartDate").prop('disabled', false);
+            $("#txtLocation").prop('disabled', false);
+        }else{
+            $("#dtStartDate").prop('disabled', true);
+            $("#txtLocation").prop('disabled', true);
+        }
+    });
 
     $('#formAddPosts').on('submit', function (e) {
         try {
@@ -190,6 +215,7 @@
     });
 
     function collectDataToAdd(formData) {
+        formData.append('info.Post_Type', $("#slPost_Type").val());
         formData.append('info.Category_Id', $("#slCategory").val());
         formData.append('info.Title', $("#txtTitle").val().trim());
         formData.append('info.Description', $("#txtDescription").val().trim());
@@ -204,10 +230,12 @@
 
     function validateAdd() {
         try {
+            var _postsType = $("#slPost_Type").val();
             var _category = $("#slCategory").val();
             var _title = $("#txtTitle").val().trim();
             var _descripttion = $("#txtDescription").val().trim();
             var _start_date = $('#dtStartDate').val().replace("__/__/____", "");
+            var _location = $("#txtLocation").val().trim();
             var _content = CKEDITOR.instances["Content"].getData();
 
             if (_category == null || _category == "") {
@@ -233,14 +261,26 @@
                 return false;
             }
 
-            if (_start_date)
-            {
-                var tmp_start_date = StringToDate_ddMMyyyy(_start_date);
-                var currDate = new Date();
+            if (_postsType == null || _postsType == "") {
+                showError('Loại bài viết không được để trống.')
+                $("#slPost_Type").focus();
+                return false;
+            }else if(_postsType == 2){
+                if (_start_date)
+                {
+                    var tmp_start_date = StringToDate_ddMMyyyy(_start_date);
+                    var currDate = new Date();
 
-                if(tmp_start_date.setHours(0, 0, 0, 0) < currDate.setHours(0, 0, 0, 0)){
-                    showError('Ngày bắt đầu lớn hơn hoặc bằng ngày hiện tại.');
-                    $("#dtStartDate").focus();
+                    if(tmp_start_date.setHours(0, 0, 0, 0) < currDate.setHours(0, 0, 0, 0)){
+                        showError('Ngày bắt đầu lớn hơn hoặc bằng ngày hiện tại.');
+                        $("#dtStartDate").focus();
+                        return false;
+                    }
+                }
+
+                if (!_location) {
+                    showError('Địa điểm không được để trống.')
+                    $("#txtLocation").focus();
                     return false;
                 }
             }

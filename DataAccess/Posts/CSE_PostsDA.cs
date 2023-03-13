@@ -79,7 +79,7 @@ namespace DataAccess
             try
             {
                 decimal _result = -1;
-                var lstParam = new SqlParameter[11];
+                var lstParam = new SqlParameter[12];
                 lstParam[0] = new SqlParameter("@p_category_id", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Input,
@@ -130,6 +130,11 @@ namespace DataAccess
                 lstParam[9] = new SqlParameter("@p_result", SqlDbType.Decimal)
                 {
                     Direction = ParameterDirection.Output
+                };
+                lstParam[10] = new SqlParameter("@p_post_type", SqlDbType.Decimal)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Post_Type,
                 };
 
                 SQLHelper.ExecuteNonQuery(CommonData.connectionString, CommandType.StoredProcedure, "sp_posts_insert", lstParam);

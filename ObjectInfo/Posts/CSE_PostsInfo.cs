@@ -10,6 +10,8 @@ namespace ObjectInfo
     {
         public decimal STT { get; set; }
         public decimal Id { get; set; }
+        public decimal Post_Type { get; set; }
+        public string Post_Type_Text { get; set; }
         public string Category_Id { get; set; }
         public string Title { get; set; }
         public string Thumbnail { get; set; }

@@ -53,7 +53,19 @@ namespace CSE_WebEducation.Controllers
         {
             try
             {
-                ViewBag.PostInfo = ApiClient_Posts.GetById(id);
+                CSE_PostsInfo  info = ApiClient_Posts.GetById(id);
+                ViewBag.PostInfo = info;
+
+                //danh sách 4 bài viết mới nhất
+                SearchResponseInfo _search = ApiClient_Posts.Search("|||", "1", "4", "", "Created_By DESC");
+                ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
+
+                //lấy danh sách 10 để sự kiện gợi ý 
+                if (info.Post_Type == CSE_Post_Type.events)
+                {
+                    _search = ApiClient_Posts.Search("|||2", "1", "10", "", "Start_Date DESC");
+                    ViewBag.LstTenEvent = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
+                }    
             }
             catch (Exception ex)
             {
@@ -73,8 +85,11 @@ namespace CSE_WebEducation.Controllers
 
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(1, CommonData.RecordsPerPage, (int)_search.totalrows);
-
                 ViewBag.curTab = id;
+
+                //danh sách 4 bài viết mới nhất
+                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||", "1", "4", "", " ");
+                ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
             }
             catch (Exception ex)
             {
