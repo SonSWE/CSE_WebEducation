@@ -53,7 +53,7 @@ namespace CSE_WebEducation_Service.Controllers.User
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Authorize]
         [Route("quan-tri/group/update")]
         public IActionResult Update([FromBody] CSE_GroupsInfo info)
