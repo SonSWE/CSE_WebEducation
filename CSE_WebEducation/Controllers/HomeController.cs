@@ -17,10 +17,11 @@ namespace CSE_WebEducation.Controllers
         }
 
         //[CustomActionFilter(CheckRight = false)]
+        [Route("")]
         public IActionResult Index()
         {
             ViewBag.curTab = "HOME";
-            return View();
+            return View("~/Views/Home/Index.cshtml");
         }
 
         public IActionResult Privacy()
