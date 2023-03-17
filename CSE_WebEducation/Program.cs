@@ -11,8 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
 XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
-Logger.log.Error("hello");
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -27,7 +25,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.Cookie.Name = "ABSManagement";
+    options.Cookie.Name = "CSEManagement";
     options.IdleTimeout = TimeSpan.FromMinutes(Convert.ToDouble(Config_Info.Time_out));
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;

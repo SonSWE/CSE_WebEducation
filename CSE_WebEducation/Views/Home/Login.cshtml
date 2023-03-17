@@ -1,66 +1,100 @@
 ﻿@{
-    Layout = null;
-    ViewBag.Title = "Đăng nhập"; 
+    ViewBag.Title = "Đăng nhập";
 }
-
-<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="~/Guest_Assets/css/login.css" />
-
-    <!-- Boxicons CSS -->
-    <link rel="stylesheet" href="~/Guest_Assets/css/main.css">
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <header>Đăng nhập</header>
-      <form>
-        <div class="field email-field">
-          <div class="input-field">
-            <input type="email" placeholder="Email" class="email" />
-          </div>
-          <span class="error email-error">
-            <i class="bx bx-error-circle error-icon"></i>
-            <p class="error-text">Please enter a valid email</p>
-          </span>
+<div class="row">
+        <div class="form-container">
+            <div id='form' class="col-8 col-md-4  mx-auto">
+                <h3 id="form__head" class="">Đăng nhập</h3>
+                <form id="frmLogin" action="#" class="needs-validation" novalidate>
+                    <div class="form-group p-1">
+                        <input type="text" class="form-control" name="txtUserName" id="txtUserName" placeholder="Tài khoản"/>
+                        <img src="./img/email.png" alt="">
+                    </div>
+                    <div class="form-group p-1">
+                        <input type="password" class="form-control" name="txtPassword" id="txtPassword" placeholder="Mật khẩu"/>
+                        <img src="./img/pass.png" alt="">
+                    </div>
+                    @*<div class="form-forget">
+                        <a href="">Quên mật khẩu</a>
+                    </div>*@
+                    <button type="submit" class=" mt-4 d-block submit-btn">Đăng nhập</button>
+                </form>
+            </div>
         </div>
-        <div class="field create-password">
-          <div class="input-field">
-            <input
-              type="password"
-              placeholder="Mật khẩu"
-              class="password"
-            />
-            <i class="bx bx-hide show-hide"></i>
-          </div>
-          <span class="error password-error">
-            <i class="bx bx-error-circle error-icon"></i>
-            <p class="error-text">
-              Please enter atleast 8 charatcer with number, symbol, small and
-              capital letter.
-            </p>
-          </span>
-        </div>
-        <div class="forget-field">
-            <a href="">Quên mật khẩu</a>
-        </div>
-        <div class="button">
-          <input type="submit" value="Đăng nhập" />
-        </div>
-      </form>
+        
     </div>
 
-  </body>
-  <script>
-   
+<script>
+    $(document).ready(function () {
+        $('#txtUserName').focus();
+    });
 
-  </script>
-</html>
+    $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+            Login();
+        }
+    });
+    // hàm login viết tại đây
+    // Submit form
+    $('#frmLogin').on("submit", function (e) {
+
+        try {
+            e = window.event || e;
+            e.preventDefault();
+
+            Login();
+        }
+        catch (e) {
+            console.log(e);
+        }
+    });
+
+    function Login() {
+        try {
+
+            var txt_username = $('#txtUserName').val().trim();
+            if (txt_username == "") {
+                showError("Tài khoản không được để trống");
+                return false;
+            }
+
+            var txt_password = $('#txtPassword').val().trim();
+            if (txt_password == "") {
+                showError("Mật khẩu không được để trống");
+                return false;
+            }
+
+            var _url = "/login/do-login";
+
+            $.ajax({
+                url: _url,
+                type: "POST",
+                data: {
+                    userName: txt_username,
+                    password: txt_password
+                },
+                async: true, cache: false, traditional: true,
+                success: function (data) {
+                    if (data.success >= 0) {
+                        window.location.href = "/";
+                    }
+                    else {
+                        alert(data.responseMessage);
+                        $('#txtUserName').focus();
+                    }
+                },
+                error: function (data) {
+                    console.log(data.error);
+                },
+                complete: function () {
+                }
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+</script>
+
+
+

@@ -1,4 +1,12 @@
+using CSE_WebEducation_Guest;
+using log4net;
+using log4net.Config;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,5 +31,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//get param from config file
+ConstData.httpApiClientHost = builder.Configuration.GetValue<string>("ApiClient_WebEducation");
 
 app.Run();

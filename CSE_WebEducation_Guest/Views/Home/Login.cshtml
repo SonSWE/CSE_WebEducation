@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Đăng nhập"; 
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/Guest_Assets/css/login.css" />
+
+    <!-- Boxicons CSS -->
+    <link rel="stylesheet" href="~/Guest_Assets/css/main.css">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>Đăng nhập</header>
+      <form>
+        <div class="field email-field">
+          <div class="input-field">
+            <input type="email" placeholder="Email" class="email" />
+          </div>
+          <span class="error email-error">
+            <i class="bx bx-error-circle error-icon"></i>
+            <p class="error-text">Please enter a valid email</p>
+          </span>
+        </div>
+        <div class="field create-password">
+          <div class="input-field">
+            <input
+              type="password"
+              placeholder="Mật khẩu"
+              class="password"
+            />
+            <i class="bx bx-hide show-hide"></i>
+          </div>
+          <span class="error password-error">
+            <i class="bx bx-error-circle error-icon"></i>
+            <p class="error-text">
+              Please enter atleast 8 charatcer with number, symbol, small and
+              capital letter.
+            </p>
+          </span>
+        </div>
+        <div class="forget-field">
+            <a href="">Quên mật khẩu</a>
+        </div>
+        <div class="button">
+          <input type="submit" value="Đăng nhập" />
+        </div>
+      </form>
+    </div>
+
+  </body>
+  <script>
+   
+
+  </script>
+</html>

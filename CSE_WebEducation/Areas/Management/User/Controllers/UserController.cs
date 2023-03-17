@@ -34,7 +34,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 p_record_on_page = p_record_on_page != 0 ? p_record_on_page : CommonData.RecordsPerPage;
                 int p_to = 0;
                 int p_from = CommonFunc.GetFromToPaging(curentPage, p_record_on_page, out p_to);
-                SearchResponseInfo _search = ApiClient_User.Search(user.Token, keysearch, p_from.ToString(), p_to.ToString(), " ");
+                SearchResponseInfo _search = ApiClient_User.Search(user.Token, user.User_Name, keysearch, p_from.ToString(), p_to.ToString(), " ");
 
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_UsersInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(curentPage, p_record_on_page, (int)_search.totalrows);
@@ -70,7 +70,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("them-moi"), HttpGet]
-        [CustomActionFilter(FunctionCode = "AU_DO_ADD_GROUP")]
+        //[CustomActionFilter]
         public IActionResult Insert()
         {
             try
@@ -86,7 +86,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("them-moi"), HttpPost]
-        [CustomActionFilter]
+        //[CustomActionFilter]
         public IActionResult Insert(CSE_UsersInfo info)
         {
             decimal _success = -1;
@@ -101,6 +101,10 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 if (_success > 0)
                 {
                     _str_error = "Thêm mới người dùng thành công!";
+                }
+                else if(_success == -2)
+                {
+                    _str_error = "Tên đăng nhập đã tồn tại trong hệ thống!";
                 }
                 else
                 {
@@ -119,7 +123,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("cap-nhat"), HttpGet]
-        [CustomActionFilter(FunctionCode = "AU_EDIT_GROUP")]
+        //[CustomActionFilter]
         public IActionResult Update(decimal user_id)
         {
             try
@@ -136,7 +140,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("cap-nhat"), HttpPost]
-        [CustomActionFilter]
+        //[CustomActionFilter]
         public IActionResult Update(CSE_UsersInfo info)
         {
             decimal _success = -1;
@@ -149,7 +153,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
 
                 _success = ApiClient_User.Update(info, user.Token);
 
-                if (_success < 0)
+                if (_success > 0)
                 {
                     _str_error = "Chỉnh sửa người dùng thành công!";
                     //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
@@ -171,7 +175,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("xoa"), HttpPost]
-        [CustomActionFilter]
+        //[CustomActionFilter]
         public IActionResult Delete(decimal user_id)
         {
             decimal _id = -1;

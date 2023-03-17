@@ -258,3 +258,61 @@ function isDate_ddMMyyyy(strDate) {
     return 2;
 }
 
+// CHECK UNICODE
+
+function IsContainUnicode(pStrString) {
+    try {
+        strRegex = /à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ|è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ|ì|í|ị|ỉ|ĩ|ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ|ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ|ỳ|ý|ỵ|ỷ|ỹ|đ/gi;
+        return strRegex.test(pStrString);
+    } catch (e) {
+        return false;
+    }
+}
+
+//Check xem string có chứa khoảng trắng hay không 
+function isContainWhitespaces(str) {
+    return /\s/.test(str);
+}
+
+//Check password thỏa mãn 3/4 tiêu chí only hehe
+function validatePasswordRules34(password) {
+    let count = 0;
+    if (!password)
+        //count++;
+        return false;
+    if (password.length < 8)
+        //count++;
+        return false;
+    if (password.length > 20)
+        //count++;
+        return false;
+    if (IsContainUnicode(password))
+        //count++;
+        return false;
+    if (password.indexOf(' ') >= 0)
+        //count++;
+        return false;
+    if (!/\d/.test(password)) { //digit
+        count++;
+        //return false;
+    }
+    if (!/[a-z]/.test(password)) {  // lowercase
+        count++;
+        //return false;
+    }
+    if (!/[A-Z]/.test(password)) {  // uppercase
+        count++;
+        //return false;
+    }
+    if (!/[^0-9a-zA-Z]/.test(password)) { // special characters
+        count++;
+        //return false;
+    }
+    console.log(count);
+    if (count > 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+

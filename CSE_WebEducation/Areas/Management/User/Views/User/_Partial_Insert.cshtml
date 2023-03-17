@@ -10,18 +10,18 @@
 <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="header-report">
-            <h3>Thêm mới nhóm người dùng</h3>
+            <h3>Thêm mới người dùng</h3>
             <button class="btn-close" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-close.svg" alt="img"></button>
         </div>
 
-        <form id="formAddGroupUser" enctype="multipart/form-data">
+        <form id="fromInsert" enctype="multipart/form-data">
             <div class="body-report">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Tên đăng nhập <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="text" id="txtUserName" maxlength="100" name="txtUserName" autocomplete="off">
+                                <input type="text" id="txtUser_Name" maxlength="100" name="txtUser_Name" autocomplete="off" tabindex="1">
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <div class="flex-report">
                             <div class="title-report">Mật khẩu <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="password" id="txtPassword" maxlength="100" name="txtPassword" autocomplete="off">
+                                <input type="password" id="txtPass" maxlength="100" name="txtPass" autocomplete="off" tabindex="2">
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="flex-report">
                             <div class="title-report">Nhập lại mật khẩu <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="password" id="txtRePassword" maxlength="100" name="txtRePassword" autocomplete="off">
+                                <input type="password" id="txtRePassword" maxlength="100" name="txtRePassword" autocomplete="off" tabindex="3">
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="flex-report">
                             <div class="title-report">Tên đầy đủ <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="text" id="txtFullname" name="txtFullname" autocomplete="off" maxlength="500">
+                                <input type="text" id="txtFullname" name="txtFullname" autocomplete="off" maxlength="500" tabindex="4">
                             </div>
                         </div>
                     </div>
@@ -53,20 +53,32 @@
                         <div class="flex-report">
                             <div class="title-report">Loại người dùng <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <select id="slUserType" multiple>
-                                    @foreach (var it in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "TYPE"))
-                                    {
-                                        <option value="@it.CDVal">@it.Content</option>
-                                    }
-                                </select>
+                                @if (user_type != 0)
+                                {
+                                    <select id="slType" multiple tabindex="5" disabled>
+                                        @foreach (var it in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "TYPE").Where(x => x.CDVal == "1").ToList())
+                                        {
+                                            <option value="@it.CDVal" selected>@it.Content</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select id="slType" multiple tabindex="5">
+                                        @foreach (var it in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "TYPE"))
+                                        {
+                                            <option value="@it.CDVal">@it.Content</option>
+                                        }
+                                    </select>
+                                }
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="flex-report">
-                            <div class="title-report">Trạng thái <span class="clr-red">(*)</span></div>
+                            <div class="title-report">Trạng thái <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <select id="slStatus" multiple>
+                                <select id="slUserStatus" multiple tabindex="6">
                                     @foreach (var it in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "STATUS"))
                                     {
                                         <option value="@it.CDVal">@it.Content</option>
@@ -77,9 +89,9 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="flex-report">
-                            <div class="title-report">Email <span class="clr-red">(*)</span></div>
+                            <div class="title-report">Email</div>
                             <div class="field-report">
-                                <input class="ip-popup" type="text" id="txtEmail" name="txtEmail">
+                                <input class="ip-popup" type="text" id="txtEmail" name="txtEmail" tabindex="7">
                             </div>
                         </div>
                     </div>
@@ -88,7 +100,7 @@
                         <div class="flex-report">
                             <div class="title-report">Số điện thoại</div>
                             <div class="field-report">
-                                <input class="ip-popup" type="text" id="txtPhone" name="txtPhone">
+                                <input class="ip-popup" type="text" id="txtPhone" name="txtPhone" tabindex="8">
                             </div>
                         </div>
                     </div>
@@ -97,16 +109,17 @@
                         <div class="flex-report">
                             <div class="title-report">CCCD/CMND</div>
                             <div class="field-report">
-                                <input class="ip-popup" type="text" id="txtIdentityCard" name="txtIdentityCard">
+                                <input class="ip-popup" type="text" id="txtIdentityCard" name="txtIdentityCard" tabindex="9">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="foot-report text-right">
-                    <input type="hidden" id="Status" name="Status" />
-                    <button class="btn-save" type="submit" id="btnSend"><img src="~/bidding_lib/img/icon-save.svg" alt="img">Lưu</button>
-                    <button class="btn-cancel" type="button" id="btnExit" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img">Thoát</button>
-                </div>
+            </div>
+            <div class="foot-report text-right">
+                <button class="btn-save" type="submit" id="btnSend"><img src="~/bidding_lib/img/icon-save.svg" alt="img" tabindex="10">Lưu</button>
+                <button class="btn-cancel" type="button" id="btnExit" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img" tabindex="11">Thoát</button>
+            </div>
+
         </form>
 
     </div>
@@ -114,116 +127,163 @@
 
 
 <script>
-    $(function() {
-         $('#txtUserName').focus();
-     })
 
-     var User_Name = "";
-     var Password = "";
-     var Full_Name = "";
-     var Email = "";
-     var Phone = "";
-     var IdentityCard = "";
-     var status = "";
+    var User_Name = "";
+    var Password = "";
+    var Full_Name = "";
+    var status = "";
+    var User_Type = "";
+    var Email = "";
+    var Phone = "";
+    var IdentityCard = "";
 
-     $('#slUserType').multipleSelect({
-         width: '100%',
-         single: true,
-         filter: true,
-         placeholder: "-- Loại người dùng --",
-     });
+    $(document).ready(function () {
+        $('#txtUser_Name').focus();
 
-     $('#slStatus').multipleSelect({
-         width: '100%',
-         single: true,
-         filter: true,
-         placeholder: "-- Trạng thái --",
-     });
+        $('#slType').multipleSelect({
+            width: '100%',
+            single: true,
+            filter: true,
+            placeholder: "-- Loại người dùng --",
+        });
 
-     $('#formEditUser').on('submit', function (e) {
-         try {
+        $('#slUserStatus').multipleSelect({
+            width: '100%',
+            single: true,
+            filter: true,
+            placeholder: "-- Trạng thái --",
+        });
+    });
 
-                 var that = this;
-                 /* e = window.event || e;*/
-                 e.preventDefault();
 
-                 if (!validateAdd()) return false;
+    $('#fromInsert').on('submit', function (e) {
+        try {
 
-                 var formData = new FormData();
-                 collectDataToAdd(formData);
+            var that = this;
+            /* e = window.event || e;*/
+            e.preventDefault();
 
-                 $.ajax({
-                     type: "POST",
-                     enctype: "multipart/form-data",
-                     url: 'quan-tri/nguoi-dung/cap-nhat',
-                     data: formData,
-                     beforeSend: function () {
-                         SpinLoading(true);
-                     },
-                     contentType: false, processData: false, async: false,
-                     success: function (data) {
-                         if (data && preHandleDataResult(data)) {
-                             if (data.success > 0) {
-                                 showSuccess(data.responseMessage);
+            if (!validateAdd()) return false;
 
-                                 SearchUser('@CommonData.pageDefaut');
-                                 ClosePopupDialog('dPopup', false);
-                             }
-                             else {
-                                 showError(data.responseMessage);
-                             }
-                         }
-                     },
-                     error: function (data) {
-                         console.log(data.error);
-                     },
-                     complete: function () {
-                         SpinLoading(false);
-                     }
-                 });
+            var formData = new FormData();
+            collectDataToAdd(formData);
 
-         } catch (e) {
-             console.log(e);
-         }
+            $.ajax({
+                type: "POST",
+                enctype: "multipart/form-data",
+                url: '/quan-tri/nguoi-dung/them-moi',
+                data: formData,
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                contentType: false, processData: false, async: false,
+                success: function (data) {
+                    if (data && preHandleDataResult(data)) {
+                        if (data.success > 0) {
+                            showSuccess(data.responseMessage);
 
-     });
+                            Search('@CommonData.pageDefaut');
+                            ClosePopupDialog('dPopup', false);
+                        }
+                        else {
+                            showError(data.responseMessage);
+                        }
+                    }
+                },
+                error: function (data) {
+                    console.log(data.error);
+                },
+                complete: function () {
+                    SpinLoading(false);
+                }
+            });
 
-     function collectDataToAdd(formData) {
-         formData.append('info.User_Id', User_Id);
-         formData.append('info.Full_Name', Full_Name);
-         formData.append('info.Email', Email);
-         formData.append('info.Phone', Phone);
-         formData.append('info.Status', status);
-         formData.append('info.Identity_Card', IdentityCard);
-     }
+        } catch (e) {
+            console.log(e);
+        }
 
-     function validateAdd() {
-         try {
-             Full_Name = $("#txtFullname").val().trim();
-             Email = $("#txtEmail").val().trim();
-             status = $("#slStatus").val();
+    });
 
-             if (Full_Name == null || Full_Name == "") {
-                 showError('Tên đầy đủ không được để trống')
-                 $("#txtFullname").focus();
-                 return false;
-             }
+    function collectDataToAdd(formData) {
+        //formData.append('info.User_Id', User_Id);
+        formData.append('info.User_Name', User_Name);
+        formData.append('info.Password', Password);
+        formData.append('info.Full_Name', Full_Name);
+        formData.append('info.Email', Email);
+        formData.append('info.Phone', Phone);
+        formData.append('info.User_Type', User_Type);
+        formData.append('info.Status', status);
+        formData.append('info.Identity_Card', IdentityCard);
+    }
 
-             if (status == null || status == "") {
-                 showError('Trạng thái không được để trống')
-                 $("#slStatus").focus();
-                 return false;
-             }
+    function validateAdd() {
+        try {
+            User_Name = $("#txtUser_Name").val().trim();
+            Password = $("#txtPass").val().trim();
+            var confirmPassword = $("#txtRePassword").val().trim();
+            Full_Name = $("#txtFullname").val().trim();
+            Phone = $("#txtPhone").val().trim();
+            Email = $("#txtEmail").val().trim();
+            User_Type = $("#slType").val();
+            status = $("#slUserStatus").val();
+            IdentityCard = $("#txtIdentityCard").val().trim();
 
-             if (Email == null || Email == "") {
-                 showError('Email không được để trống')
-                 $("#txtEmail").focus();
-                 return false;
-             }
 
-             return true;
-         } catch (ex) {
-             console.log(ex);
-         }
-     }
+            //Check username validation
+            if (User_Name == null || User_Name == "") {
+                showError('Tên đăng nhập không được để trống')
+                $("#user_name").focus();
+                return false;
+            }
+            if (User_Name.length < 5) {
+                showError('Tên đăng nhập phải lớn hơn 4 ký tự')
+                $("#username").focus();
+                return false;
+            }
+            if (IsContainUnicode(User_Name) || isContainWhitespaces(User_Name)) {
+                showError('Tên đăng nhập không hợp lệ')
+                $("#username").focus();
+                return false;
+            }
+            if (Password == null || Password == "") {
+                showError('Mật khẩu không được để trống')
+                $("#password").focus();
+                return false;
+            }
+            if (!validatePasswordRules34(Password)) {
+                showError('Mật khẩu tối thiểu 8 ký tự, tối đa 20 ký tự, không bao gồm chữ có dấu và dấu cách. Có ít nhất 1 chữ cái viết thường, 1 chữ cái viết hoa, 1 chữ số và 1 ký tự đặc biệt');
+                $('#password').focus();
+                return false;
+            }
+            if (confirmPassword == null || confirmPassword == "") {
+                showError('Mật khẩu nhập lại không được để trống')
+                $("#password").focus();
+                return false;
+            }
+            if (Password != confirmPassword) {
+                showError('Mật khẩu nhập lại không khớp')
+                $("#confirm-password").focus();
+                return false;
+            }
+            if (Full_Name == null || Full_Name == "") {
+                showError('Tên đầy đủ không được để trống')
+                $("#full_name").focus();
+                return false;
+            }
+            if (User_Type == null || User_Type == "") {
+                showError('Loại người dùng không được để trống')
+                $("#slType").focus();
+                return false;
+            }
+            if (status == null || status == "") {
+                showError('Trạng thái không được để trống')
+                $("#slUserStatus").focus();
+                return false;
+            }
+
+            return true;
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
 </script>

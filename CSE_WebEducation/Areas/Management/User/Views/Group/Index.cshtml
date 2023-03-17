@@ -1,7 +1,7 @@
 ﻿@using CSE_WebEducation
 @using CommonLib;
 @{
-    Layout = "~/Views/Shared/Management/_ManaLayout.cshtml";
+    Layout = "~/Views/Shared/_ManaLayout.cshtml";
     ViewBag.Title = "Danh sách nhóm người dùng";
 }
 
@@ -25,8 +25,8 @@
             </div>
             <div class="item-search">
                 <label>Loại nhóm</label>
-                <select id="searchGroupType" multiple>
-                    <option value="-1" selected>-- Tất cả --</option>
+                <select id="cboGroupType" multiple>
+                    @*<option value="-1" selected>-- Tất cả --</option>*@
                     @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "TYPE"))
                     {
                         <option value="@item.CDVal">@item.Content</option>
@@ -35,8 +35,8 @@
             </div>
             <div class="item-search">
                 <label>Trạng thái</label>
-                <select id="searchGroupStatus" multiple>
-                    <option value="-1" selected>-- Tất cả --</option>
+                <select id="cboStatus" multiple>
+                    @*<option value="-1" selected>-- Tất cả --</option>*@
                     @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "STATUS"))
                     {
                         <option value="@item.CDVal">@item.Content</option>
@@ -59,16 +59,16 @@
         Search(@CommonData.pageDefaut);
     })
 
-    $('#searchGroupType').multipleSelect({
+    $('#cboGroupType').multipleSelect({
         width: '100%',
-        single: true,
+        single: false,
         filter: true,
         placeholder: "-- Chọn loại nhóm --",
     });
 
-     $('#searchGroupStatus').multipleSelect({
+     $('#cboStatus').multipleSelect({
         width: '100%',
-        single: true,
+        single: false,
         filter: true,
         placeholder: "-- Chọn trạng thái --",
     });
@@ -85,7 +85,7 @@
 
     function Search(curentPage) {
         try {
-            var keySearch = $('#txtName').val() + '|' + $('#searchGroupType').val();
+            var keySearch = $('#txtName').val() + '|' + $('#cboGroupType').val() + '|' + $('#cboStatus').val();
             $.ajax({
                 type: 'POST',
                 url: '/quan-tri/nhom-nguoi-dung/tim-kiem',

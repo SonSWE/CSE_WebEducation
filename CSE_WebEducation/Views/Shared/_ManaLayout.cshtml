@@ -19,6 +19,7 @@
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/LeftMenu.css" asp-append-version="true" />
+     <link rel="stylesheet" href="~/css/StyleLogin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CSE_WebEducation.styles.css" asp-append-version="true" />
 
     @*<link rel="icon" href="~/bidding_lib/img/logo.svg" sizes="any" type="image/svg+xml">*@
@@ -76,7 +77,7 @@
     else
     {
         <div id="wrapper">
-            <partial name="~/Views/Shared/Management/_Header.cshtml" />
+            <partial name="~/Views/Shared/_Header.cshtml" />
 
 
             <section class="home-section">
@@ -116,14 +117,10 @@
                 <div class="home-content">
                     <main class="main">
                         <div class="container">
-                            @*<partial name="~/Views/Shared/Management/_BreadcrumbAndSearch.cshtml" />*@
+                            @*<partial name="~/Views/Shared/_BreadcrumbAndSearch.cshtml" />*@
                             @RenderBody()
                         </div>
                     </main>
-
-
-
-
                 </div>
             </section>
 

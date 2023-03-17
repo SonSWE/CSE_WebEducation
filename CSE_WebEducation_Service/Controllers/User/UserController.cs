@@ -90,7 +90,7 @@ namespace CSE_WebEducation_Service.Controllers.User
         [HttpGet]
         [Authorize]
         [Route("api/quan-tri/user/search")]
-        public IActionResult Search(string keySearch, int startRow, int endRow, string orderBy)
+        public IActionResult Search(string user_name,string keySearch, int startRow, int endRow, string orderBy)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace CSE_WebEducation_Service.Controllers.User
 
                 decimal totalRecord = 0;
                 List<CSE_UsersInfo> _lst = new List<CSE_UsersInfo>();
-                DataSet ds = DA.Search(keySearch, startRow, endRow, orderBy, ref totalRecord);
+                DataSet ds = DA.Search(user_name, keySearch, startRow, endRow, orderBy, ref totalRecord);
                 _lst = CBO<CSE_UsersInfo>.FillCollection_FromDataSet(ds);
 
                 return Json(new { totalRows = totalRecord, jsonData = JsonSerializer.Serialize(_lst) });

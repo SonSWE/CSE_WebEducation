@@ -47,7 +47,7 @@ namespace CSE_WebEducation
             }
         }
 
-        public static SearchResponseInfo Search(string p_token, string keySearch, string startRow, string endRow, string orderBy = "")
+        public static SearchResponseInfo Search(string p_token, string user_name, string keySearch, string startRow, string endRow, string orderBy = "")
         {
             try
             {
@@ -55,6 +55,7 @@ namespace CSE_WebEducation
                 var request = new RestRequest("api/quan-tri/user/search", Method.GET);
                 request.AddHeader("Authorization", $"Bearer {p_token}");
 
+                request.AddParameter("user_name", user_name);
                 request.AddParameter("keySearch", keySearch);
                 request.AddParameter("startRow", startRow);
                 request.AddParameter("endRow", endRow);

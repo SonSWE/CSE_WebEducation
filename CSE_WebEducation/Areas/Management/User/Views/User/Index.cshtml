@@ -1,7 +1,7 @@
 ﻿@using CSE_WebEducation
 @using CommonLib;
 @{
-    Layout = "~/Views/Shared/Management/_ManaLayout.cshtml";
+    Layout = "~/Views/Shared/_ManaLayout.cshtml";
     ViewBag.Title = "Danh sách người dùng";
 }
 
@@ -11,7 +11,7 @@
     <div class="head-search">
         <h3 class="title">Điều kiện tìm kiếm</h3>
         <div class="search-right">
-            <button class="btn-additem" type="button" onclick="gotoAdd()"><img src="~/bidding_lib/img/plus.svg" />Thêm mới</button>
+            <button class="btn-additem" type="button" onclick="LoadInsert()"><img src="~/bidding_lib/img/plus.svg" />Thêm mới</button>
 
             <button class="btn-search" onclick="Search(@CommonData.pageDefaut);"><img src="~/bidding_lib/img/icon-search.svg" alt="img"></button>
         </div>
@@ -19,15 +19,14 @@
     <div class="body-search">
         <div class="box-search">
             <div class="item-search">
-                <label>Tên nhóm NSD</label>
+                <label>Tên NSD</label>
                 <input type="text" id="txtName" placeholder="Từ khóa tìm kiếm">
 
             </div>
             <div class="item-search">
-                <label>Loại nhóm</label>
+                <label>Loại người sử dụng</label>
                 <select id="slUserType" multiple>
-                    <option value="-1" selected>-- Tất cả --</option>
-                    @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "TYPE"))
+                    @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "TYPE"))
                     {
                         <option value="@item.CDVal">@item.Content</option>
                     }
@@ -36,7 +35,6 @@
             <div class="item-search">
                 <label>Trạng thái</label>
                 <select id="slStatus" multiple>
-                    <option value="-1" selected>-- Tất cả --</option>
                     @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "STATUS"))
                     {
                         <option value="@item.CDVal">@item.Content</option>
@@ -48,7 +46,7 @@
     </div>
 </div>
 <div class="block-record" id="tableData">
-    @*@Html.Partial("_Partial_List.cshtml")*@
+   
 </div>
 
 
@@ -61,14 +59,14 @@
 
     $('#slUserType').multipleSelect({
         width: '100%',
-        single: true,
+        single: false,
         filter: true,
         placeholder: "-- Chọn loại người dùng --",
     });
 
      $('#slStatus').multipleSelect({
         width: '100%',
-        single: true,
+        single: false,
         filter: true,
         placeholder: "-- Chọn trạng thái --",
     });
@@ -118,15 +116,17 @@
         try {
             $.ajax({
                 type: 'GET',
-                url: '/quan-tri/nnguoi-dung/them-moi',
-                async: false, cache: false, traditional: true,
+                url: '/quan-tri/nguoi-dung/them-moi',
+                async: true, cache: false, traditional: true,
                 beforeSend: function () {
                     SpinLoading(true);
                 },
                 success: function (data) {
                     SpinLoading(false);
-                    $("#dPopup").html(data);
-                    ShowPopupDialog("dPopup", "");
+                    if (preHandleDataResult(data)) {
+                        $("#dPopup").html(data);
+                        ShowPopupDialog("dPopup", "Thêm mới người dùng");
+                    }
                 }
             });
         } catch (ex) {
@@ -187,7 +187,7 @@
             nvsConfirm("Bạn có chắc chắn muốn xóa người dùng này không?", function () {
                 $.ajax({
                     type: 'POST',
-                    url: 'quan-tri/nhom-nguoi-dung/xoa',
+                    url: '/quan-tri/nguoi-dung/xoa',
                     data: {
                         user_id: user_id
                     },

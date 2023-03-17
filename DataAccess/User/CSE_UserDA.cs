@@ -52,38 +52,44 @@ namespace DataAccess
             }
         }
 
-        public DataSet Search(string key_search, int startRow, int endRow, string order_by, ref decimal totalRecord)
+        public DataSet Search(string user_name,string key_search, int startRow, int endRow, string order_by, ref decimal totalRecord)
         {
             try
             {
-                var lstParam = new SqlParameter[5];
-                lstParam[0] = new SqlParameter("@p_key_search", SqlDbType.NVarChar)
+                var lstParam = new SqlParameter[6];
+                lstParam[0] = new SqlParameter("@p_user_name", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = user_name
+                };
+                lstParam[1] = new SqlParameter("@p_key_search", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Input,
                     Value = key_search
                 };
-                lstParam[1] = new SqlParameter("@p_startrow", SqlDbType.Int)
+                lstParam[2] = new SqlParameter("@p_startrow", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Input,
                     Value = startRow
                 };
-                lstParam[2] = new SqlParameter("@p_endrow", SqlDbType.Int)
+                lstParam[3] = new SqlParameter("@p_endrow", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Input,
                     Value = endRow
                 };
-                lstParam[3] = new SqlParameter("@p_orderby", SqlDbType.NVarChar)
+                lstParam[4] = new SqlParameter("@p_orderby", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Input,
                     Value = order_by == null ? "" : order_by
                 };
-                lstParam[4] = new SqlParameter("@p_total_record", SqlDbType.Decimal)
+                lstParam[5] = new SqlParameter("@p_total_record", SqlDbType.Decimal)
                 {
                     Direction = ParameterDirection.Output
                 };
+                
 
                 var dt = SQLHelper.ExecuteDataset(CommonData.connectionString, CommandType.StoredProcedure, "sp_user_search", lstParam);
-                totalRecord = Convert.ToDecimal(lstParam[4].Value.ToString());
+                totalRecord = Convert.ToDecimal(lstParam[5].Value.ToString());
                 return dt;
             }
             catch (Exception ex)
@@ -118,7 +124,7 @@ namespace DataAccess
             try
             {
                 decimal _result = -1;
-                var lstParam = new SqlParameter[10];
+                var lstParam = new SqlParameter[11];
                 lstParam[0] = new SqlParameter("@p_user_name", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Input,
@@ -128,11 +134,6 @@ namespace DataAccess
                 {
                     Direction = ParameterDirection.Input,
                     Value = _info.Password,
-                };
-                lstParam[2] = new SqlParameter("@p_user_type", SqlDbType.Decimal)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = _info.User_Type,
                 };
                 lstParam[3] = new SqlParameter("@p_status", SqlDbType.NVarChar)
                 {
@@ -170,6 +171,11 @@ namespace DataAccess
                 {
                     Direction = ParameterDirection.Output
                 };
+                lstParam[10] = new SqlParameter("@p_full_name", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Full_Name,
+                };
 
                 SQLHelper.ExecuteNonQuery(CommonData.connectionString, CommandType.StoredProcedure, "sp_user_insert", lstParam);
 
@@ -195,20 +201,10 @@ namespace DataAccess
                     Direction = ParameterDirection.Input,
                     Value = _info.User_Id,
                 };
-                lstParam[1] = new SqlParameter("@p_user_name", SqlDbType.NVarChar)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = _info.User_Name,
-                };
                 lstParam[2] = new SqlParameter("@p_full_name", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Input,
                     Value = _info.Full_Name,
-                };
-                lstParam[3] = new SqlParameter("@p_user_type", SqlDbType.Decimal)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = _info.User_Type,
                 };
                 lstParam[4] = new SqlParameter("@p_status", SqlDbType.NVarChar)
                 {
