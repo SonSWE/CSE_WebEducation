@@ -1,0 +1,49 @@
+﻿@using ObjectInfo
+
+@{
+    List<CSE_PostsInfo> _lstPostNew = new List<CSE_PostsInfo>();
+    if (ViewBag.LstFourPostsNew != null)
+    {
+        _lstPostNew = ViewBag.LstFourPostsNew;
+    }
+
+    string a = "";
+    a = _lstPostNew[0].Title;
+}
+
+<div class="newest-new-container">
+    <div class="newsest-title">
+        <h3>Tin mới nhât</h3>
+    </div>
+    <ul class="newsest-list">
+        @if (_lstPostNew?.Count > 0)
+        {
+            foreach (var item in _lstPostNew)
+            {
+                string title = item.Title;
+                if (item.Title.Length > 61)
+                    title = item.Title.Substring(0, 30) + "...";
+
+                <li class="newsest-item">
+                    <img class="thumbnail-post-new" src="@item.Thumbnail" alt="">
+                    <div class="newest-item-content">
+                        <h3>@title</h3>
+                        <span>Ngày đăng: @item.Created_Date.ToString("MM/dd/yyyy")</span>
+                        <div>
+                            <a href="/bai-viet/@item.Id">Xem <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <li class="newsest-item">
+                <div>
+                    không có dữ liệu
+                </div>
+            </li>
+        }
+
+    </ul>
+</div>

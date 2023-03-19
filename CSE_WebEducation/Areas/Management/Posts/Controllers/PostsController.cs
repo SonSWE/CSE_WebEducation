@@ -109,6 +109,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                     IFormFile file = formFiles.FirstOrDefault(x => x.Name.Equals("file_Content"));
                     if (file != null)
                     {
+                        string base_url = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host;
                         string fileName = $"{DateTime.Now.ToString("yyyyMMddHHmmssFFF")}{CommonFunc.ReplaceUnicodeString(file.FileName)}";
                         string url_full_url_file = Path.Combine(CommonData.FileAttach, fileName);
 
@@ -117,7 +118,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                             file.CopyTo(save_file);
                         }
 
-                        info.Thumbnail = ConstData.httpApiClientHost + "/file_attach/" + fileName;
+                        info.Thumbnail = base_url + "/file_attach/" + fileName;
                     }
                 }
                 

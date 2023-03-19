@@ -3,46 +3,75 @@
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Bài viết";
 
     CSE_PostsInfo posts_info = new CSE_PostsInfo();
     if (ViewBag.PostInfo != null)
     {
         posts_info = ViewBag.PostInfo;
     }
-}
 
-@if (posts_info?.Id > 0)
-{
-    <div class="container-xxl container">
-        <div class="container-inner-news">
-            <div class="row news-row">
-                <div class="col-lg-8">
-                    <div class="news-container">
-                        <h3 class="news-big-title">@posts_info.Title</h3>
-                        <span class="news-time">@posts_info.Start_Date</span>
-                        <p>
-                            @Html.Raw(posts_info.Content)
-                        </p>
-                    </div>
+    CSE_Posts_CategoriesInfo Posts_CategoriesInfo = new CSE_Posts_CategoriesInfo();
+    if (ViewBag.PostCategoyInfo != null)
+    {
+        Posts_CategoriesInfo = ViewBag.PostCategoyInfo;
+    }
+    string _banner_url = string.IsNullOrEmpty(Posts_CategoriesInfo.Banner_Url) ? "/Guest_Assets/Img/backgroud_login.jpg" : Posts_CategoriesInfo.Banner_Url;
+    ViewBag.Title = Posts_CategoriesInfo.Name;
+}
+<div class="container-content">
+    <div class="slider-home">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-fade" data-bs-touch="false" data-bs-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="@_banner_url" class="d-block w-100" alt="...">
+                    <div class="overlay"></div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="more-news-container">
-                        <h3>
-                            <a class="more-news-title-link" href="">Đọc thêm bài viết khác</a>
-                        </h3>
-                        @Html.Partial("_Partail_List_New_Post.cshtml")
+
+            </div>
+        </div>
+    </div>
+
+    @if (posts_info?.Id > 0)
+    {
+        <div class="container-xxl container">
+            <div class="container-inner-news" >
+                <div class="row news-row">
+                    <div class="col-lg-8">
+                        <div class="news-container">
+                            <h3 class="news-big-title">@posts_info.Title</h3>
+                            @if (posts_info.Category_Id == "SUKIEN")
+                            {
+                                <span class="news-time">@posts_info.Start_Date</span>
+                            }
+                            else
+                            {
+                                <span class="news-time">@posts_info.Created_Date</span>
+                            }
+
+                            <p>
+                                @Html.Raw(posts_info.Content)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="more-news-container">
+                            <h3>
+                                <a class="more-news-title-link" href="">Đọc thêm bài viết khác</a>
+                            </h3>
+                            @Html.Partial("_Partail_List_New_Post.cshtml")
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
-    </div>
-
-    @if(posts_info.Category_Id == "SUKIEN")
-    {
-        @Html.Partial("_Partial_List_Post_Suggest.cshtml")
+        @if (posts_info.Category_Id == "SUKIEN")
+        {
+            @Html.Partial("_Partial_List_Post_Suggest.cshtml")
+        }
     }
-}
+
+</div>
 
 

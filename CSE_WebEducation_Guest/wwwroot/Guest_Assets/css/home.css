@@ -336,7 +336,7 @@
         padding: 15px 25px;
         background-color: var(--primary-red);
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 4px;
     }
 
         .content_new-card-container div a {
@@ -371,11 +371,12 @@
 }
 
 .newest-item-content a {
+    font-size: 14px;
     display: inline-block;
-    padding: 15px 25px;
+    padding: 10px 15px;
     background-color: var(--primary-red);
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 4px;
     color: white;
 }
 

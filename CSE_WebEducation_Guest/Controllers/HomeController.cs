@@ -16,14 +16,6 @@ namespace CSE_WebEducation_Guest.Controllers
             _logger = logger;
         }
 
-        //[CustomActionFilter(CheckRight = false)]
-        [Route("")]
-        public IActionResult Index()
-        {
-            ViewBag.curTab = "HOME";
-            return View("~/Views/Home/Index.cshtml");
-        }
-
         public IActionResult Privacy()
         {
             return View();
@@ -35,20 +27,15 @@ namespace CSE_WebEducation_Guest.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [Route("dang-nhap")]
-        public IActionResult Load_Login()
+        //trang chủ
+        [Route("")]
+        public IActionResult Index()
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return View("~/Views/Home/Login.cshtml");
+            ViewBag.curTab = "HOME";
+            return View("~/Views/Home/Index.cshtml");
         }
 
+        //đọc 1 bài viết
         [Route("bai-viet/{id}")]
         public IActionResult ViewPosts(decimal id)
         {
@@ -56,6 +43,10 @@ namespace CSE_WebEducation_Guest.Controllers
             {
                 CSE_PostsInfo info = ApiClient_Posts.GetById(id);
                 ViewBag.PostInfo = info;
+
+                CSE_Posts_CategoriesInfo Cateinfo = ApiClient_Posts_Category.GetById(info.Category_Id);
+                ViewBag.PostCategoyInfo = Cateinfo;
+                ViewBag.curTab = info.Category_Id;
 
                 //danh sách 4 bài viết mới nhất
                 SearchResponseInfo _search = ApiClient_Posts.Search("|||", "1", "4", "", "Created_By DESC");
@@ -75,17 +66,16 @@ namespace CSE_WebEducation_Guest.Controllers
             return View("~/Views/Home/_Partial_Posts_View.cshtml");
         }
 
+        #region tìm kiếm bài viết
+
+        //Hiển thị khi vào 1 chức năng
         [Route("danh-sach-bai-viet/{id}")]
-        public IActionResult ListPosts(string id)
+        public IActionResult LoadListPosts(string id)
         {
             try
             {
-                int p_to = 0;
-                int p_from = CommonFunc.GetFromToPaging(1, CommonData.RecordsPerPage, out p_to);
-                SearchResponseInfo _search = ApiClient_Posts.Search("||" + id, p_from.ToString(), p_to.ToString(), " ");
-
-                ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
-                ViewBag.Paging = CommonFunc.PagingData(1, CommonData.RecordsPerPage, (int)_search.totalrows);
+                CSE_Posts_CategoriesInfo info = ApiClient_Posts_Category.GetById(id);
+                ViewBag.PostCategoyInfo = info;
                 ViewBag.curTab = id;
 
                 //danh sách 4 bài viết mới nhất
@@ -96,15 +86,21 @@ namespace CSE_WebEducation_Guest.Controllers
             {
 
             }
-            return View("~/Views/Home/_Partial_Posts_List.cshtml");
+            return View("~/Views/Home/Display_Post_List.cshtml");
         }
+       
 
-        [Route("tim-kiem-bai-viet/{keysearch}"), HttpGet]
-        public IActionResult LoadSearchPost(string keysearch)
+        
+        [Route("tim-kiem-bai-viet/{keysearch?}"), HttpGet]
+        public IActionResult LoadSearchPost(string keysearch = "")
         {
             try
             {
                 ViewBag.keysearch = keysearch;
+
+                //danh sách 4 bài viết mới nhất
+                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||A", "1", "4", "", " ");
+                ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
             }
             catch (Exception ex)
             {
@@ -119,23 +115,20 @@ namespace CSE_WebEducation_Guest.Controllers
             try
             {
                 ViewBag.keyseach = keysearch;
-                keysearch = keysearch + "|||";
+                keysearch = keysearch + "||A";
                 int p_to = 0;
                 int p_from = CommonFunc.GetFromToPaging(curentPage, CommonData.RecordsPerPage, out p_to);
                 SearchResponseInfo _search = ApiClient_Posts.Search(keysearch, p_from.ToString(), p_to.ToString(), " ");
 
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(curentPage, CommonData.RecordsPerPage, (int)_search.totalrows);
-
-                //danh sách 4 bài viết mới nhất
-                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||", "1", "4", "", " ");
-                ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
             }
             catch (Exception ex)
             {
 
             }
-            return View("~/Views/Home/_Partial_Posts_List_Search.cshtml");
+            return View("~/Views/Home/_Partial_Posts_List.cshtml");
         }
+        #endregion
     }
 }

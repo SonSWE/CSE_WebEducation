@@ -13,6 +13,7 @@ namespace ObjectInfo
         public string Name { get; set; }
         public string PrId { get; set; }
         public string Get_Url { get; set; }
+        public string Banner_Url { get; set; }
         public decimal Lev { get; set; }
         public decimal Display_On_Menu { get; set; }
         public decimal LstOdr { get; set; }

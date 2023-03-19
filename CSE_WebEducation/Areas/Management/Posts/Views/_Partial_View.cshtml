@@ -60,8 +60,10 @@
                 <div class="col-lg-12">
                     <div class="flex-report">
                         <div class="title-report">Ảnh bìa <span class="clr-red">(*)</span></div>
-                        <div class="holder">
-                            <img class="img-preview" id="imgPreview" src="@info.Thumbnail" alt="pic" />
+                        <div class="field-report">
+                            <div class="holder">
+                                <img class="img-preview" id="imgPreview" src="@info.Thumbnail" alt="pic" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +72,7 @@
                     <div class="flex-report">
                         <div class="title-report">Mô tả <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="4" disabled value="@info.Description">
+                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000" tabindex="4" disabled value="@info.Description">
                         </div>
                     </div>
                 </div>
@@ -78,7 +80,7 @@
                     <div class="flex-report">
                         <div class="title-report">Loại bài viết <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input type="text" id="txtType" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="4" disabled value="@info.Post_Type_Text">
+                            <input type="text" id="txtType" name="" autocomplete="off" autofocus maxlength="1000" tabindex="4" disabled value="@info.Post_Type_Text">
                         </div>
                     </div>
                 </div>
@@ -87,7 +89,7 @@
                         <div class="flex-report">
                             <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled  tabindex="6" value="@info.Start_Date.ToShortDateString()">
+                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled tabindex="6" value="@info.Start_Date.ToShortDateString()">
                             </div>
                         </div>
                     </div>
@@ -95,7 +97,7 @@
                         <div class="flex-report">
                             <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="7" disabled value="@info.Location">
+                                <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000" tabindex="7" disabled value="@info.Location">
                             </div>
                         </div>
                     </div>
@@ -104,7 +106,7 @@
                     <div class="flex-report">
                         <div class="title-report">Nội dung <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <textarea type="file" id="Content" name="Content" maxlength="4000"   tabindex="8" disabled >@info.Content</textarea>
+                            <textarea type="file" id="Content" name="Content" maxlength="4000" tabindex="8" disabled>@info.Content</textarea>
                         </div>
                     </div>
                 </div>
@@ -114,16 +116,16 @@
     </div>
     <div class="footer-form">
         <div class="container-footer">
-            <button class="btn-cancel" type="button" id="btnExit" onclick="history.back();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img"  tabindex="10">Quay lại</button>
+            <button class="btn-cancel" type="button" id="btnExit" onclick="history.back();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img" tabindex="10">Quay lại</button>
         </div>
     </div>
 </form>
 
 <script>
     $(document).ready(function(){
-        
+
     });
-   
+
     CKEDITOR.replace( 'Content', {
         extraPlugins: 'timestamp',
         removeButtons: 'Underline',

@@ -1,0 +1,86 @@
+﻿@using CommonLib
+@using ObjectInfo
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    CSE_Posts_CategoriesInfo Posts_CategoriesInfo = new CSE_Posts_CategoriesInfo();
+    if (ViewBag.PostCategoyInfo != null)
+    {
+        Posts_CategoriesInfo = ViewBag.PostCategoyInfo;
+    }
+    string _banner_url = string.IsNullOrEmpty(Posts_CategoriesInfo.Banner_Url) ? "/Guest_Assets/Img/backgroud_login.jpg" : Posts_CategoriesInfo.Banner_Url;
+    ViewBag.Title = Posts_CategoriesInfo.Name;
+}
+
+<!-- content -->
+<input hidden id="tmpIdTab" value="@ViewBag.curTab" />
+
+<div class="container-content">
+    <div class="slider-home">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-fade" data-bs-touch="false" data-bs-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="@_banner_url" class="d-block w-100" alt="...">
+                    <div class="overlay"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl container">
+        <div class="find-input-wrapper">
+            <img src="/Guest_Assets/Img/finding.png" alt="" onclick="Search_In_Tab(1)">
+            <input type="text" placeholder="Tìm kiếm..." id="txtKeySearch">
+        </div>
+        <div class="row content-news">
+            <div class="col-lg-8" id="tableData">
+            </div>
+            <div class="col-lg-4">
+                @Html.Partial("_Partial_Top_4PostNew.cshtml")
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+            Search_In_Tab(@CommonData.pageDefaut);
+        });
+
+    function ChangePage(curentPage) {
+        Search_In_Tab(curentPage);
+    }
+
+    function Search_In_Tab(curentPage) {
+        try {
+            var keySearch = $('#txtKeySearch').val() + '||' + $('#tmpIdTab').val() + '|A' ;
+            $.ajax({
+                type: 'POST',
+                url: '/tim-kiem-bai-viet',
+                data: {
+                    keysearch: keySearch,
+                    curentPage: curentPage
+                },
+                async: true, cache: false, traditional: true,
+                beforeSend: function () {
+                    //SpinLoading(true);
+                },
+                success: function (data) {
+                    //SpinLoading(false);
+                    if (data) {
+                        $("#tableData").html(data);
+                    }
+                }
+            });
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+</script>
+
+
+
+

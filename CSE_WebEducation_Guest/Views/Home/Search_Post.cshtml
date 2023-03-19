@@ -5,52 +5,72 @@
     ViewBag.Title = "Danh sách bài viết";
 }
 
-<div id="tableData">
-   
+<!-- content -->
+<div class="container-content">
+    <div class="slider-home">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-fade" data-bs-touch="false" data-bs-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/Guest_Assets/Img/backgroud_login.jpg" class="d-block w-100" alt="...">
+                    <div class="overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl container">
+        <div class="row content-news">
+            <div class="col-lg-8" id="tableData">
+            </div>
+            <div class="col-lg-4">
+                @Html.Partial("_Partial_Top_4PostNew.cshtml")
+            </div>
+        </div>
+    </div>
+
 </div>
 <script>
 
 
-$(document).ready(function () {
-    $('#txtSearch').val('@ViewBag.keysearch');
+    $(document).ready(function () {
+        $('#txtSearch').val('@ViewBag.keysearch');
 
-    Search(@CommonData.pageDefaut);
-});
+        Search(@CommonData.pageDefaut);
+    });
 
-$(document).on('keypress', function (e) {
-    if (e.which == 13) {
-      Search('@CommonData.pageDefaut');
-    }
-  });
-
-  function ChangePage(curentPage) {
-    Search(curentPage);
-  }
-
-  function Search(curentPage) {
-    try {
-      var keySearch = $('#txtSearch').val();
-      $.ajax({
-        type: 'POST',
-        url: '/tim-kiem-bai-viet',
-        data: {
-          keysearch: keySearch,
-          curentPage: curentPage
-        },
-        async: true, cache: false, traditional: true,
-        beforeSend: function () {
-          //SpinLoading(true);
-        },
-        success: function (data) {
-          //SpinLoading(false);
-          if (data != null) {
-            $("#tableData").html(data);
-          }
+    $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+          Search('@CommonData.pageDefaut');
         }
       });
-    } catch (ex) {
-      console.log(ex);
-    }
-  }
+
+      function ChangePage(curentPage) {
+        Search(curentPage);
+      }
+
+      function Search(curentPage) {
+        try {
+          var keySearch = $('#txtSearch').val() + "|||A";
+          $.ajax({
+            type: 'POST',
+            url: '/tim-kiem-bai-viet',
+            data: {
+              keysearch: keySearch,
+              curentPage: curentPage
+            },
+            async: true, cache: false, traditional: true,
+            beforeSend: function () {
+              //SpinLoading(true);
+            },
+            success: function (data) {
+              //SpinLoading(false);
+              if (data != null) {
+                $("#tableData").html(data);
+              }
+            }
+          });
+        } catch (ex) {
+          console.log(ex);
+        }
+      }
 
 </script>
