@@ -31,7 +31,7 @@
 </h3>
 
 <div class="">
-    <div class="wrapper-editor scroll-tbl tbl-record over-flow-x" >
+    <div class="wrapper-editor scroll-tbl tbl-record over-flow-x">
         <table width="100%" id="test-tb">
             <thead>
                 <tr>
@@ -55,23 +55,15 @@
                             <td><img class="img-preview" id="imgPreview" src="@item.Thumbnail" alt="pic" width=200 height=200 /></td>
                             <td>@item.Title</td>
                             <td>@item.Category_Name</td>
-                            @if(item.Status == CSE_Post_Status.Active)
+                            @if (item.Status == CSE_Post_Status.Active)
                             {
                                 <td style=" color: greenyellow; font-weight: 600;">@item.Status_Text</td>
                             }
-                            else if(item.Status == CSE_Post_Status.Pending)
-                            {
-                                <td style=" color: yellow; font-weight: 600;">@item.Status_Text</td>
-                            }
-                            else if(item.Status == CSE_Post_Status.Reject)
-                            {
-                                <td style=" color: red; font-weight: 600;">@item.Status_Text</td>
-                            }
-                            else if(item.Status == CSE_Post_Status.Hide)
+                            else if (item.Status == CSE_Post_Status.Hide)
                             {
                                 <td style=" color: cornflowerblue; font-weight: 600;">@item.Status_Text</td>
                             }
-                            
+
                             <td class="text-center">@item.Created_Date</td>
                             <td>@item.Created_By</td>
                             <td>
@@ -95,6 +87,27 @@
                                     </span>
                                     <div class="name-function-fix">Xóa</div>
                                 </a>
+
+                                @if (item.Status == CSE_Post_Status.Hide)
+                                {
+                                    <a href="javascript:;" class="btn-function" onclick="HideOrShow(@item.Id, '@CSE_Post_Status.Active');">
+                                        <span>
+                                            <img class="imgbefore-hv" src="~/bidding_lib/img/icon-delete.svg" alt="img">
+
+                                        </span>
+                                        <div class="name-function-fix">Hiển thị</div>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="javascript:;" class="btn-function" onclick="HideOrShow(@item.Id, '@CSE_Post_Status.Hide');">
+                                        <span>
+                                            <img class="imgbefore-hv" src="~/bidding_lib/img/icon-delete.svg" alt="img">
+
+                                        </span>
+                                        <div class="name-function-fix">Ẩn</div>
+                                    </a>
+                                }
                             </td>
                         </tr>
                     }

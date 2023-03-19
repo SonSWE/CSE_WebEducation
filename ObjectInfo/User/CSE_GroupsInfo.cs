@@ -15,8 +15,8 @@ namespace ObjectInfo
         public string Note { get; set; }
         public string Status { get; set; }
         public string Status_Text { get; set; }
-        public decimal Group_Type { get; set; }
-        public string Group_Type_Text { get; set; }
+        //public decimal Group_Type { get; set; }
+        //public string Group_Type_Text { get; set; }
         public string Created_By { get; set; }
         public DateTime Created_Date { get; set; }
         public string Modified_By { get; set; }

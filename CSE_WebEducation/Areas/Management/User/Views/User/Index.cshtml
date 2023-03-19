@@ -23,7 +23,7 @@
                 <input type="text" id="txtName" placeholder="Từ khóa tìm kiếm">
 
             </div>
-            <div class="item-search">
+            @*<div class="item-search">
                 <label>Loại người sử dụng</label>
                 <select id="slUserType" multiple>
                     @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "TYPE"))
@@ -31,7 +31,7 @@
                         <option value="@item.CDVal">@item.Content</option>
                     }
                 </select>
-            </div>
+            </div>*@
             <div class="item-search">
                 <label>Trạng thái</label>
                 <select id="slStatus" multiple>
@@ -83,7 +83,7 @@
 
     function Search(curentPage) {
         try {
-            var keySearch = $('#txtName').val().trim() + '|' + $('#slUserType').val() + '|' + $('#slStatus').val();
+            var keySearch = $('#txtName').val().trim() + '||' + $('#slStatus').val();
             $.ajax({
                 type: 'POST',
                 url: '/quan-tri/nguoi-dung/tim-kiem',
@@ -94,10 +94,10 @@
                 },
                 async: true, cache: false, traditional: true,
                 beforeSend: function () {
-                    //SpinLoading(true);
+                    SpinLoading(true);
                 },
                 success: function (data) {
-                    //SpinLoading(false);
+                    SpinLoading(false);
                     if (preHandleDataResult(data)) {
                         $("#tableData").html(data);
                     }

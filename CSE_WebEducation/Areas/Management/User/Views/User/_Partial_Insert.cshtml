@@ -4,7 +4,7 @@
 
 @{
 
-    decimal user_type = ViewBag.User_Type;
+    //decimal user_type = ViewBag.User_Type;
 }
 
 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                   @* <div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Loại người dùng <span class="clr-red">(*)</span></div>
                             <div class="field-report">
@@ -73,7 +73,7 @@
                                 }
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Trạng thái <span class="clr-red">(*)</span></div>
@@ -140,12 +140,12 @@
     $(document).ready(function () {
         $('#txtUser_Name').focus();
 
-        $('#slType').multipleSelect({
-            width: '100%',
-            single: true,
-            filter: true,
-            placeholder: "-- Loại người dùng --",
-        });
+        //$('#slType').multipleSelect({
+        //    width: '100%',
+        //    single: true,
+        //    filter: true,
+        //    placeholder: "-- Loại người dùng --",
+        //});
 
         $('#slUserStatus').multipleSelect({
             width: '100%',
@@ -211,7 +211,7 @@
         formData.append('info.Full_Name', Full_Name);
         formData.append('info.Email', Email);
         formData.append('info.Phone', Phone);
-        formData.append('info.User_Type', User_Type);
+        //formData.append('info.User_Type', User_Type);
         formData.append('info.Status', status);
         formData.append('info.Identity_Card', IdentityCard);
     }
@@ -224,7 +224,7 @@
             Full_Name = $("#txtFullname").val().trim();
             Phone = $("#txtPhone").val().trim();
             Email = $("#txtEmail").val().trim();
-            User_Type = $("#slType").val();
+            //User_Type = $("#slType").val();
             status = $("#slUserStatus").val();
             IdentityCard = $("#txtIdentityCard").val().trim();
 
@@ -270,11 +270,11 @@
                 $("#full_name").focus();
                 return false;
             }
-            if (User_Type == null || User_Type == "") {
-                showError('Loại người dùng không được để trống')
-                $("#slType").focus();
-                return false;
-            }
+            //if (User_Type == null || User_Type == "") {
+            //    showError('Loại người dùng không được để trống')
+            //    $("#slType").focus();
+            //    return false;
+            //}
             if (status == null || status == "") {
                 showError('Trạng thái không được để trống')
                 $("#slUserStatus").focus();

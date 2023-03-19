@@ -24,6 +24,15 @@
         <link rel="stylesheet" href="~/lib/font-awsome/css/all.css" asp-append-version="true" />
 
         <script type="text/javascript" src="~/bidding_lib/libs/js/jquery.min.js"></script>
+
+        <script src="~/lib/sweetalert/sweetalert2-init.js"></script>
+        <script src="~/lib/sweetalert/sweetalert2.js"></script>
+        <script src="~/lib/sweetalert/es6-promise.auto.min.js"></script>
+        <link href="~/lib/sweetalert/sweetalert2.css" rel="stylesheet" />
+        <link href="~/lib/notify/animate.min.css" rel="stylesheet" />
+        <link href="~/lib/notify/notify.css" rel="stylesheet" />
+        <script src="~/lib/notify/bootstrap-notify.min.js"></script>
+        <script src="~/lib/notify/bootstrap-notify-init.js"></script> 
     </head>
     <body>
         @RenderBody()
@@ -112,7 +121,7 @@ else
                             <div class="avt"><img src="~/bidding_lib/img/avtadmin.png" alt="img"></div>
                             <div class="block-utility">
                                 <div class="box-utility">
-                                    <a href="javascript:0;" data-toggle="modal" onclick="showFormChangePassword(0);">
+                                    <a href="javascript:0;" data-toggle="modal" onclick="showFormChangePassword();">
                                         <span><img src="~/bidding_lib/img/icon-mk.svg" alt="img"></span>
                                         <span>Đổi mật khẩu</span>
                                     </a>
@@ -150,32 +159,53 @@ else
             </div>
         </div>
 
+        <div class="modal modal-report" id="dPopupChangePass"></div>
 
         @RenderSection("Scripts", required: false)
     </body>
 
     <script>
-        $( "#sidebarbtn" ).click(function() {
-            if($(".sidebar").hasClass("hide")){
-                $(".sidebar").removeClass("hide");
-                $(".links-name").removeClass("hide")
-                $(".icon-agldown").removeClass("hide")
-            }else{
-                $(".sidebar").addClass("hide");
-                $(".links-name").addClass("hide")
-                $(".icon-agldown").addClass("hide")
-            }
-        });
+            $( "#sidebarbtn" ).click(function() {
+                if($(".sidebar").hasClass("hide")){
+                    $(".sidebar").removeClass("hide");
+                    $(".links-name").removeClass("hide")
+                    $(".icon-agldown").removeClass("hide")
+                }else{
+                    $(".sidebar").addClass("hide");
+                    $(".links-name").addClass("hide")
+                    $(".icon-agldown").addClass("hide")
+                }
+            });
 
-        function preHandleDataResult(data) {
-            if (data.success == '@ActionResultConfig.TIME_OUT') {
-                window.location.href = '@RouteConfig.TIME_OUT';
-            } else if (data.success == '@ActionResultConfig.UNAUTHORIZED_AJAX') {
-                nvsAlert("Thông báo", "Không có quyền thực hiện chức năng này");
-            } else {
-                return true;
+            function preHandleDataResult(data) {
+                if (data.success == '@ActionResultConfig.TIME_OUT') {
+                    window.location.href = '@RouteConfig.TIME_OUT';
+                } else if (data.success == '@ActionResultConfig.UNAUTHORIZED_AJAX') {
+                    nvsAlert("Thông báo", "Không có quyền thực hiện chức năng này");
+                } else {
+                    return true;
+                }
+                return false;
             }
-            return false;
+
+            function showFormChangePassword() {
+                try {
+                    $.ajax({
+                        type: "GET",
+                        url: "/quan-tri/nguoi-dung/doi-mat-khau",
+                        success: function (data) {
+                            if (data != null && preHandleDataResult(data)) {
+                                $("#dPopupChangePass").html(data);
+                                ShowPopupDialog("dPopupChangePass", "Đổi mật khẩu");
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data.error);
+                        }
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
         }
 
     </script>

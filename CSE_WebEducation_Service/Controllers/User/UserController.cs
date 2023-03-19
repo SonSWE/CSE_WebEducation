@@ -188,6 +188,25 @@ namespace CSE_WebEducation_Service.Controllers.User
 
         [HttpPost]
         [Authorize]
+        [Route("api/quan-tri/user/changePass")]
+        public IActionResult ChangePass([FromBody] CSE_UsersInfo info)
+        {
+            try
+            {
+                CSE_UserDA DA = new CSE_UserDA();
+                decimal result = DA.ChangePass(info);
+
+                return Json(new { success = result.ToString() });
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+                return Json(new { success = "-1" });
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
         [Route("api/quan-tri/user/delete")]
         public IActionResult Delete([FromBody] CSE_UsersInfo info)
         {

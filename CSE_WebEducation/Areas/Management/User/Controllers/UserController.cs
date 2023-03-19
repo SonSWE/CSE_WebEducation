@@ -39,7 +39,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_UsersInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(curentPage, p_record_on_page, (int)_search.totalrows);
                 ViewBag.Record_On_Page = p_record_on_page;
-                ViewBag.UserType = user.User_Type;
+                //ViewBag.UserType = user.User_Type;
 
                 //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Tìm kiếm", $"Người dùng \"{user.User_Name}\" tìm kiếm thông tin nhóm người dùng", "Quản lý nhóm người sử dụng");
             }
@@ -76,7 +76,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
             try
             {
                 var user = this.HttpContext.GetCurrentUser();
-                ViewBag.User_Type = user.User_Type;
+                //ViewBag.User_Type = user.User_Type;
             }
             catch (Exception ex)
             {
@@ -293,6 +293,88 @@ namespace CSE_WebEducation.Areas.User.Controllers
             {
                 success = _success,
                 responseMessage = _str_error
+            });
+        }
+
+        [Route("doi-mat-khau"), HttpGet]
+        [CustomActionFilter(CheckRight = false)]
+        public IActionResult ChangePassword()
+        {
+            try
+            {
+                var user = this.HttpContext.GetCurrentUser();
+                ViewBag.User_Id = user.User_Id;
+                ViewBag.User_Name = user.User_Name;
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+            }
+            return View("~/Areas/Management/User/Views/User/_Partial_Change_Password.cshtml");
+        }
+
+        [Route("doi-mat-khau"), HttpPost]
+        [CustomActionFilter(CheckRight = false)]
+        public IActionResult ChangePassword(CSE_UsersInfo user)
+        {
+            CSE_UsersInfo user_session = this.HttpContext.GetCurrentUser();
+            //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Đổi mật khẩu", $"Người dùng \"{user_session.User_Name}\" đổi mật khẩu người dùng", "Người dùng");
+            decimal _success = -1;
+            string _message = "Đổi mật khẩu thất bại";
+            try
+            {
+                CSE_UsersInfo userinfo = ApiClient_User.GetById(user.User_Id, user_session.Token);
+                if (userinfo == null)
+                {
+                    _success = -2;
+                    _message = "Đổi mật khẩu thất bại";
+                    return Json(new { success = _success, message = _message });
+                }
+
+                if (userinfo.User_Id != user_session.User_Id)
+                {
+                    _success = -2;
+                    _message = "Người dùng không có quyền thực hiện chức năng này";
+                    return Json(new { success = _success, message = _message });
+                }
+
+                string encryptNewPassword = CommonFunc.Encrypt_MD5(user.Password);
+                string encryptOldPassword = CommonFunc.Encrypt_MD5(user.Old_Password);
+
+                if (encryptOldPassword != user_session.Password) //Mật khẩu cũ không khớp
+                {
+                    _success = -2;
+                    _message = "Mật khẩu cũ không khớp";
+                }
+                else if (user_session.Password.Equals(encryptNewPassword)) //Mật khẩu mới = mật khẩu cũ
+                {
+                    _success = -3;
+                    _message = "Mật khẩu mới không được trùng với mật khẩu cũ";
+                }
+                else
+                {
+                    user.Password = encryptNewPassword;
+                    user.Modified_Date = DateTime.Now;
+                    user.Modified_By = user_session.User_Name;
+                    //user.User_Type = user_session.User_Type;
+                  
+                    _success = ApiClient_User.ChangePass(user, user_session.Token);
+                    
+                    if(_success > 0)
+                    {
+
+                        _message = "Đổi mật khẩu thành công";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+            }
+            return Json(new
+            {
+                success = _success,
+                responseMessage = _message
             });
         }
     }

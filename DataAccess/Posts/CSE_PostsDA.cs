@@ -228,6 +228,52 @@ namespace DataAccess
             }
         }
 
+        public decimal UpdateStatus(CSE_PostsInfo _info)
+        {
+            try
+            {
+                decimal _result = -1;
+                var lstParam = new SqlParameter[12];
+                lstParam[0] = new SqlParameter("@p_id", SqlDbType.Decimal)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Id,
+                };
+                lstParam[1] = new SqlParameter("@p_status", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Status,
+                };
+                lstParam[2] = new SqlParameter("@p_modified_by", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Modified_By,
+                };
+                lstParam[3] = new SqlParameter("@p_modified_date", SqlDbType.DateTime)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Modified_Date,
+                };
+                lstParam[4] = new SqlParameter("@p_result", SqlDbType.Decimal)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                
+
+
+                SQLHelper.ExecuteDataset(CommonData.connectionString, CommandType.StoredProcedure, "sp_posts_updateStatus", lstParam);
+
+                _result = Convert.ToDecimal(lstParam[4].Value.ToString());
+
+                return _result;
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+                return -1;
+            }
+        }
+
         public decimal Delete(CSE_PostsInfo _info)
         {
             try

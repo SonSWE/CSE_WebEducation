@@ -137,42 +137,48 @@
     }
   }
 
-  //function HideOrShow(id, type) {
-  //    try {
-  //        nvsConfirm("Bạn có chắc chắn muốn xóa nhóm người dùng này không?", function () {
-  //            $.ajax({
-  //                type: 'POST',
-  //                url: '/trang-khoa/bai-viet/xoa',
-  //                data: {
-  //                    id: id
-  //                },
-  //                async: true, cache: false, traditional: true,
-  //                beforeSend: function () {
-  //                    SpinLoading(true);
-  //                },
-  //                success: function (data) {
-  //                    if (preHandleDataResult(data)) {
-  //                        if (data.success > 0) {
-  //                            showSuccess('Xóa nhóm người dùng thành công')
-  //                            Search('@CommonData.pageDefaut');
-  //                        } else if (data.success == -2) {
-  //                            showError('Nhóm có người dùng không thể xóa nhóm')
-  //                        } else {
-  //                            showError('Xóa nhóm người dùng không thành công')
-  //                        }
-  //                    }
-  //                },
-  //                error: function (data) {
-  //                    console.log(data);
-  //                },
-  //                complete: function () {
-  //                    SpinLoading(false);
-  //                }
-  //            });
-  //        })
-  //    } catch (ex) {
-  //        console.log(ex);
-  //    }
-  //}
+  function HideOrShow(id, type) {
+      try {
+          var strQuestion = "";
+          if(type == '@CSE_Post_Status.Active')
+          {
+              strQuestion = "Bạn có chắc chắn muốn hiển thị bài viết này không?";
+          }else{
+              strQuestion = "Bạn có chắc chắn muốn ẩn bài viết này không?";
+          }
+          nvsConfirm(strQuestion, function () {
+              $.ajax({
+                  type: 'POST',
+                  url: '/trang-khoa/bai-viet/cap-nhat-trang-thai',
+                  data: {
+                      id: id,
+                      status: type
+                  },
+                  async: true, cache: false, traditional: true,
+                  beforeSend: function () {
+                      SpinLoading(true);
+                  },
+                  success: function (data) {
+                      if (preHandleDataResult(data)) {
+                          if (data.success > 0) {
+                              showSuccess('Thay đổi trạng thái bài viết thành công')
+                              Search('@CommonData.pageDefaut');
+                          } else {
+                              showError('Thay đổi trạng thái bài viết thất bại')
+                          }
+                      }
+                  },
+                  error: function (data) {
+                      console.log(data);
+                  },
+                  complete: function () {
+                      SpinLoading(false);
+                  }
+              });
+          })
+      } catch (ex) {
+          console.log(ex);
+      }
+  }
 
 </script>

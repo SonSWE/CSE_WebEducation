@@ -14,7 +14,7 @@ namespace CSE_WebEducation.Controllers
         public async Task<IActionResult> DoLogin(string userName, string password)
         {
             decimal _responseCode = -1;
-            string _responseMessage = "Đăng nhập thất bại!";
+            string _responseMessage = "Sai tài khoản hoặc mật khẩu!";
 
             CSE_UsersInfo _user = new CSE_UsersInfo();
             try
@@ -82,7 +82,7 @@ namespace CSE_WebEducation.Controllers
                 var _userShare = new
                 {
                     User_Id = _user.User_Id,
-                    User_Type = _user.User_Type,
+                    //User_Type = _user.User_Type,
                     User_Name = _user.User_Name,
                     Full_Name = _user.Full_Name,
                     Status = _user.Status,

@@ -39,7 +39,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_GroupsInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(curentPage, p_record_on_page, (int)_search.totalrows);
                 ViewBag.Record_On_Page = p_record_on_page;
-                ViewBag.UserType = user.User_Type;
+                //ViewBag.UserType = user.User_Type;
 
                 //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Tìm kiếm", $"Người dùng \"{user.User_Name}\" tìm kiếm thông tin nhóm người dùng", "Quản lý nhóm người sử dụng");
             }
@@ -76,7 +76,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
             try
             {
                 var user = this.HttpContext.GetCurrentUser();
-                ViewBag.User_Type = user.User_Type;
+                //ViewBag.User_Type = user.User_Type;
             }
             catch (Exception ex)
             {
@@ -157,6 +157,46 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
                 else
                 {
                     _str_error = "Chỉnh sửa nhóm người dùng thất bại!";
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.nlog.Error(ex.ToString());
+            }
+            return Json(new
+            {
+                success = _success,
+                responseMessage = _str_error
+            });
+        }
+
+        [Route("cap-nhat-trang-thai"), HttpPost]
+        //[CustomActionFilter]
+        public IActionResult Update(decimal user_id, string status)
+        {
+            decimal _success = -1;
+            string _str_error = "";
+            try
+            {
+                var user = this.HttpContext.GetCurrentUser();
+
+                CSE_GroupsInfo info = new CSE_GroupsInfo();
+
+                info.Group_Id = user_id;
+                info.Status = status;
+                info.Modified_By = user.User_Name;
+                info.Modified_Date = DateTime.Now;
+
+                _success = ApiClient_Group.ActiveOrUnactive(info, user.Token);
+
+                if (_success > 0)
+                {
+                    _str_error = "Cập nhật trạng thái nhóm người dùng thành công!";
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                }
+                else
+                {
+                    _str_error = "Cập nhật trạng thái nhóm người dùng thất bại!";
                 }
             }
             catch (Exception ex)

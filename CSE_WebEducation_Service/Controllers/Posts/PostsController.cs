@@ -72,6 +72,24 @@ namespace CSE_WebEducation_Service.Controllers.Posts
 
         [HttpPost]
         [Authorize]
+        [Route("api/trang-khoa/bai-viet/updateStatus")]
+        public IActionResult UpdateStatus([FromBody] CSE_PostsInfo info)
+        {
+            try
+            {
+                CSE_PostsDA DA = new CSE_PostsDA();
+                decimal result = DA.UpdateStatus(info);
+                return Json(new { success = result.ToString() });
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+                return Json(new { success = "-1" });
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
         [Route("api/trang-khoa/bai-viet/delete")]
         public IActionResult Delete([FromBody] CSE_PostsInfo info)
         {

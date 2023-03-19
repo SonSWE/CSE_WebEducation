@@ -59,12 +59,12 @@ namespace CSE_WebEducation
                 //nếu không check quyền bằng code thì lấy url để check
                 if (string.IsNullOrEmpty(FunctionCode))
                 {
-                    currFunc = Function_Memory.Function_GetByUrl_User_Type(requestUrl, user.User_Type);
+                    currFunc = Function_Memory.Function_GetByUrl_User_Type(requestUrl, 0);
                     functionCode = currFunc?.Function_Code ?? string.Empty;
                 }
                 else
                 {
-                    currFunc = Function_Memory.Function_GetByFunctionCode_User_Type(FunctionCode, user.User_Type);
+                    currFunc = Function_Memory.Function_GetByFunctionCode_User_Type(FunctionCode, 0);
                 }
 
                 //nếu không check quyền hoặc user không được phân quyền

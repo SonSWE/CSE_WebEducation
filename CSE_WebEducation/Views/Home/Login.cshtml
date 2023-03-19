@@ -91,13 +91,14 @@
           },
           async: true, cache: false, traditional: true,
           success: function (data) {
-            if (data.success >= 0) {
-              window.location.href = "/";
-            }
-            else {
-              alert(data.responseMessage);
-              $('#txtUserName').focus();
-            }
+              if (data.success > 0) {
+                            showSuccess(data.responseMessage);
+                            window.location.href = "/";
+                        }
+                        else {
+                            showError(data.responseMessage);
+                        }
+
           },
           error: function (data) {
             console.log(data.error);

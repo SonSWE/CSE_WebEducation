@@ -107,6 +107,27 @@ namespace CSE_WebEducation
             }
         }
 
+        public static decimal ActiveOrUnactive(CSE_GroupsInfo info, string p_token)
+        {
+            try
+            {
+                var client = new RestClient(ConstData.httpApiClientHost);
+                var request = new RestRequest("api/quan-tri/group/activeOrUnactive", Method.POST);
+                request.RequestFormat = DataFormat.Json;
+                request.JsonSerializer = new JsonSerializer();
+
+                request.AddHeader("Authorization", $"Bearer {p_token}");
+                request.AddJsonBody(info);
+
+                IRestResponse response = client.Execute(request);
+                return Convert.ToDecimal(JsonConvert.DeserializeObject<ResponseInfo>(response?.Content ?? "").success);
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+                return -1;
+            }
+        }
         public static decimal Delete(CSE_GroupsInfo info, string p_token)
         {
             try

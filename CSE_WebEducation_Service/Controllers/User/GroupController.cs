@@ -71,6 +71,26 @@ namespace CSE_WebEducation_Service.Controllers.User
             }
         }
 
+
+        [HttpPost]
+        [Authorize]
+        [Route("quan-tri/group/activeOrUnactive")]
+        public IActionResult ActiveOrUnactive([FromBody] CSE_GroupsInfo info)
+        {
+            try
+            {
+                CSE_GroupDA DA = new CSE_GroupDA();
+                decimal result = DA.ActiveOrUnactive(info);
+
+                return Json(new { success = result.ToString() });
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+                return Json(new { success = "-1" });
+            }
+        }
+
         [HttpPost]
         [Authorize]
         [Route("quan-tri/group/delete")]

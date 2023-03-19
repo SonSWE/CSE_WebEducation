@@ -14,7 +14,6 @@
     {
         groupInfo = ViewBag.Group_Info;
     }
-    decimal _groupType = groupInfo.Group_Type;
 }
 
 <style>
@@ -91,8 +90,7 @@
                 <th class="mw-100">Tài khoản</th>
                 <th class="mw-100">Tên người dùng</th>
                 <th class="mw-100">Trạng thái</th>
-                <th class="mw-100">Loại người dùng</th>
-                <th class="mw-100">Tổ chức trực thuộc</th>
+                @*<th class="mw-100">Loại người dùng</th>*@
             </tr>
         </thead>
         <tbody id="tbodyUserNotIn">
@@ -119,7 +117,7 @@
                         {
                             <td class="text-danger">@item.Status_Text</td>
                         }
-                        <td>@item.User_Type_Text</td>
+                        @*<td>@item.User_Type_Text</td>*@
                     </tr>
                 }
             }

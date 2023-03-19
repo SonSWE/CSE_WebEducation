@@ -26,7 +26,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    @*<div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Loại nhóm </div>
                             <div class="field-report">
@@ -45,7 +45,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Trạng thái <span class="clr-red">(*)</span></div>
@@ -98,12 +98,12 @@
     var Group_Type = "";
     var status = "";
 
-    $('#slGroupType').multipleSelect({
-        width: '100%',
-        single: true,
-        filter: true,
-        placeholder: "-- Loại nhóm --",
-    });
+    //$('#slGroupType').multipleSelect({
+    //    width: '100%',
+    //    single: true,
+    //    filter: true,
+    //    placeholder: "-- Loại nhóm --",
+    //});
 
     $('#slGroupStatus').multipleSelect({
         width: '100%',
@@ -173,7 +173,7 @@
         try {
             Group_Name = $("#Group_Name").val().trim();
             Note = $("#Note").val().trim();
-            Group_Type = $("#slGroupType").val();
+            //Group_Type = $("#slGroupType").val();
             status = $("#slGroupStatus").val();
 
             if (Group_Name == null || Group_Name == "") {

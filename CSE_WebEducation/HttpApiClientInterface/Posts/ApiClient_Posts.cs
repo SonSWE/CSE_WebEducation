@@ -89,6 +89,26 @@ namespace CSE_WebEducation
             }
         }
 
+        public static decimal UpdateStatus(CSE_PostsInfo info, string p_token)
+        {
+            try
+            {
+                var client = new RestClient(ConstData.httpApiClientHost);
+                var request = new RestRequest("api/trang-khoa/bai-viet/updateStatus", Method.POST);
+                request.RequestFormat = DataFormat.Json;
+                request.AddHeader("Authorization", $"Bearer {p_token}");
+                request.AddJsonBody(info);
+                IRestResponse response = client.Execute(request);
+                return Convert.ToDecimal(JsonConvert.DeserializeObject<ResponseInfo>(response?.Content ?? "").success);
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+                return -1;
+            }
+        }
+
+
         public static decimal Delete(CSE_PostsInfo info, string p_token)
         {
             try

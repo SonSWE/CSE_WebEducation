@@ -106,7 +106,8 @@ namespace DataAccess
                 lstParam[1] = new SqlParameter("@p_group_type", SqlDbType.Decimal)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = _info.Group_Type,
+                    Value = null,
+                    IsNullable = true
                 };
                 lstParam[2] = new SqlParameter("@p_status", SqlDbType.NVarChar)
                 {
@@ -167,7 +168,8 @@ namespace DataAccess
                 lstParam[2] = new SqlParameter("@p_group_type", SqlDbType.Decimal)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = _info.Group_Type,
+                    Value = null,
+                    IsNullable = true
                 };
                 lstParam[3] = new SqlParameter("@p_status", SqlDbType.NVarChar)
                 {
@@ -209,6 +211,49 @@ namespace DataAccess
             }
         }
 
+        public decimal ActiveOrUnactive(CSE_GroupsInfo _info)
+        {
+            try
+            {
+                decimal _result = -1;
+                var lstParam = new SqlParameter[5];
+                lstParam[0] = new SqlParameter("@p_group_id", SqlDbType.Decimal)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Group_Id,
+                };
+                lstParam[1] = new SqlParameter("@p_status", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Status,
+                };
+                lstParam[2] = new SqlParameter("@p_modified_by", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Modified_By,
+                };
+                lstParam[3] = new SqlParameter("@p_modified_date", SqlDbType.DateTime)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.Modified_Date,
+                };
+                lstParam[4] = new SqlParameter("@p_result", SqlDbType.Decimal)
+                {
+                    Direction = ParameterDirection.Output,
+                };
+
+                SQLHelper.ExecuteDataset(CommonData.connectionString, CommandType.StoredProcedure, "sp_group_activeOrUnactive", lstParam);
+
+                _result = Convert.ToDecimal(lstParam[4].Value.ToString());
+
+                return _result;
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+                return -1;
+            }
+        }
         public decimal Delete(CSE_GroupsInfo _info)
         {
             try

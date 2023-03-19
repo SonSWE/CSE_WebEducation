@@ -41,7 +41,7 @@
                     <th scope="col" class="w-80px text-center">STT</th>
                     <th scope="col">Tên đăng nhập</th>
                     <th scope="col">Tên đầy đủ</th>
-                    <th scope="col">Loại người dùng</th>
+                    @*<th scope="col">Loại người dùng</th>*@
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Ngày tạo</th>
                     <th scope="col">Người tạo</th>
@@ -58,7 +58,7 @@
                             <td class="text-center">@item.STT</td>
                             <td>@item.User_Name</td>
                             <td>@item.Full_Name</td>
-                            <td>@item.User_Type_Text</td>
+                            @*<td>@item.User_Type_Text</td>*@
                             @if (@item.Status.ToUpper() == CSE_User_Status.Active)
                             {
                                 <td class="text-success">@item.Status_Text</td>

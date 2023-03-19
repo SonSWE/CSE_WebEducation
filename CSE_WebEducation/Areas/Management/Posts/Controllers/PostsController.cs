@@ -43,7 +43,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(curentPage, p_record_on_page, (int)_search.totalrows);
                 ViewBag.Record_On_Page = p_record_on_page;
-                ViewBag.UserType = user.User_Type;
+                //ViewBag.UserType = user.User_Type;
 
                 //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Tìm kiếm", $"Người dùng \"{user.User_Name}\" tìm kiếm thông tin bài viết", "Quản lý nhóm người sử dụng");
             }
@@ -80,7 +80,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
             try
             {
                 var user = this.HttpContext.GetCurrentUser();
-                ViewBag.User_Type = user.User_Type;
+                //ViewBag.User_Type = user.User_Type;
 
                 ViewBag.LstCategory = ApiClient_Posts_Category.GetAll(user.Token);
             }
@@ -233,6 +233,33 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                 Info.Modified_Date = DateTime.Now;
 
                 _id = ApiClient_Posts.Delete(Info, user.Token);
+
+                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xóa", $"Người dùng \"{user.User_Name}\" xóa bài viết. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+            }
+            catch (Exception ex)
+            {
+                Logger.nlog.Error(ex.ToString());
+            }
+            return Json(new { success = _id });
+        }
+
+        [Route("cap-nhat-trang-thai"), HttpPost]
+        //[CustomActionFilter]
+        public IActionResult ShowOrHide(decimal id, string status)
+        {
+            decimal _id = -1;
+            try
+            {
+                var user = this.HttpContext.GetCurrentUser();
+                CSE_PostsInfo info = ApiClient_Posts.GetById(id, user.Token);
+
+                CSE_PostsInfo Info = new CSE_PostsInfo();
+                Info.Id = id;
+                Info.Status = status;
+                Info.Modified_By = user.User_Name;
+                Info.Modified_Date = DateTime.Now;
+
+                _id = ApiClient_Posts.UpdateStatus(Info, user.Token);
 
                 //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xóa", $"Người dùng \"{user.User_Name}\" xóa bài viết. Tên nhóm NSD " + info.Group_Name, "Người dùng");
             }
