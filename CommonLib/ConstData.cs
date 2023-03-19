@@ -54,7 +54,7 @@ namespace CommonLib
 
     public class CSE_User_Status
     {
-        public const string UnActive = "C";
+        public const string UnActive = "P";
         public const string Active = "A";
     }
 
@@ -68,5 +68,13 @@ namespace CommonLib
     {
         public const decimal posts = 1;
         public const decimal events = 2;
+    }
+
+    public class CSE_Post_Status
+    {
+        public const string Active = "A";
+        public const string Pending = "P";
+        public const string Reject = "R";
+        public const string Hide = "H";
     }
 }

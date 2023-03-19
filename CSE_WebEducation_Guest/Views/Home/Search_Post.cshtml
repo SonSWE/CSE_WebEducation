@@ -1,0 +1,56 @@
+﻿@using CSE_WebEducation_Guest
+@using CommonLib;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Danh sách bài viết";
+}
+
+<div id="tableData">
+   
+</div>
+<script>
+
+
+$(document).ready(function () {
+    $('#txtSearch').val('@ViewBag.keysearch');
+
+    Search(@CommonData.pageDefaut);
+});
+
+$(document).on('keypress', function (e) {
+    if (e.which == 13) {
+      Search('@CommonData.pageDefaut');
+    }
+  });
+
+  function ChangePage(curentPage) {
+    Search(curentPage);
+  }
+
+  function Search(curentPage) {
+    try {
+      var keySearch = $('#txtSearch').val();
+      $.ajax({
+        type: 'POST',
+        url: '/tim-kiem-bai-viet',
+        data: {
+          keysearch: keySearch,
+          curentPage: curentPage
+        },
+        async: true, cache: false, traditional: true,
+        beforeSend: function () {
+          //SpinLoading(true);
+        },
+        success: function (data) {
+          //SpinLoading(false);
+          if (data != null) {
+            $("#tableData").html(data);
+          }
+        }
+      });
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+</script>

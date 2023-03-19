@@ -1,190 +1,347 @@
 ﻿@using CSE_WebEducation
 @using ObjectInfo;
 @using CommonLib;
-@{
-    CSE_GroupsInfo _Group_Info = new CSE_GroupsInfo();
-    if (ViewBag.Group_Info != null)
-    {
-        _Group_Info = ViewBag.Group_Info;
-    }
-}
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="header-report">
-            <h3>Sửa thông tin nhóm người dùng</h3>
-            <button class="btn-close" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-close.svg" alt="img"></button>
-        </div>
 
-        <form id="formEditGroupUser" enctype="multipart/form-data">
-            <div class="body-report">
-                <div class="row">
+@{
+    ViewData["Title"] = "Sửa thông tin bài viết";
+    Layout = "~/Views/Shared/_ManaLayout.cshtml";
+
+    CSE_PostsInfo info = new CSE_PostsInfo();
+    if (ViewBag.Info != null)
+    {
+        info = ViewBag.Info;
+    }
+
+    string strStartDate = info.Start_Date == DateTime.MinValue?"": info.Start_Date.ToString("dd/MM/yyyy hh:mm");
+}
+<style>
+    .holder {
+        height: 300px;
+        width: 300px;
+        border: 1px solid gray;
+    }
+
+    .img-preview {
+        max-width: 300px;
+        max-height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    .heading {
+        font-family: Montserrat;
+        font-size: 45px;
+        color: green;
+    }
+</style>
+
+<form id="formUpdatePosts" enctype="multipart/form-data">
+    <div class="block-add">
+        <div class="box-top">
+            <h3 class="title-add">Thêm mới tin tức</h3>
+        </div>
+        <div class="body-report pt-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Danh mục <span class="clr-red">(*)</span></div>
+                        <div class="field-report" id="div_function">
+                            @Html.Partial("~/Areas/Management/Posts/Views/_Partial_Category_Tree.cshtml", info.Category_Id)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Tiêu đề <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="txtTitle" name="" autocomplete="off" autofocus maxlength="1000" tabindex="2" value="@info.Title">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Ảnh bìa <span class="clr-red">(*)</span></div>
+                        <div class="holder">
+                            <img class="img-preview" id="imgPreview" src="@info.Thumbnail" alt="pic" />
+                        </div>
+                        <input type="file" name="photograph" id="thumbnail" class="cs-input-file" accept=".png, .jpg, .jpeg"  tabindex="3"/>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Mô tả <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="4" value="@info.Description">
+                        </div>
+                    </div>
+                </div>
+               @* <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Loại bài viết <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <select id="slPost_Type"  tabindex="5">
+                                @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("POSTS", "POST_TYPE"))
+                                {
+                                    <option value="@item.CDVal">@item.Content</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>*@
+                <div>
                     <div class="col-lg-12">
                         <div class="flex-report">
-                            <div class="title-report">Tên nhóm <span class="clr-red">(*)</span></div>
+                            <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="text" id="Group_Name" maxlength="100" name="Group_Name" autocomplete="off" value="@_Group_Info.Group_Name" autofocus>
+                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled  tabindex="6" value="@strStartDate">
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="flex-report">
-                            <div class="title-report">Loại nhóm </div>
+                            <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <select id="slGroupType" multiple>
-                                    @foreach (var it in AllCodeMemory.Allcode_GetByCdnameCdtype("USER", "TYPE"))
-                                    {
-                                        if (@_Group_Info.Group_Type == Convert.ToDecimal(it.CDVal))
-                                        {
-                                            <option value="@it.CDVal" selected>@it.Content</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@it.CDVal">@it.Content</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="flex-report">
-                            <div class="title-report">Trạng thái <span class="clr-red">(*)</span></div>
-                            <div class="field-report">
-                                <select id="slGroupStatus" multiple>
-                                    @foreach (var it in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "STATUS"))
-                                    {
-                                        if (@_Group_Info.Status.ToUpper() == it.CDVal.ToUpper())
-                                        {
-                                            <option value="@it.CDVal" selected>@it.Content</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@it.CDVal">@it.Content</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="flex-report">
-                            <div class="title-report">Mô tả </div>
-                            <div class="field-report">
-                                <input type="text" id="Note" name="Note" autocomplete="off" value="@_Group_Info.Note" maxlength="500">
+                                <input type="text" id="txtLocation" name="" autocomplete="off" maxlength="1000" disabled  tabindex="7" value="@info.Location">
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Nội dung <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <textarea type="file" id="Content" name="Content" maxlength="4000">@info.Content</textarea  tabindex="8">
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="foot-report text-right">
-                <input type="hidden" id="tempGroupId" name="Status" value="@_Group_Info.Group_Id" />
-                <button class="btn-save" type="submit" id="btnSend"><img src="~/bidding_lib/img/icon-save.svg" alt="img">Lưu</button>
-                <button class="btn-cancel" type="button" id="btnExit" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img">Thoát</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-
+    <div class="footer-form">
+        <div class="container-footer">
+            <input hidden id="tmpThumbnail" value="@info.Thumbnail"/>
+            <button class="btn-save" type="button" id="btnSend" onclick="confirmSubmit();"><img src="~/bidding_lib/img/icon-save.svg" alt="img"  tabindex="9">Lưu</button>
+            <button class="btn-cancel" type="button" id="btnExit" onclick="closeFormAdd();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img"  tabindex="10">Hủy</button>
+        </div>
+    </div>
+</form>
 
 <script>
-    $(function() {
-        $('#Group_Name').focus();
-    })
+    var thumbnail;
 
-    var Group_Id = $('#tempGroupId').val();
-    var Group_Name = "";
-    var Note = "";
-    var Group_Type = "";
-    var status = "";
+    function FormatDatetimeAmPm(strDate){
+        var date = new Date(strDate);
+            var _return = "";
+            var hours = isNaN(date.getHours()) ? 0 : date.getHours();
+            var minutes = isNaN(date.getMinutes()) ? 0 : date.getMinutes();
 
-    $('#slGroupType').multipleSelect({
-        width: '100%',
-        single: true,
-        filter: true,
-        placeholder: "-- Loại nhóm --",
+            // Check whether AM or PM
+            var newformat = hours >= 12 ? 'PM' : 'AM';
+              
+            // Find current hour in AM-PM Format
+            hours = hours % 12;
+              
+            // To display "0" as "12"
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+
+            console.log(strDate);
+            var yyyy = date.getFullYear();
+            var mm = date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+            var dd = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            _return = dd + "/" + mm + "/" + yyyy + " " + hours + ':' + minutes + ' ' + newformat;
+
+            console.log(hours + ':' + minutes + ' ' + newformat);
+            console.log(_return);
+        
+    }
+
+    $(document).ready(function(){
+        //$("#slPost_Type").val(1);
+
+        thumbnail = $('#tmpThumbnail').val();
+
+        if($("#slCategory").val() == "SUKIEN"){
+            $("#dtStartDate").prop('disabled', false);
+            $("#txtLocation").prop('disabled', false);
+        }else{
+            $("#dtStartDate").prop('disabled', true);
+            $("#txtLocation").prop('disabled', true);
+        }
+
+        FormatDatetimeAmPm($('#dtStartDate').val().replace("__/__/____", ""));
+});
+        
+    var file;
+    CKEDITOR.replace( 'Content', {
+        extraPlugins: 'timestamp',
+        removeButtons: 'Underline',
+        removePlugins: 'image'
     });
 
-    $('#slGroupStatus').multipleSelect({
-        width: '100%',
-        single: true,
-        filter: true,
-        placeholder: "-- Trạng thái --",
+    $('#dtStartDate').datetimepicker({
+        format: 'd/m/Y H:i',
+            formatTime: 'H:i',
+            formatDate: 'd/m/Y',
+            timepicker: true,
+            mask: '39/19/9999',
+            validateOnBlur: false,
+            scrollInput: false
     });
 
-    $('#formEditGroupUser').on('submit', function (e) {
+    $('#thumbnail').change(function(){
+        file = this.files[0];
+        
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            $('#imgPreview').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+
+    $('#slCategory').change(function(){
+        if($("#slCategory").val() == "SUKIEN"){
+            $("#dtStartDate").prop('disabled', false);
+            $("#txtLocation").prop('disabled', false);
+        }else{
+            $("#dtStartDate").prop('disabled', true);
+            $("#txtLocation").prop('disabled', true);
+        }
+    });
+
+    $('#formUpdatePosts').on('submit', function (e) {
         try {
+            var that = this;
+            /* e = window.event || e;*/
+            e.preventDefault();
 
-                var that = this;
-                /* e = window.event || e;*/
-                e.preventDefault();
+            //trimInputValue(this);
+            if (!validateAdd()) return false;
 
-                if (!validateAdd()) return false;
+            var formData = new FormData();
+            collectDataToAdd(formData);
 
-                var formData = new FormData();
-                collectDataToAdd(formData);
-
-                $.ajax({
-                    type: "POST",
-                    enctype: "multipart/form-data",
-                    url: '/quan-tri/nhom-nguoi-dung/cap-nhat',
-                    data: formData,
-                    beforeSend: function () {
-                        SpinLoading(true);
-                    },
-                    contentType: false, processData: false, async: false,
-                    success: function (data) {
-                        if (data && preHandleDataResult(data)) {
-                            if (data.success > 0) {
-                                showSuccess(data.responseMessage);
-                                setTimeout(function () {
-                                    SearchUser('@CommonData.pageDefaut');
-                                    ClosePopupDialog('dPopup', false);
-                                }, 1000);
-                            }
-                            else {
-                                showError(data.responseMessage);
-                            }
+            $.ajax({
+                type: "POST",
+                enctype: "multipart/form-data",
+                url: '/trang-khoa/bai-viet/cap-nhat',
+                data: formData,
+                beforeSend: function () {
+                    SpinLoading(true);
+                },
+                contentType: false, processData: false, async: false,
+                success: function (data) {
+                    if (data && preHandleDataResult(data)) {
+                        if (data.success > 0) {
+                            showSuccess(data.responseMessage);
+                            setTimeout(function () {
+                                window.location.href = '/trang-khoa/bai-viet/danh-sach';
+                            }, 1000);
                         }
-                    },
-                    error: function (data) {
-                        console.log(data.error);
-                    },
-                    complete: function () {
-                        SpinLoading(false);
+                        else {
+                            showError(data.responseMessage);
+                        }
                     }
-                });
+                },
+                error: function (data) {
+                    console.log(data.error);
+                },
+                complete: function () {
+                    SpinLoading(false);
+                }
+            });
 
         } catch (e) {
             console.log(e);
         }
-
     });
 
     function collectDataToAdd(formData) {
-        formData.append('info.Group_Id', Group_Id);
-        formData.append('info.Group_Name', Group_Name);
-        formData.append('info.Note', Note);
-        formData.append('info.Group_Type', Group_Type);
-        formData.append('info.Status', status);
+        //formData.append('info.Post_Type', $("#slPost_Type").val());
+        formData.append('info.Id', @info.Id);
+        formData.append('info.Thumbnail', thumbnail);
+        formData.append('info.Location', $("#txtLocation").val());
+        formData.append('info.Category_Id', $("#slCategory").val());
+        formData.append('info.Title', $("#txtTitle").val().trim());
+        formData.append('info.Description', $("#txtDescription").val().trim());
+        formData.append('info.Start_Date', $('#dtStartDate').val().replace("__/__/____", ""));
+        formData.append('info.Content', CKEDITOR.instances["Content"].getData());
+        formData.append('func.Prid', $("#slCategory").val());
+
+        if (file) {
+            formData.append('file_Content', file);
+        }
     }
 
     function validateAdd() {
         try {
-            Group_Name = $("#Group_Name").val().trim();
-            Note = $("#Note").val().trim();
-            Group_Type = $("#slGroupType").val();
-            status = $("#slGroupStatus").val();
-
-            if (Group_Name == null || Group_Name == "") {
-                showError('Tên nhóm không được để trống')
-                $("#Group_Name").focus();
+            //var _postsType = $("#slPost_Type").val();
+            var _category = $("#slCategory").val();
+            var _title = $("#txtTitle").val().trim();
+            var _descripttion = $("#txtDescription").val().trim();
+            var _start_date = $('#dtStartDate').val().replace("__/__/____", "");
+            var _location = $("#txtLocation").val().trim();
+            var _content = CKEDITOR.instances["Content"].getData();
+            console.log(_start_date);
+            if (_category == null || _category == "") {
+                showError('Danh mục không được để trống.')
+                $("#slCategory").focus();
                 return false;
             }
 
-            if (status == null || status == "") {
-                showError('Trạng thái không được để trống')
-                $("#slGroupStatus").focus();
+            if (!_title) {
+                showError('Tiêu đề không được để trống.')
+                $("#txtTitle").focus();
+                return false;
+            }
+            if(thumbnail == null || thumbnail == "" ){
+                if (!file) {
+                    showError('Phải chọn ảnh bìa cho bài viết.')
+                    return false;
+                }
+            }
+
+            if (!_descripttion) {
+                showError('Mô tả không được để trống.')
+                $("#txtDescription").focus();
+                return false;
+            }
+
+            if (_category == "SUKIEN") {
+                if (_start_date == null || _start_date == "") {
+                    showError('Ngày, giờ bắt đầu không được để trống.')
+                    $("#dtStartDate").focus();
+                    return false;
+                }
+                // check đúng định dạng format
+                var _Time_start_date = _start_date.substring(11, 18).trim();
+                if (Check_fomat_Hours("Ngày, giờ bắt đầu", _Time_start_date) == false) {
+                    $('#dtStartDate').focus();
+                    return false;
+                }
+
+                var _Date_start_date = _start_date.substring(0, 11).trim();
+                if (_Date_start_date && !isDate_ddMMyyyy(_Date_start_date)) {
+                    showError('Ngày, giờ bắt đầu không hợp lệ');
+                    $('#dtStartDate').focus();
+                    return false;
+                }
+                if (!_location) {
+                    showError('Địa điểm không được để trống.')
+                    $("#txtLocation").focus();
+                    return false;
+                }
+            }
+
+            if (!_content) {
+                showError("Nội dung không được để trống.");
+                $('#content').focus();
                 return false;
             }
 
@@ -193,4 +350,34 @@
             console.log(ex);
         }
     }
+    function BackList() {
+        history.back();
+    }
+
+    function confirmSubmit()
+    {
+        try {
+            nvsConfirm("Bạn có chắc chắn muốn lưu thông tin không?", function () {
+                $('#formUpdatePosts').submit();
+            })
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+
+    function closeFormAdd()
+    {
+        try {
+            nvsConfirm("Bạn có chắc chắn muốn thoát không?", function () {
+                BackList();
+            })
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+
+
 </script>
+

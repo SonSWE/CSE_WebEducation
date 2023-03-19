@@ -1,97 +1,113 @@
 ﻿@{
     ViewBag.Title = "Đăng nhập";
 }
-<div class="row">
-        <div class="form-container">
-            <div id='form' class="col-8 col-md-4  mx-auto">
-                <h3 id="form__head" class="">Đăng nhập</h3>
-                <form id="frmLogin" action="#" class="needs-validation" novalidate>
-                    <div class="form-group p-1">
-                        <input type="text" class="form-control" name="txtUserName" id="txtUserName" placeholder="Tài khoản"/>
-                        <img src="./img/email.png" alt="">
-                    </div>
-                    <div class="form-group p-1">
-                        <input type="password" class="form-control" name="txtPassword" id="txtPassword" placeholder="Mật khẩu"/>
-                        <img src="./img/pass.png" alt="">
-                    </div>
-                    @*<div class="form-forget">
-                        <a href="">Quên mật khẩu</a>
-                    </div>*@
-                    <button type="submit" class=" mt-4 d-block submit-btn">Đăng nhập</button>
-                </form>
+<div class="container">
+    <header class="title">Đăng nhập</header>
+    <h7 class="title-descripton">Hệ thống quản trị trang web khoa CNTT</h7>
+    <form id="frmLogin">
+        <div class="field email-field">
+            <div class="input-field">
+                <input type="text" placeholder="Tài khoản" class="email" id="txtUserName" />
             </div>
         </div>
-        
-    </div>
+        <div class="field create-password">
+            <div class="input-field">
+                <input type="password" placeholder="Mật khẩu" class="password" id="txtPassword" />
+                <i class="bx bx-hide show-hide"></i>
+            </div>
+        </div>
+        @*<div class="forget-field">
+            <a href="">Quên mật khẩu</a>
+            </div>*@
+        <div class="button">
+            <input type="submit" value="Đăng nhập" />
+        </div>
+    </form>
+</div>
 
 <script>
     $(document).ready(function () {
-        $('#txtUserName').focus();
+      $('#txtUserName').focus();
+
+      // Hide and show password
+      const eyeIcons = document.querySelectorAll(".show-hide");
+
+      eyeIcons.forEach((eyeIcon) => {
+        eyeIcon.addEventListener("click", () => {
+          const pInput = eyeIcon.parentElement.querySelector("input"); //getting parent element of eye icon and selecting the password input
+          if (pInput.type === "password") {
+            eyeIcon.classList.replace("bx-hide", "bx-show");
+            return (pInput.type = "text");
+          }
+          eyeIcon.classList.replace("bx-show", "bx-hide");
+          pInput.type = "password";
+        });
+      });
     });
 
     $(document).on('keypress', function (e) {
-        if (e.which == 13) {
-            Login();
-        }
+      if (e.which == 13) {
+        Login();
+      }
     });
     // hàm login viết tại đây
     // Submit form
     $('#frmLogin').on("submit", function (e) {
 
-        try {
-            e = window.event || e;
-            e.preventDefault();
+      try {
+        e = window.event || e;
+        e.preventDefault();
 
-            Login();
-        }
-        catch (e) {
-            console.log(e);
-        }
+        Login();
+      }
+      catch (e) {
+        console.log(e);
+      }
     });
 
     function Login() {
-        try {
+      try {
 
-            var txt_username = $('#txtUserName').val().trim();
-            if (txt_username == "") {
-                showError("Tài khoản không được để trống");
-                return false;
-            }
-
-            var txt_password = $('#txtPassword').val().trim();
-            if (txt_password == "") {
-                showError("Mật khẩu không được để trống");
-                return false;
-            }
-
-            var _url = "/login/do-login";
-
-            $.ajax({
-                url: _url,
-                type: "POST",
-                data: {
-                    userName: txt_username,
-                    password: txt_password
-                },
-                async: true, cache: false, traditional: true,
-                success: function (data) {
-                    if (data.success >= 0) {
-                        window.location.href = "/";
-                    }
-                    else {
-                        alert(data.responseMessage);
-                        $('#txtUserName').focus();
-                    }
-                },
-                error: function (data) {
-                    console.log(data.error);
-                },
-                complete: function () {
-                }
-            });
-        } catch (e) {
-            console.log(e.message);
+        var txt_username = $('#txtUserName').val().trim();
+        if (txt_username == "") {
+          showError("Tài khoản không được để trống");
+          return false;
         }
+
+        var txt_password = $('#txtPassword').val().trim();
+        if (txt_password == "") {
+          showError("Mật khẩu không được để trống");
+          return false;
+        }
+
+        var _url = "/login/do-login";
+
+        $.ajax({
+          url: _url,
+          type: "POST",
+          data: {
+            userName: txt_username,
+            password: txt_password
+          },
+          async: true, cache: false, traditional: true,
+          success: function (data) {
+            if (data.success >= 0) {
+              window.location.href = "/";
+            }
+            else {
+              alert(data.responseMessage);
+              $('#txtUserName').focus();
+            }
+          },
+          error: function (data) {
+            console.log(data.error);
+          },
+          complete: function () {
+          }
+        });
+      } catch (e) {
+        console.log(e.message);
+      }
     }
 
 </script>

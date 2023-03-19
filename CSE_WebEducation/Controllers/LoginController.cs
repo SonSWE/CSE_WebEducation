@@ -47,6 +47,34 @@ namespace CSE_WebEducation.Controllers
             return Json(new { success = _responseCode, responseMessage = _responseMessage });
         }
 
+        [Route("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                CSE_UsersInfo loggedUser = this.HttpContext.GetCurrentUser();
+                //if (loggedUser != null)
+                //{
+                //    Api_TraceLog.Client_Log_Insert(this.HttpContext, "Đăng xuất", $"Người dùng \"{loggedUser.User_Name}\" đăng xuất hệ thống", "Người dùng");
+                //}
+                await HttpContext.SignOutAsync(ConstData.authType);
+
+                // remove cookies
+                Response.Cookies.Delete("UserLogin");
+                HttpContext.Session.Clear();
+
+                if (loggedUser != null)
+                {
+                    MemoryData.Process_Logout(loggedUser.User_Id, this.HttpContext);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+            }
+            return Redirect("/");
+        }
+
         async Task Update_ManageSuccessLoginAsync(CSE_UsersInfo _user)
         {
             try

@@ -15,8 +15,8 @@
             </div>
             <div class="top-bar-right">
                 <div class="header-find-box">
-                    <input type="text" placeholder="Tìm kiếm">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Tìm kiếm" id="txtSearch">
+                    <i class="fa-solid fa-magnifying-glass" onclick="LoadSearch();"></i>
                 </div>
 
                 <a href="/dang-nhap" class="top-bar-right-button_main"><i class="fa-solid fa-user"></i> Đăng nhập</a>
@@ -29,3 +29,15 @@
     </div>
     <partial name="~/Views/Shared/_Menu_Top.cshtml" />
 </div>
+
+<script>
+    function LoadSearch() {
+        try {
+            var keySearch = $('#txtSearch').val();
+            window.location.href = '/tim-kiem-bai-viet/'+keySearch;
+        } catch (ex) {
+            console.log(ex);
+        }
+    }  
+
+</script>

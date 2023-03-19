@@ -46,7 +46,7 @@
                     <div class="flex-report">
                         <div class="title-report">Tiêu đề <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input type="text" id="txtTitle" name="" autocomplete="off" autofocus maxlength="1000">
+                            <input type="text" id="txtTitle" name="" autocomplete="off" autofocus maxlength="1000" tabindex="2">
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <div class="holder">
                             <img class="img-preview" id="imgPreview" src="~/img/upload.jpg" alt="pic" />
                         </div>
-                        <input type="file" name="photograph" id="thumbnail" class="cs-input-file" />
+                        <input type="file" name="photograph" id="thumbnail" class="cs-input-file" accept=".png, .jpg, .jpeg"  tabindex="3"/>
 
                     </div>
                 </div>
@@ -66,15 +66,15 @@
                     <div class="flex-report">
                         <div class="title-report">Mô tả <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000">
+                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="4">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+               @* <div class="col-lg-12">
                     <div class="flex-report">
                         <div class="title-report">Loại bài viết <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <select id="slPost_Type">
+                            <select id="slPost_Type"  tabindex="5">
                                 @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("POSTS", "POST_TYPE"))
                                 {
                                     <option value="@item.CDVal">@item.Content</option>
@@ -82,13 +82,13 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <div>
                     <div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled>
+                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled  tabindex="6">
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <div class="flex-report">
                             <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000" disabled>
+                                <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000" disabled  tabindex="7">
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                     <div class="flex-report">
                         <div class="title-report">Nội dung <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <textarea type="file" id="Content" name="Content" maxlength="4000"></textarea>
+                            <textarea type="file" id="Content" name="Content" maxlength="4000"></textarea  tabindex="8">
                         </div>
                     </div>
                 </div>
@@ -115,15 +115,15 @@
     </div>
     <div class="footer-form">
         <div class="container-footer">
-            <button class="btn-save" type="button" id="btnSend" onclick="confirmSubmit();"><img src="~/bidding_lib/img/icon-save.svg" alt="img">Lưu</button>
-            <button class="btn-cancel" type="button" id="btnExit" onclick="closeFormAdd();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img">Hủy</button>
+            <button class="btn-save" type="button" id="btnSend" onclick="confirmSubmit();"><img src="~/bidding_lib/img/icon-save.svg" alt="img"  tabindex="9">Lưu</button>
+            <button class="btn-cancel" type="button" id="btnExit" onclick="closeFormAdd();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img"  tabindex="10">Hủy</button>
         </div>
     </div>
 </form>
 
 <script>
     $(document).ready(function(){
-        $("#slPost_Type").val(1);
+        //$("#slPost_Type").val(1);
     });
     var file;
     CKEDITOR.replace( 'Content', {
@@ -133,12 +133,13 @@
     });
 
     $('#dtStartDate').datetimepicker({
-        format: 'd/m/Y',
-        formatDate: 'd/m/Y',
-        timepicker: false,
-        mask: '39/19/9999',
-        validateOnBlur: false,
-        scrollInput: false
+        format: 'd/m/Y H:i',
+            formatTime: 'H:i',
+            formatDate: 'd/m/Y',
+            timepicker: true,
+            mask: '39/19/9999',
+            validateOnBlur: false,
+            scrollInput: false
     });
 
     $('#thumbnail').change(function(){
@@ -153,8 +154,8 @@
         }
       });
 
-    $('#slPost_Type').change(function(){
-        if($("#slPost_Type").val() == 2){
+    $('#slCategory').change(function(){
+        if($("#slCategory").val() == "SUKIEN"){
             $("#dtStartDate").prop('disabled', false);
             $("#txtLocation").prop('disabled', false);
         }else{
@@ -215,7 +216,7 @@
     });
 
     function collectDataToAdd(formData) {
-        formData.append('info.Post_Type', $("#slPost_Type").val());
+        //formData.append('info.Post_Type', $("#slPost_Type").val());
         formData.append('info.Category_Id', $("#slCategory").val());
         formData.append('info.Title', $("#txtTitle").val().trim());
         formData.append('info.Description', $("#txtDescription").val().trim());
@@ -230,14 +231,14 @@
 
     function validateAdd() {
         try {
-            var _postsType = $("#slPost_Type").val();
+            //var _postsType = $("#slPost_Type").val();
             var _category = $("#slCategory").val();
             var _title = $("#txtTitle").val().trim();
             var _descripttion = $("#txtDescription").val().trim();
             var _start_date = $('#dtStartDate').val().replace("__/__/____", "");
             var _location = $("#txtLocation").val().trim();
             var _content = CKEDITOR.instances["Content"].getData();
-
+            console.log($('#dtStartDate').val())
             if (_category == null || _category == "") {
                 showError('Danh mục không được để trống.')
                 $("#slCategory").focus();
@@ -261,21 +262,11 @@
                 return false;
             }
 
-            if (_postsType == null || _postsType == "") {
-                showError('Loại bài viết không được để trống.')
-                $("#slPost_Type").focus();
-                return false;
-            }else if(_postsType == 2){
-                if (_start_date)
-                {
-                    var tmp_start_date = StringToDate_ddMMyyyy(_start_date);
-                    var currDate = new Date();
-
-                    if(tmp_start_date.setHours(0, 0, 0, 0) < currDate.setHours(0, 0, 0, 0)){
-                        showError('Ngày bắt đầu lớn hơn hoặc bằng ngày hiện tại.');
-                        $("#dtStartDate").focus();
-                        return false;
-                    }
+            if (_category == "SUKIEN") {
+                if (_start_date == null || _start_date == "") {
+                    showError('Ngày, giờ bắt đầu không được để trống.')
+                    $("#dtStartDate").focus();
+                    return false;
                 }
 
                 if (!_location) {

@@ -218,79 +218,51 @@
         }
     }
 
-    //function unactive_Group(group_id, status) {
-    //    try {
-    //        nvsConfirm("Bạn có chắc chắn muốn kích hoạt hết hiệu lực nhóm người dùng này không?", function () {
-    //            $.ajax({
-    //                type: 'PUT',
-    //                url: '/nhom-nguoi-dung/thay-doi-trang-thai',
-    //                data: {
-    //                    group_id: group_id,
-    //                    group_status: status
-    //                },
-    //                async: true, cache: false, traditional: true,
-    //                beforeSend: function () {
-    //                    SpinLoading(true);
-    //                },
-    //                success: function (data) {
-    //                    if (preHandleDataResult(data)) {
-    //                        if (data.success > 0) {
-    //                            showSuccess(data.responseMessage)
-    //                            Search('@CommonData.pageDefaut');
-    //                        } else {
-    //                            showError(data.responseMessage)
-    //                        }
-    //                    }
-    //                },
-    //                error: function (data) {
-    //                    console.log(data);
-    //                },
-    //                complete: function () {
-    //                    SpinLoading(false);
-    //                }
-    //            });
-    //        })
-    //    } catch (ex) {
-    //        console.log(ex);
-    //    }
-    //}
-
-    //function active_Group(group_id, status) {
-    //    try {
-    //        nvsConfirm("Bạn có chắc chắn muốn kích hoạt hiệu lực cho nhóm người sử dụng này không?", function () {
-    //            $.ajax({
-    //                type: 'PUT',
-    //                url: '/nhom-nguoi-dung/thay-doi-trang-thai',
-    //                data: {
-    //                    group_id: group_id,
-    //                    group_status: status
-    //                },
-    //                async: true, cache: false, traditional: true,
-    //                beforeSend: function () {
-    //                    SpinLoading(true);
-    //                },
-    //                success: function (data) {
-    //                    if (preHandleDataResult(data)) {
-    //                        if (data.success > 0) {
-    //                            showSuccess(data.responseMessage)
-    //                            Search('@CommonData.pageDefaut');
-    //                        } else {
-    //                            showError(data.responseMessage)
-    //                        }
-    //                    }
-    //                },
-    //                error: function (data) {
-    //                    console.log(data);
-    //                },
-    //                complete: function () {
-    //                    SpinLoading(false);
-    //                }
-    //            });
-    //        })
-    //    } catch (ex) {
-    //        console.log(ex);
-    //    }
-    //}
+    function AcitveOrUnactive(user_id, status) {
+        try {
+            console.log(status)
+            var strQuestion = "";
+            if(status == '@CSE_User_Status.Active'){
+                strQuestion = "Bạn có chắc chắn muốn kích hoạt người dùng này không?";
+            }
+            else{
+                strQuestion = "Bạn có chắc chắn muốn ngưng hoạt động người dùng này không?";
+            }
+            
+            nvsConfirm(strQuestion, function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/quan-tri/nguoi-dung/cap-nhat-trang-thai',
+                    data: {
+                        user_id: user_id,
+                        status: status
+                    },
+                    async: true, cache: false, traditional: true,
+                    beforeSend: function () {
+                        SpinLoading(true);
+                    },
+                    success: function (data) {
+                        if (preHandleDataResult(data)) {
+                            if (data.success > 0) {
+                                showSuccess(data.responseMessage)
+                                Search('@CommonData.pageDefaut');
+                            } else {
+                                showError(data.responseMessage)
+                            }
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    },
+                    complete: function () {
+                        SpinLoading(false);
+                    }
+                });
+            })
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
 
     function LoadSetFunction(userId) {
         try {

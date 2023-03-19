@@ -1,9 +1,10 @@
-﻿@using CSE_WebEducation
+﻿@model string;
+@using CSE_WebEducation
 @using ObjectInfo;
 @using CommonLib;
 
 @{
-
+    string _idSelected = Model;
     List<CSE_Posts_CategoriesInfo> _LstCategory = new List<CSE_Posts_CategoriesInfo>();
     if (ViewBag.LstCategory != null)
     {
@@ -11,7 +12,7 @@
     }
 }
 @functions {
-    void RenderCategoryAsTree(List<CSE_Posts_CategoriesInfo> lstMenu, string prid, int level)
+    void RenderCategoryAsTree(List<CSE_Posts_CategoriesInfo> lstMenu, string prid, int level, string idSelected = "")
     {
         List<CSE_Posts_CategoriesInfo> lstSubMenu = new List<CSE_Posts_CategoriesInfo>();
         lstSubMenu = lstMenu.Where(t => t.PrId.Equals(prid)).OrderBy(t => t.LstOdr).ToList();
@@ -24,17 +25,25 @@
             }
             else
             {
-                <option value="@_category.Id" data-flevel="@(_category.Lev +1)">@string.Empty.PadLeft(level * 10, '.')@_category.Name</option>
+                if (idSelected != "" && _category.Id == idSelected)
+                {
+                    <option value="@_category.Id" data-flevel="@(_category.Lev +1)" selected>@string.Empty.PadLeft(level * 10, '.')@_category.Name</option>
+                }
+                else
+                {
+                    <option value="@_category.Id" data-flevel="@(_category.Lev +1)">@string.Empty.PadLeft(level * 10, '.')@_category.Name</option>
+                }
+
             }
-            RenderCategoryAsTree(lstMenu, _category.Id, level + 1);
+            RenderCategoryAsTree(lstMenu, _category.Id, level + 1, idSelected);
         }
     }
 }
 
 
-<select name="slCategory" id="slCategory" class="items-select" multiple>
+<select name="slCategory" id="slCategory" class="items-select" multiple tabindex="1">
     @{
-        RenderCategoryAsTree(_LstCategory, "0", 0);
+        RenderCategoryAsTree(_LstCategory, "0", 0, _idSelected);
     }
 </select>
 

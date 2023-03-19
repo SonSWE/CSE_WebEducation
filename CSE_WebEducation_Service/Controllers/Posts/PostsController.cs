@@ -52,7 +52,7 @@ namespace CSE_WebEducation_Service.Controllers.Posts
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Authorize]
         [Route("api/trang-khoa/bai-viet/update")]
         public IActionResult Update([FromBody] CSE_PostsInfo info)

@@ -82,5 +82,4 @@ app.MapControllerRoute(
 ConstData.httpApiClientHost = builder.Configuration.GetValue<string>("ApiClient_WebEducation");
 
 
-
 app.Run();

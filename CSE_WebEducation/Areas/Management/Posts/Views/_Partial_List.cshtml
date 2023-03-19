@@ -17,7 +17,6 @@
 <h3 class="title">
     <span>Kết quả tìm kiếm</span>
     <div class="d-flex">
-        @*<button class="render" onclick="exportData()">Kết xuất dữ liệu <img src="~/bidding_lib/img/icon-render.svg" alt="img"></button>*@
         <div class="show-record">
             Hiển thị
             <select onchange="onChange_Record_on_page()" id="cbo_record_on_page">
@@ -31,15 +30,16 @@
     </div>
 </h3>
 
-<div class="over-flow-x ">
-    <div class="wrapper-editor scroll-tbl tbl-record">
-        <table id="test-tb">
+<div class="">
+    <div class="wrapper-editor scroll-tbl tbl-record over-flow-x" >
+        <table width="100%" id="test-tb">
             <thead>
                 <tr>
                     <th scope="col" class="w-80px text-center">STT</th>
                     <th scope="col">Ảnh bìa</th>
                     <th scope="col">Tiêu đề</th>
-                    <th scope="col">Mô tả</th>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Trạng thái</th>
                     <th scope="col">Ngày tạo</th>
                     <th scope="col">Người tạo</th>
                     <th scope="col" class="text-center">Chức năng</th>
@@ -51,35 +51,50 @@
                     foreach (CSE_PostsInfo item in _LstData)
                     {
                         <tr>
-
                             <td class="text-center">@item.STT</td>
-                            <td><img class="img-preview" id="imgPreview" src="@item.Thumbnail" alt="pic" width=200 height=200/></td>
+                            <td><img class="img-preview" id="imgPreview" src="@item.Thumbnail" alt="pic" width=200 height=200 /></td>
                             <td>@item.Title</td>
-                            <td class="text-right">@item.Description</td>
+                            <td>@item.Category_Name</td>
+                            @if(item.Status == CSE_Post_Status.Active)
+                            {
+                                <td style=" color: greenyellow; font-weight: 600;">@item.Status_Text</td>
+                            }
+                            else if(item.Status == CSE_Post_Status.Pending)
+                            {
+                                <td style=" color: yellow; font-weight: 600;">@item.Status_Text</td>
+                            }
+                            else if(item.Status == CSE_Post_Status.Reject)
+                            {
+                                <td style=" color: red; font-weight: 600;">@item.Status_Text</td>
+                            }
+                            else if(item.Status == CSE_Post_Status.Hide)
+                            {
+                                <td style=" color: cornflowerblue; font-weight: 600;">@item.Status_Text</td>
+                            }
+                            
                             <td class="text-center">@item.Created_Date</td>
                             <td>@item.Created_By</td>
                             <td>
-                                <a href="javascript:;" data-toggle="modal" data-target="#formViewUser" class="btn-function" onclick="LoadView('@item.Id');">
+                                <a href="javascript:;" data-toggle="modal" data-target="#formViewUser" class="btn-function" onclick="location.href='/trang-khoa/bai-viet/chi-tiet/@item.Id';">
                                     <span>
                                         <img class="imgbefore-hv" src="~/bidding_lib/img/icon-info.svg" alt="img">
                                     </span>
                                     <div class="name-function-fix">Xem</div>
                                 </a>
-                                <a href="javascript:;" class="btn-function" onclick="LoadEdit('@item.Id')">
+                                <a href="javascript:;" class="btn-function" onclick="location.href='/trang-khoa/bai-viet/cap-nhat/@item.Id';">
                                     <span>
                                         <img class="imgbefore-hv" src="~/bidding_lib/img/icon-edit.svg" alt="img">
                                     </span>
                                     <div class="name-function-fix">Sửa</div>
                                 </a>
 
-                                <a href="javascript:;" class="btn-function" onclick="delete(@item.Id);">
+                                <a href="javascript:;" class="btn-function" onclick="delete_post(@item.Id);">
                                     <span>
                                         <img class="imgbefore-hv" src="~/bidding_lib/img/icon-delete.svg" alt="img">
 
                                     </span>
                                     <div class="name-function-fix">Xóa</div>
                                 </a>
-
                             </td>
                         </tr>
                     }
@@ -101,4 +116,37 @@
 
 <script>
 
+    $(function () {
+        //ChangeIconSortTable();
+        inittitlefuction();
+        focusTableFixed();
+    });
+    window.onload = funcFixTable();
+    window.onresize = funcFixTable();
+    function funcFixTable() {
+        let options = {
+            "paging": false,
+            fnDrawCallback: function () {
+                if (window.currentScrollLeft > 0) {
+                    document.getElementById("test-tb").parentElement.scrollLeft = window.currentScrollLeft;
+                }
+                //
+                document.getElementById("test-tb").parentElement.addEventListener("scroll", function () {
+                    window.currentScrollLeft = this.scrollLeft;
+                });
+                //$("th[data-sort]").off("click").on("click", function () {
+                //    SortTable($(this).attr("data-sort"), function () {
+                //        if (!!window.SearchAuction) {
+                //            SearchAuction("",'@CommonData.pageDefaut');
+                //        }
+                //    });
+                //});
+            }
+        };
+        let fixColumnOptions = {
+            leftColumns: 2,
+            rightColumns: 1
+        };
+        CreateFixedTable('#test-tb', fixColumnOptions, options);
+    }
 </script>

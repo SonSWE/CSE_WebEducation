@@ -44,5 +44,25 @@ namespace CSE_WebEducation
                 Logger.log.Error(ex.ToString());
             }
         }
+
+        public static void Process_Logout(decimal p_user_id, HttpContext context = null)
+        {
+            try
+            {
+                if (context != null)
+                {
+                    context.Session.Remove_Session_ByKey("user");
+                }
+
+                // remove redis
+                //Redis_Memory.Redis_Logout_User(p_user_id, p_client_info);
+            }
+            catch (Exception ex)
+            {
+                Logger.log.Error(ex.ToString());
+            }
+        }
     }
+
+    
 }

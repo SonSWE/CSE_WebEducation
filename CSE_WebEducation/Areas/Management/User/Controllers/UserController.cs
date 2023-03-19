@@ -174,6 +174,46 @@ namespace CSE_WebEducation.Areas.User.Controllers
             });
         }
 
+        [Route("cap-nhat-trang-thai"), HttpPost]
+        //[CustomActionFilter]
+        public IActionResult Update(decimal user_id, string status)
+        {
+            decimal _success = -1;
+            string _str_error = "";
+            try
+            {
+                var user = this.HttpContext.GetCurrentUser();
+
+                CSE_UsersInfo info = new CSE_UsersInfo();
+
+                info.User_Id = user_id;
+                info.Status = status;
+                info.Modified_By = user.User_Name;
+                info.Modified_Date = DateTime.Now;
+
+                _success = ApiClient_User.ActiveOrUnactive(info, user.Token);
+
+                if (_success > 0)
+                {
+                    _str_error = "Cập nhật trạng thái người dùng thành công!";
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                }
+                else
+                {
+                    _str_error = "Cập nhật trạng thái người dùng thất bại!";
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.nlog.Error(ex.ToString());
+            }
+            return Json(new
+            {
+                success = _success,
+                responseMessage = _str_error
+            });
+        }
+
         [Route("xoa"), HttpPost]
         //[CustomActionFilter]
         public IActionResult Delete(decimal user_id)

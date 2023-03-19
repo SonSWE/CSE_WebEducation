@@ -26,150 +26,153 @@
                 <label>Tiêu đề</label>
                 <input type="text" id="txtTitle" placeholder="Từ khóa tìm kiếm">
             </div>
+
+            <div class="item-search">
+                <label>Danh mục</label>
+                @Html.Partial("~/Areas/Management/Posts/Views/_Partial_Category_Tree.cshtml")
+            </div>
+
+            <div class="item-search">
+                <label>Ngày tạo</label>
+                <input type="text" id="dtCreatedDate" placeholder="Từ khóa tìm kiếm">
+            </div>
         </div>
 
     </div>
 </div>
 <div class="block-record" id="tableData">
-    @Html.Partial("_Partial_List.cshtml")
+   
 </div>
 
 
 <div class="modal modal-report" id="dPopup"></div>
-
 <script>
-    $(document).ready(function () {
-        Search(@CommonData.pageDefaut);
-    })
+  $(document).ready(function () {
+    Search(@CommonData.pageDefaut);
 
-    $(document).on('keypress', function (e) {
-        if (e.which == 13) {
-            Search('@CommonData.pageDefaut');
+  $('#dtCreatedDate').datetimepicker({
+    format: 'd/m/Y',
+    formatDate: 'd/m/Y',
+    timepicker: false,
+    mask: '39/19/9999',
+    validateOnBlur: false,
+    scrollInput: false
+  });
+
+
+  });
+
+  $(document).on('keypress', function (e) {
+    if (e.which == 13) {
+      Search('@CommonData.pageDefaut');
+    }
+  });
+
+  function ChangePage(curentPage) {
+    Search(curentPage);
+  }
+
+  function onChange_Record_on_page() {
+    Search(1);
+  }
+
+  function Search(curentPage) {
+    try {
+      var keySearch = $('#txtTitle').val() + '|' + $('#dtCreatedDate').val().replace("__/__/____", "") + '|' + $('#slCategory').val();
+      $.ajax({
+        type: 'POST',
+        url: '/trang-khoa/bai-viet/tim-kiem',
+        data: {
+          keysearch: keySearch,
+          curentPage: curentPage,
+          p_record_on_page: $("#cbo_record_on_page").val()
+        },
+        async: true, cache: false, traditional: true,
+        beforeSend: function () {
+          SpinLoading(true);
+        },
+        success: function (data) {
+          SpinLoading(false);
+          if (preHandleDataResult(data)) {
+            $("#tableData").html(data);
+          }
         }
-    });
-
-    function ChangePage(curentPage) {
-        Search(curentPage);
+      });
+    } catch (ex) {
+      console.log(ex);
     }
-    
-    function onChange_Record_on_page() {
-        Search(1);
+  }
+
+  function delete_post (id) {
+    try {
+      nvsConfirm("Bạn có chắc chắn muốn xóa bài viết này không?", function () {
+        $.ajax({
+          type: 'POST',
+          url: '/trang-khoa/bai-viet/xoa',
+          data: { id: id },
+          async: true, cache: false, traditional: true,
+          beforeSend: function () {
+            SpinLoading(true);
+          },
+          success: function (data) {
+            if (preHandleDataResult(data)) {
+              if (data.success > 0) {
+                showSuccess('Xóa bài viết thành công')
+                Search('@CommonData.pageDefaut');
+              } else {
+                showError('Xóa bài viết không thành công')
+              }
+            }
+          },
+          error: function (data) {
+            console.log(data);
+          },
+          complete: function () {
+            SpinLoading(false);
+          }
+        });
+      });
+    } catch (ex) {
+      console.log(ex);
     }
+  }
 
-    function Search(curentPage) {
-        try {
-            var keySearch = $('#txtTitle').val() + '|' ;
-            $.ajax({
-                type: 'POST',
-                url: '/trang-khoa/bai-viet/tim-kiem',
-                data: {
-                    keysearch: keySearch,
-                    curentPage: curentPage,
-                    p_record_on_page: $("#cbo_record_on_page").val()
-                },
-                async: true, cache: false, traditional: true,
-                beforeSend: function () {
-                    SpinLoading(true);
-                },
-                success: function (data) {
-                    SpinLoading(false);
-                    if (preHandleDataResult(data)) {
-                        $("#tableData").html(data);
-                    }
-                }
-            });
-        } catch (ex) {
-            console.log(ex);
-        }
-    }
-
-    //function LoadEdit(group_id) {
-    //    try {
-    //        $.ajax({
-    //            type: 'GET',
-    //            url: '/trang-khoa/bai-viet/cap-nhat',
-    //            data: {
-    //                group_id: group_id
-    //            },
-    //            async: false, cache: false, traditional: true,
-    //            beforeSend: function () {
-    //                SpinLoading(true);
-    //            },
-    //            success: function (data) {
-    //                SpinLoading(false);
-    //                if (preHandleDataResult(data)) {
-    //                    $("#dPopup").html(data);
-    //                    ShowPopupDialog("dPopup", "");
-    //                }
-    //            }
-    //        });
-    //    } catch (ex) {
-    //        console.log(ex);
-    //    }
-    //}
-
-    //function LoadView(group_id) {
-    //    try {
-    //        $.ajax({
-    //            type: 'GET',
-    //            url: '/trang-khoa/bai-viet/chi-tiet',
-    //            data: {
-    //                group_id: group_id
-    //            },
-    //            async: true, cache: false, traditional: true,
-    //            beforeSend: function () {
-    //                SpinLoading(true);
-    //            },
-    //            success: function (data) {
-    //                SpinLoading(false);
-    //                if (preHandleDataResult(data)) {
-    //                    $("#dPopup").html(data);
-    //                    ShowPopupDialog("dPopup", "" );
-    //                 }
-    //            }
-    //        });
-    //    } catch (ex) {
-    //        console.log(ex);
-    //    }
-    //}
-
-
-    //function delete(id) {
-    //    try {
-    //        nvsConfirm("Bạn có chắc chắn muốn xóa nhóm người dùng này không?", function () {
-    //            $.ajax({
-    //                type: 'POST',
-    //                url: '/trang-khoa/bai-viet/xoa',
-    //                data: {
-    //                    id: id
-    //                },
-    //                async: true, cache: false, traditional: true,
-    //                beforeSend: function () {
-    //                    SpinLoading(true);
-    //                },
-    //                success: function (data) {
-    //                    if (preHandleDataResult(data)) {
-    //                        if (data.success > 0) {
-    //                            showSuccess('Xóa nhóm người dùng thành công')
-    //                            Search('@CommonData.pageDefaut');
-    //                        } else if (data.success == -2) {
-    //                            showError('Nhóm có người dùng không thể xóa nhóm')
-    //                        } else {
-    //                            showError('Xóa nhóm người dùng không thành công')
-    //                        }
-    //                    }
-    //                },
-    //                error: function (data) {
-    //                    console.log(data);
-    //                },
-    //                complete: function () {
-    //                    SpinLoading(false);
-    //                }
-    //            });
-    //        })
-    //    } catch (ex) {
-    //        console.log(ex);
-    //    }
-    //}
+  //function HideOrShow(id, type) {
+  //    try {
+  //        nvsConfirm("Bạn có chắc chắn muốn xóa nhóm người dùng này không?", function () {
+  //            $.ajax({
+  //                type: 'POST',
+  //                url: '/trang-khoa/bai-viet/xoa',
+  //                data: {
+  //                    id: id
+  //                },
+  //                async: true, cache: false, traditional: true,
+  //                beforeSend: function () {
+  //                    SpinLoading(true);
+  //                },
+  //                success: function (data) {
+  //                    if (preHandleDataResult(data)) {
+  //                        if (data.success > 0) {
+  //                            showSuccess('Xóa nhóm người dùng thành công')
+  //                            Search('@CommonData.pageDefaut');
+  //                        } else if (data.success == -2) {
+  //                            showError('Nhóm có người dùng không thể xóa nhóm')
+  //                        } else {
+  //                            showError('Xóa nhóm người dùng không thành công')
+  //                        }
+  //                    }
+  //                },
+  //                error: function (data) {
+  //                    console.log(data);
+  //                },
+  //                complete: function () {
+  //                    SpinLoading(false);
+  //                }
+  //            });
+  //        })
+  //    } catch (ex) {
+  //        console.log(ex);
+  //    }
+  //}
 
 </script>

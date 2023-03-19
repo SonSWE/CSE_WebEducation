@@ -1,19 +1,13 @@
 ﻿@using ObjectInfo
 @{
 
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Danh sách bài viết";
+    Layout = null;
+    //ViewBag.Title = "Danh sách bài viết";
 
     List<CSE_PostsInfo> _lst = new List<CSE_PostsInfo>();
     if (ViewBag.LstData != null)
     {
         _lst = ViewBag.LstData;
-    }
-
-    List<CSE_PostsInfo> _lstPostNew = new List<CSE_PostsInfo>();
-    if (ViewBag.LstFourPostsNew != null)
-    {
-        _lstPostNew = ViewBag.LstFourPostsNew;
     }
 }
 
@@ -37,18 +31,11 @@
                                 <div>
                                     <a href="/bai-viet/@item.Id">Xem <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 }
-            }
-            else
-            {
-                <div class="col-lg-12">
-                    <div class="new-card">
-                        không có dữ liệu
-                    </div>
-                </div>
             }
         </div>
         <div class="col-lg-4">
@@ -57,29 +44,15 @@
                     <h3>Tin mới nhât</h3>
                 </div>
                 <ul class="newsest-list">
-                    @if (_lstPostNew?.Count > 0)
-                    {
-                        foreach (var item in _lstPostNew)
-                        {
-                            <li class="newsest-item">
-                                <img style="width: 100px; height: 100px; object-fit: cover;" src="@item.Thumbnail" alt="">
-                                <div class="newest-item-content">
-                                    <h3>@item.Title</h3>
-                                    <span>Ngày đăng: @item.Created_Date.ToString("MM/dd/yyyy")</span>
-                                    <a href="/bai-viet/@item.Id">Xem <i class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        <li class="newsest-item">
-                            <div>
-                                không có dữ liệu
-                            </div>
-                        </li>
-                    }
+                    <li class="newsest-item">
+                        <img width="30%" src="../assets/hoptac-ava/backgroundLogin.png" alt="">
+                        <div class="newest-item-content">
+                            <h3>Ngày hội tư vấn tuyển sinh các trường...</h3>
+                            <span>20-02-2023</span>
+                            <a href="">Xem <i class="fa-solid fa-arrow-right"></i></a>
 
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

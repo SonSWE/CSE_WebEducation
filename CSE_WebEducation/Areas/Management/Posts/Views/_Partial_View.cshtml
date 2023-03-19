@@ -1,61 +1,136 @@
-﻿@using ObjectInfo;
+﻿@using CSE_WebEducation
+@using ObjectInfo;
+@using CommonLib;
 
 @{
-    CSE_GroupsInfo _Group_Info = new CSE_GroupsInfo();
-    if (ViewBag.Group_Info != null)
+    ViewData["Title"] = "Xem chi tiết bài viết";
+    Layout = "~/Views/Shared/_ManaLayout.cshtml";
+
+    CSE_PostsInfo info = new CSE_PostsInfo();
+    if (ViewBag.Info != null)
     {
-        _Group_Info = ViewBag.Group_Info;
+        info = ViewBag.Info;
     }
-} 
+}
+<style>
+    .holder {
+        height: 300px;
+        width: 300px;
+        border: 1px solid gray;
+    }
 
+    .img-preview {
+        max-width: 300px;
+        max-height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+    }
 
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="header-report">
-            <h3>Chi tiết nhóm người dùng</h3>
-            <button class="btn-close" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-close.svg" alt="img"></button>
+    .heading {
+        font-family: Montserrat;
+        font-size: 45px;
+        color: green;
+    }
+</style>
+
+<form id="formAddPosts" enctype="multipart/form-data">
+    <div class="block-add">
+        <div class="box-top">
+            <h3 class="title-add">Thêm mới tin tức</h3>
         </div>
-        <div class="body-report">
+        <div class="body-report pt-0">
             <div class="row">
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Danh mục <span class="clr-red">(*)</span></div>
+                        <div class="field-report" id="div_function">
+                            <input type="text" id="txtCategory" name="" autocomplete="off" autofocus maxlength="1000" tabindex="1" disabled value="@info.Category_Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Tiêu đề <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="txtTitle" name="" autocomplete="off" autofocus maxlength="1000" tabindex="2" disabled value="@info.Title">
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-lg-12">
                     <div class="flex-report">
-                        <div class="title-report">Tên nhóm</div>
+                        <div class="title-report">Ảnh bìa <span class="clr-red">(*)</span></div>
+                        <div class="holder">
+                            <img class="img-preview" id="imgPreview" src="@info.Thumbnail" alt="pic" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Mô tả <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input class="ip-popup" type="text" id="Group_Name" name="Group_Name" disabled="disabled" value="@_Group_Info.Group_Name">
+                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="4" disabled value="@info.Description">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12">
                     <div class="flex-report">
-                        <div class="title-report">Loại nhóm</div>
+                        <div class="title-report">Loại bài viết <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input class="ip-popup" type="text" id="Group_Type" name="Group_Type" disabled="disabled" value="@_Group_Info.Group_Type_Text">
+                            <input type="text" id="txtType" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="4" disabled value="@info.Post_Type_Text">
                         </div>
                     </div>
                 </div>
-                
+                <div>
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
+                            <div class="field-report">
+                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled  tabindex="6" value="@info.Start_Date.ToShortDateString()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="flex-report">
+                            <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
+                            <div class="field-report">
+                                <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="7" disabled value="@info.Location">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-12">
                     <div class="flex-report">
-                        <div class="title-report">Trạng thái</div>
+                        <div class="title-report">Nội dung <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input class="ip-popup" type="text" id="Note" name="Note" disabled="disabled" value="@_Group_Info.Status_Text">
+                            <textarea type="file" id="Content" name="Content" maxlength="4000"   tabindex="8" disabled >@info.Content</textarea>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12"></div>
-                 <div class="col-lg-12">
-                    <div class="flex-report">
-                        <div class="title-report">Mô tả</div>
-                        <div class="field-report">
-                            <input class="ip-popup" type="text" id="Note" name="Note" disabled="disabled" value="@_Group_Info.Note">
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
-        <div class="foot-report text-right">
-            <button class="btn-cancel" type="button" id="btnExit" onclick="ClosePopupDialog('dPopup', false);"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img">Thoát</button>
+    </div>
+    <div class="footer-form">
+        <div class="container-footer">
+            <button class="btn-cancel" type="button" id="btnExit" onclick="history.back();"><img src="~/bidding_lib/img/icon-cancel.svg" alt="img"  tabindex="10">Quay lại</button>
         </div>
     </div>
-</div>
+</form>
+
+<script>
+    $(document).ready(function(){
+        
+    });
+   
+    CKEDITOR.replace( 'Content', {
+        extraPlugins: 'timestamp',
+        removeButtons: 'Underline',
+        removePlugins: 'image'
+    });
+
+
+
+</script>
+

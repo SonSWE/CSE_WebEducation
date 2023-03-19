@@ -185,7 +185,7 @@ namespace DataAccess
                 lstParam[5] = new SqlParameter("@p_start_date", SqlDbType.DateTime)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = _info.Start_Date,
+                    Value = _info.Start_Date == DateTime.MinValue ? null : _info.Start_Date,
                     IsNullable = true
                 };
                 lstParam[6] = new SqlParameter("@p_location", SqlDbType.NVarChar)
@@ -197,12 +197,12 @@ namespace DataAccess
                 lstParam[7] = new SqlParameter("@p_modified_by", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = _info.Created_By,
+                    Value = _info.Modified_By,
                 };
                 lstParam[8] = new SqlParameter("@p_modified_date", SqlDbType.DateTime)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = _info.Created_Date,
+                    Value = _info.Modified_Date,
                 };
                 lstParam[9] = new SqlParameter("@p_result", SqlDbType.Decimal)
                 {
@@ -215,9 +215,9 @@ namespace DataAccess
                 };
 
 
-                SQLHelper.ExecuteDataset(CommonData.connectionString, CommandType.StoredProcedure, "sp_group_update", lstParam);
+                SQLHelper.ExecuteDataset(CommonData.connectionString, CommandType.StoredProcedure, "sp_posts_update", lstParam);
 
-                _result = Convert.ToDecimal(lstParam[7].Value.ToString());
+                _result = Convert.ToDecimal(lstParam[9].Value.ToString());
 
                 return _result;
             }

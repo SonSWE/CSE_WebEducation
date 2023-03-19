@@ -14,7 +14,11 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         {
             try
             {
+                var user = this.HttpContext.GetCurrentUser();
+
                 ViewBag.Record_On_Page = CommonData.RecordsPerPage;
+
+                ViewBag.LstCategory = ApiClient_Posts_Category.GetAll(user.Token);  
             }
             catch (Exception ex)
             {
@@ -50,8 +54,8 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
             return PartialView("~/Areas/Management/Posts/Views/_Partial_List.cshtml");
         }
 
-        [Route("chi-tiet"), HttpGet]
-        [CustomActionFilter]
+        [Route("chi-tiet/{id}"), HttpGet]
+        //[CustomActionFilter]
         public IActionResult ViewDetail(decimal id)
         {
             try
@@ -113,7 +117,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                             file.CopyTo(save_file);
                         }
 
-                        info.Thumbnail = "~\\file_attach\\" + fileName;
+                        info.Thumbnail = ConstData.httpApiClientHost + "/file_attach/" + fileName;
                     }
                 }
                 
@@ -140,8 +144,8 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
             });
         }
 
-        [Route("cap-nhat"), HttpGet]
-        [CustomActionFilter]
+        [Route("cap-nhat/{id}"), HttpGet]
+        //[CustomActionFilter]
         public IActionResult Update(decimal id)
         {
             try
@@ -160,7 +164,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("cap-nhat"), HttpPost]
-        [CustomActionFilter]
+        //[CustomActionFilter]
         public IActionResult Update(CSE_PostsInfo info)
         {
             decimal _success = -1;
@@ -171,9 +175,28 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                 info.Modified_By = user.User_Name;
                 info.Modified_Date = DateTime.Now;
 
+                var formFiles = this.HttpContext.Request.Form.Files;
+                if (formFiles != null && formFiles.Count > 0)
+                {
+                    IFormFile file = formFiles.FirstOrDefault(x => x.Name.Equals("file_Content"));
+                    if (file != null)
+                    {
+                        string base_url = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host;
+                        string fileName = $"{DateTime.Now.ToString("yyyyMMddHHmmssFFF")}{CommonFunc.ReplaceUnicodeString(file.FileName)}";
+                        string url_full_url_file = Path.Combine(CommonData.FileAttach, fileName);
+
+                        using (var save_file = new FileStream(url_full_url_file, FileMode.Create))
+                        {
+                            file.CopyTo(save_file);
+                        }
+
+                        info.Thumbnail = base_url + "/file_attach/" + fileName;
+                    }
+                }
+
                 _success = ApiClient_Posts.Update(info, user.Token);
 
-                if (_success < 0)
+                if (_success > 0)
                 {
                     _str_error = "Chỉnh sửa bài viết thành công!";
                     //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa bài viết. Tên nhóm NSD " + info.Group_Name, "Người dùng");
@@ -195,7 +218,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("xoa"), HttpPost]
-        [CustomActionFilter]
+        //[CustomActionFilter]
         public IActionResult Delete(decimal id)
         {
             decimal _id = -1;

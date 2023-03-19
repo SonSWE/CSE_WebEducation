@@ -62,7 +62,7 @@ namespace CSE_WebEducation_Guest.Controllers
                 ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
 
                 //lấy danh sách 10 để sự kiện gợi ý 
-                if (info.Post_Type == CSE_Post_Type.events)
+                if (info.Category_Id == "SUKIEN")
                 {
                     _search = ApiClient_Posts.Search("|||2", "1", "10", "", "Start_Date DESC");
                     ViewBag.LstTenEvent = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
@@ -97,6 +97,45 @@ namespace CSE_WebEducation_Guest.Controllers
 
             }
             return View("~/Views/Home/_Partial_Posts_List.cshtml");
+        }
+
+        [Route("tim-kiem-bai-viet/{keysearch}"), HttpGet]
+        public IActionResult LoadSearchPost(string keysearch)
+        {
+            try
+            {
+                ViewBag.keysearch = keysearch;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return View("~/Views/Home/Search_Post.cshtml");
+        }
+
+        [Route("tim-kiem-bai-viet"), HttpPost]
+        public IActionResult ListPostsSearch(string keysearch, int curentPage)
+        {
+            try
+            {
+                ViewBag.keyseach = keysearch;
+                keysearch = keysearch + "|||";
+                int p_to = 0;
+                int p_from = CommonFunc.GetFromToPaging(curentPage, CommonData.RecordsPerPage, out p_to);
+                SearchResponseInfo _search = ApiClient_Posts.Search(keysearch, p_from.ToString(), p_to.ToString(), " ");
+
+                ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
+                ViewBag.Paging = CommonFunc.PagingData(curentPage, CommonData.RecordsPerPage, (int)_search.totalrows);
+
+                //danh sách 4 bài viết mới nhất
+                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||", "1", "4", "", " ");
+                ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return View("~/Views/Home/_Partial_Posts_List_Search.cshtml");
         }
     }
 }
