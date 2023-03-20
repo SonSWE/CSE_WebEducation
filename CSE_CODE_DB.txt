@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [CSE_CODE]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Database [CSE_CODE]    Script Date: 20/03/2023 9:48:02 AM ******/
 CREATE DATABASE [CSE_CODE]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ USE [CSE_CODE]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_functions]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Sequence [dbo].[seq_cse_functions]    Script Date: 20/03/2023 9:48:02 AM ******/
 CREATE SEQUENCE [dbo].[seq_cse_functions] 
  AS [bigint]
  START WITH 1
@@ -95,7 +95,7 @@ CREATE SEQUENCE [dbo].[seq_cse_functions]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_groups]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Sequence [dbo].[seq_cse_groups]    Script Date: 20/03/2023 9:48:02 AM ******/
 CREATE SEQUENCE [dbo].[seq_cse_groups] 
  AS [bigint]
  START WITH 1
@@ -106,7 +106,7 @@ CREATE SEQUENCE [dbo].[seq_cse_groups]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_posts]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Sequence [dbo].[seq_cse_posts]    Script Date: 20/03/2023 9:48:02 AM ******/
 CREATE SEQUENCE [dbo].[seq_cse_posts] 
  AS [bigint]
  START WITH 1
@@ -117,7 +117,7 @@ CREATE SEQUENCE [dbo].[seq_cse_posts]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_user_function]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Sequence [dbo].[seq_cse_user_function]    Script Date: 20/03/2023 9:48:02 AM ******/
 CREATE SEQUENCE [dbo].[seq_cse_user_function] 
  AS [bigint]
  START WITH -9223372036854775808
@@ -128,7 +128,7 @@ CREATE SEQUENCE [dbo].[seq_cse_user_function]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_users]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Sequence [dbo].[seq_cse_users]    Script Date: 20/03/2023 9:48:02 AM ******/
 CREATE SEQUENCE [dbo].[seq_cse_users] 
  AS [bigint]
  START WITH 1
@@ -137,7 +137,7 @@ CREATE SEQUENCE [dbo].[seq_cse_users]
  MAXVALUE 999999999999999999
  CACHE 
 GO
-/****** Object:  UserDefinedFunction [dbo].[FN_CheckContainList]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  UserDefinedFunction [dbo].[FN_CheckContainList]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -171,7 +171,7 @@ BEGIN
 	RETURN @v_count;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[FN_ParserStrToRow]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  UserDefinedFunction [dbo].[FN_ParserStrToRow]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +194,7 @@ BEGIN
     RETURN 
 END
 GO
-/****** Object:  Table [dbo].[CSE_AllCode]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_AllCode]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +207,7 @@ CREATE TABLE [dbo].[CSE_AllCode](
 	[LstOdr] [int] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Functions]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_Functions]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -235,7 +235,7 @@ CREATE TABLE [dbo].[CSE_Functions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Group_Function]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_Group_Function]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -248,7 +248,7 @@ CREATE TABLE [dbo].[CSE_Group_Function](
 	[Created_Date] [datetime] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Group_User]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_Group_User]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -263,7 +263,7 @@ CREATE TABLE [dbo].[CSE_Group_User](
 	[Modified_Date] [datetime] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Groups]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_Groups]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -285,7 +285,7 @@ CREATE TABLE [dbo].[CSE_Groups](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Posts]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_Posts]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -314,7 +314,7 @@ CREATE TABLE [dbo].[CSE_Posts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Posts_Categories]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_Posts_Categories]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -327,6 +327,7 @@ CREATE TABLE [dbo].[CSE_Posts_Categories](
 	[Get_Url] [nvarchar](300) NULL,
 	[LstOdr] [decimal](4, 0) NULL,
 	[Display_On_Menu] [decimal](1, 0) NULL,
+	[Banner_Url] [nvarchar](max) NULL,
 	[Deleted] [decimal](1, 0) NULL,
 	[Created_By] [nvarchar](50) NULL,
 	[Created_Date] [datetime] NULL,
@@ -336,9 +337,9 @@ CREATE TABLE [dbo].[CSE_Posts_Categories](
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_User_Function]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_User_Function]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -354,7 +355,7 @@ CREATE TABLE [dbo].[CSE_User_Function](
 	[Modified_Date] [datetime] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Users]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  Table [dbo].[CSE_Users]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -585,7 +586,7 @@ INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Stat
 GO
 INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(16 AS Decimal(18, 0)), N'sơn thêm', CAST(0 AS Decimal(1, 0)), N'không xóa', N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-16T10:35:27.497' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), N'SUKIEN', CAST(2 AS Decimal(3, 0)), N'dsafsd', N'\file_attach\20230312141402893DSC05424.jpg', N'gádg', N'Ngày 12/3, Hội đồng Nghĩa vụ quân sự huyện Giồng Trôm (tỉnh Bến Tre) cho biết xử phạt hơn 60 triệu đồng thanh niên không chấp hành lệnh nhập ngũ.
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), N'SUKIEN', CAST(2 AS Decimal(3, 0)), N'dsafsd', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'gádg', N'Ngày 12/3, Hội đồng Nghĩa vụ quân sự huyện Giồng Trôm (tỉnh Bến Tre) cho biết xử phạt hơn 60 triệu đồng thanh niên không chấp hành lệnh nhập ngũ.
 <table>
 	<tbody>
 		<tr>
@@ -612,7 +613,7 @@ INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail]
 <p>Cùng với mức xử phạt 62,5 triệu đồng, đối tượng Nguyễn Công Khánh còn bị buộc phải thực hiện nghĩa vụ quân sự để khắc phục hậu quả.</p>
 ', CAST(N'2023-03-15T07:00:00.000' AS DateTime), N'hội trường', N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T14:14:00.063' AS DateTime), N'sondt24', CAST(N'2023-03-18T16:42:29.453' AS DateTime))
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), N'SUKIEN', CAST(2 AS Decimal(3, 0)), N'Công Phượng tiếp tục bị Yokohama ''bỏ rơi'' tại J-League', N'\file_attach\20230312145137793congphuong-673.jpeg', N'Công Phượng tiếp tục bị Yokohama ''bỏ rơi'' tại J-League', N'<h2 title="Công Phượng tiếp tục không được Yokohama FC đăng ký cho chuyến làm khách tới sân FC Tokyo ở vòng 4 J-League diễn ra lúc 13h hôm nay, 12/3.">Công Phượng tiếp tục không được Yokohama FC đăng ký cho chuyến làm khách tới sân FC Tokyo ở vòng 4 J-League diễn ra lúc 13h hôm nay, 12/3.</h2>
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), N'DETAI', CAST(2 AS Decimal(3, 0)), N'Công Phượng tiếp tục bị Yokohama ''bỏ rơi'' tại J-League', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'Công Phượng tiếp tục bị Yokohama ''bỏ rơi'' tại J-League', N'<h2 title="Công Phượng tiếp tục không được Yokohama FC đăng ký cho chuyến làm khách tới sân FC Tokyo ở vòng 4 J-League diễn ra lúc 13h hôm nay, 12/3.">Công Phượng tiếp tục không được Yokohama FC đăng ký cho chuyến làm khách tới sân FC Tokyo ở vòng 4 J-League diễn ra lúc 13h hôm nay, 12/3.</h2>
 
 <p>Đây là trận đấu thứ 4 liên tiếp chân sút tới từ Việt Nam không được đội bóng mới đăng ký vào danh sách thi đấu tại J-League, sau khi gia nhập Yokohama FC hồi đầu mùa giải.</p>
 
@@ -637,11 +638,11 @@ INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail]
 <p>Với những gì đang diễn ra, cùng lúc Yokohama FC sở hữu đội hình có chiều sâu, Công Phượng sẽ còn phải nỗ lực nhiều hơn nữa để tìm kiếm cơ hội trên đất Nhật.</p>
 ', CAST(N'2023-03-12T05:00:00.000' AS DateTime), N'hội trường', N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T14:51:37.793' AS DateTime), N'sondt24', CAST(N'2023-03-18T16:18:52.480' AS DateTime))
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(3 AS Decimal(18, 0)), N'DETAI', CAST(1 AS Decimal(3, 0)), N'sfdgdf', N'\file_attach\20230312145554421congphuong-673.jpeg', N'hsdfhs', N'gsdfhsdf', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T14:55:54.420' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(3 AS Decimal(18, 0)), N'DETAI', CAST(1 AS Decimal(3, 0)), N'sfdgdf', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'hsdfhs', N'gsdfhsdf', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T14:55:54.420' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(4 AS Decimal(18, 0)), N'DETAI', CAST(1 AS Decimal(3, 0)), N'fasdf', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'fasdf', N'fasdfasdf', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-13T18:20:39.427' AS DateTime), N'sondt24', CAST(N'2023-03-19T04:45:35.750' AS DateTime))
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(5 AS Decimal(18, 0)), N'BAOCSE', CAST(1 AS Decimal(3, 0)), N'Nhân viên đòi nợ thuê gọi gần 3.000 cuộc gọi ''khủng bố'', thu 2-3 tỷ đồng/tháng', N'~\file_attach\20230315213311421viet-nam-thinh-vuong-18273128.jpg', N'(VTC News) - Mỗi tháng, một nhân viên đòi nợ trung bình thực hiện từ 2.500-3.000 cuộc gọi "khủng bố", hăm dọa với tổng cộng số tiền đòi được từ 2-3 tỷ đồng', N'<p>Ngày 15/3, liên quan đến vụ Công an quận Tân Bình khởi tố 14 nhân viên thu hồi nợ của 2 Công ty CP mua bán nợ Việt Nam Thịnh Vượng và chi nhánh Công ty TNHH Luật Thế hệ trẻ về tội cưỡng đoạt tài sản, Công an thông tin về cách thức hoạt động của 2 đơn vị này.</p>
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(5 AS Decimal(18, 0)), N'DETAI', CAST(1 AS Decimal(3, 0)), N'Nhân viên đòi nợ thuê gọi gần 3.000 cuộc gọi ''khủng bố'', thu 2-3 tỷ đồng/tháng', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'(VTC News) - Mỗi tháng, một nhân viên đòi nợ trung bình thực hiện từ 2.500-3.000 cuộc gọi "khủng bố", hăm dọa với tổng cộng số tiền đòi được từ 2-3 tỷ đồng', N'<p>Ngày 15/3, liên quan đến vụ Công an quận Tân Bình khởi tố 14 nhân viên thu hồi nợ của 2 Công ty CP mua bán nợ Việt Nam Thịnh Vượng và chi nhánh Công ty TNHH Luật Thế hệ trẻ về tội cưỡng đoạt tài sản, Công an thông tin về cách thức hoạt động của 2 đơn vị này.</p>
 
 <p>Tại cơ quan điều tra, Nguyễn Minh Thành (SN 1983, ngụ quận 6) - Trưởng phòng đòi nợ phía Nam, Công ty Cổ phần mua bán nợ Việt Nam Thịnh Vượng khai công ty được chia ra 4 đội (mỗi đội từ 7-10 người). Mỗi tháng, một nhân viên trung bình thực hiện từ 2.500-3.000 cuộc gọi "khủng bố", hăm dọa với tổng cộng số tiền đòi được từ 2-3 tỷ đồng. Với tần suất đòi nợ như trên, mỗi tháng có hơn 100 người phải trả tiền nợ và lãi suất cho nhóm đòi nợ thuê này.</p>
 
@@ -690,9 +691,9 @@ INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail]
 <p>Theo tài liệu thu thập được cùng lời khai ban đầu, việc khủng bố, đòi nợ như trên được thực hiện rất chuyên nghiệp bởi phần lớn nhân viên có bề dày kinh nghiệm do trước đây từng làm việc tại các công ty tài chính.</p>
 
 <p>Hiện Công an quận Tân Bình đang tiếp tục phối hợp các phòng nghiệp vụ Công an TP.HCM để điều tra mở rộng, làm rõ triệt để, xử lý nghiêm các đối tượng theo quy định pháp luật.</p>
-', NULL, NULL, N'H', NULL, NULL, CAST(1 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-15T21:33:11.420' AS DateTime), N'sondt24', CAST(N'2023-03-18T18:56:49.380' AS DateTime))
+', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-15T21:33:11.420' AS DateTime), N'sondt24', CAST(N'2023-03-18T18:56:49.380' AS DateTime))
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(6 AS Decimal(18, 0)), N'BAOCSE', CAST(1 AS Decimal(3, 0)), N'Gửi mẹ chồng 150 triệu, sau 10 năm nhận về con số gấp 10', N'~\file_attach\20230316103032517congphuong-673.jpeg', N'Gửi mẹ chồng 150 triệu, sau 10 năm nhận về con số gấp 10', N'<p>Nhiều lúc nghĩ về cuộc đời mình, tôi chỉ biết khóc. 25 tuổi tôi lấy chồng, vậy mà sau 3 năm tôi đã trở thành goá phụ. Chồng tôi ra đi đột ngột vì vụ tai nạn, bỏ lại tôi với đứa con mới được gần 2 tuổi. Thời điểm đó tôi sốc lắm, chẳng thiết tha làm gì. Thật may có con gái là động lực cho tôi vực dậy, cố gắng sống thật tốt.</p>
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(6 AS Decimal(18, 0)), N'DETAI', CAST(1 AS Decimal(3, 0)), N'Gửi mẹ chồng 150 triệu, sau 10 năm nhận về con số gấp 10', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'Gửi mẹ chồng 150 triệu, sau 10 năm nhận về con số gấp 10', N'<p>Nhiều lúc nghĩ về cuộc đời mình, tôi chỉ biết khóc. 25 tuổi tôi lấy chồng, vậy mà sau 3 năm tôi đã trở thành goá phụ. Chồng tôi ra đi đột ngột vì vụ tai nạn, bỏ lại tôi với đứa con mới được gần 2 tuổi. Thời điểm đó tôi sốc lắm, chẳng thiết tha làm gì. Thật may có con gái là động lực cho tôi vực dậy, cố gắng sống thật tốt.</p>
 <img alt="" height="0" src="https://ialaddin.genieesspv.jp/yie/ld/gl2?zid=1097490&amp;asid=9495642&amp;idx=0&amp;gid=8cde3175a82b55cc2f69d675fdcd0c11&amp;cb=63f84242db&amp;l=nycz9l5HC1NyH4yYzr9DAorO2t2U7tQMdn_raX7L2OlGGn05DdklZcETzssAph8Uam43hwDy_IKyk2XSNVPONZOwPGJoXYXDL3HNbVAZKcED9FW-BvqZF7cmwrQQilIF_3904fgC7DvRX5CVzbK9lxnq6uKAha8ZPzqNRijvAbEVG3ADPsOj4T3C9rMr2qxVl8HPqx74nKKkaE1S5eM4IumNGOJ_CUJuhwOOL5rNicUV_aFmzABPyXR5Z1LLGMdAbwOjYJnzWOWpdqMtTWwl23lBhqTpdHW41jxhMWFfDwTNttnY7JMEh-fJTTrO8NLFmlKQ74OS4zDxNs-GCXeDycNg1qvicA43zTaKUQTJgjZMQhqsCg1xIYELwta9TCI0ql0Q-LQnbeA8SvzIL_ypdeUKoWfkN_yhGT73n5iTr7GYQkinMBrsZY0wyV3tF7xkEiM5WgDW4i6gWicJN9ikOWmWgZjGwEl4Bwj_83O78lMsq__3Zu0la8ml-cNyzo18JABGfokwZev9EHt7Fyv9TEbLwssGyuF1JhA_IYGXrxeMr1RmbeUGuU2my1B71FlYRypPFQL2N70YSmVGTqo8RF_0ePQ_qWdjuiqcELpDCKO0kbjnWslL3F2Xc-bYeVS7t1bK6LnuQ6qRBG0Rpsb6zHmXfbUT_Z5dCNIkqUH1X3FeqU6vxxkYCPXr3DIIYM3YyEGteOeNI9m1G9Bt0JrtMKIJ4aDR9kZZmScmQGTlyKawkIgwelDn8tT0tGUUMI2FxHs93bBba3GP0WooTbAw7JDaE5RlGeyy7DtTmyQ-HwVdjn4dA1VhUSMEAG84xHLFuLFcPqpan16-_444WfDJDy8aUc4FRH1RgnfvpcQheiK3rmHHve-nDdPMO25pB3EGCyJlKy3mJD-qckjZAlBWS74GgMnxWnGZBfWsLiolNmRjyvo8mDUofmjSJP6iieqfzQwH4-Y3hwaYAkkI0-g9QjJ9bpnTfumex5tLCBwxjNvu7Lee4evqa_Bo9WSf9fW5d9GfpG912v7YPaTkm3LdMjNVlOu-5vNgvePbKaKjcRHeOIn2Oufxzg" width="0" /><br />
 <button></button><input /><br />
 <img alt="" height="0" src="https://ialaddin.genieesspv.jp/yie/ld/gl2?zid=1097490&amp;asid=9583840&amp;idx=0&amp;gid=8cde3175a82b55cc2f69d675fdcd0c11&amp;cb=e3306bba02&amp;l=nycz9l5HC1NyH4yYzr9DAorO2t2U7tQMdn_raX7L2OlGGn05DdklZcETzssAph8Uam43hwDy_IKyk2XSNVPONZOwPGJoXYXDL3HNbVAZKcED9FW-BvqZF7cmwrQQilIF_3904fgC7DvRX5CVzbK9lxnq6uKAha8ZPzqNRijvAbEVG3ADPsOj4T3C9rMr2qxVl8HPqx74nKIX3fcliuo11w1kg4jp6nAChwOOL5rNicUV_aFmzABPyXR5Z1LLGMdAbwOjYJnzWOWpdqMtTWwl23lBhqTpdHW41jxhMWFfDwTNttnY7JMEh-fJTTrO8NLFmlKQ74OS4zDxNs-GCXeDycNg1qvicA43zTaKUQTJgjZMQhqsCg1xIYELwta9TCI0ql0Q-LQnbeA8SvzIL_ypdeUKoWfkN_yhGT73n5iTr7GYQkinMBrsZY0wyV3tF7xkEiM5WgDW4i6gWicJN9ikOWmWgZjGwEl4Bwj_83O78lMsq__3Zu0la8ml-cNyzo18JABGfokwZev9EHt7Fyv9TEbLwssGyuF1JhA_IYGXrxeMr1RmbeUGuU2my1B71FlYRypPFQL2N70YSmVGTqo8RF_0ePQ_qWdjuiqcELpDCKO0kbjnWslL3F2Xc-bYeVS7t1bK6LnuQ6qRBG0Rpsb6zHmXfbUT_Z5dCNIkqUH1X3FeqU6vxxkYCPXr3DIIYM3YyEGteOeNI9m1G9Bt0JrtMKIJ4aDR9kZZmScmQGTlyKawkIgwelDn8tT0tGUUMI2FxHs93bBba3GP0WooTbAw7JDaE5RlGeyy7DtTmyQ-HwVdjn4dA1VhUSMEAG84xHLFuLFcPqpan16-_444WfDJDy8aUc4FRH1RgnfvpcQheiK3rmHHve-nDdPMO25pB3EGCyJlKy3mJD-qckjZAlBWS74GgMnxWnGZBfWsLiolNmRjyvo8mDUofmjSJP6iieqfuvbvKsmzBb1hF0wn8AVb-GJXixhn5GGnm9N_rjgHSazeKnFO4cp2cNzxLrsKa1Gc6u_ypKMTt0Qfs_XvbZm3_yAUZ1MedSVk" width="0" />
@@ -716,98 +717,213 @@ INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail]
 <p>Bố mẹ ép tôi nhận số tiền đó, không cho tôi ở nhà cùng ông bà nữa mà bắt ra ngoài mua nhà ở, sống cuộc sống của hai mẹ con. Tôi hiểu những suy nghĩ của mẹ, nhưng bố mẹ già rồi, ở riêng tôi không yên tâm. Bởi nhà anh cả, cô út thì ở xa, lại bận làm ăn không để ý bố mẹ được. Tôi nên làm thế nào đây?</p>
 ', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-16T10:30:32.517' AS DateTime), N'sondt24', CAST(N'2023-03-19T07:59:35.620' AS DateTime))
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(7 AS Decimal(18, 0)), N'WEL', CAST(2 AS Decimal(3, 0)), N'đá', N'https://localhost:7138/file_attach/20230319114556462z4150826192341_fad755c05e12412cbd96fd7c3bb6d525.jpg', N'fasdf', N'agsdg', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-18T13:35:46.360' AS DateTime), N'sondt24', CAST(N'2023-03-19T04:45:53.553' AS DateTime))
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(7 AS Decimal(18, 0)), N'DETAI', CAST(2 AS Decimal(3, 0)), N'đá', N'https://localhost:7138/file_attach/20230319114556462z4150826192341_fad755c05e12412cbd96fd7c3bb6d525.jpg', N'fasdf', N'agsdg', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-18T13:35:46.360' AS DateTime), N'sondt24', CAST(N'2023-03-19T04:45:53.553' AS DateTime))
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(8 AS Decimal(18, 0)), N'LOGO', CAST(2 AS Decimal(3, 0)), N'hg', N'~\file_attach\20230318133908907wikipedia_64x64[1].png', N'agsd', N'gád', CAST(N'2023-04-22T18:00:00.000' AS DateTime), NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-18T13:39:08.907' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(8 AS Decimal(18, 0)), N'DETAI', CAST(2 AS Decimal(3, 0)), N'hg', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'agsd', N'gád', CAST(N'2023-04-22T18:00:00.000' AS DateTime), NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-18T13:39:08.907' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(9 AS Decimal(18, 0)), N'BIEUMAU', CAST(0 AS Decimal(3, 0)), N'dà', N'~\file_attach\20230318134535288wikipedia_64x64[1].png', N'fasdf', N'gád', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-18T13:45:35.290' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(9 AS Decimal(18, 0)), N'DETAI', CAST(0 AS Decimal(3, 0)), N'dà', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'fasdf', N'gád', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-18T13:45:35.290' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'ABOUT', N'Giới thiệu', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(10 AS Decimal(18, 0)), N'DETAI', CAST(0 AS Decimal(3, 0)), N'ádf', N'https://localhost:7073//file_attach/20230319224219116Screenshot-2023-03-02-103504.png', N'fasdf', N'gádg', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-19T22:42:19.117' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'ANTT', N'Mạng và An toàn thông tin', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/ANTT', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(11 AS Decimal(18, 0)), N'BAOCSE', CAST(0 AS Decimal(3, 0)), N'Messi: ''Vô địch World Cup ở gần cuối sự nghiệp là đẹp nhất''', N'https://localhost:7138/file_attach/20230320003614394untitled-2.jpg', N'Lionel Messi lần đầu thuật lại hành trình đăng quang và ăn mừng chức vô địch World Cup 2022, trong buổi phỏng vấn với Infobae ngày 30/1.', N'<p>Lionel Messi lần đầu thuật lại hành trình đăng quang và ăn mừng chức vô địch World Cup 2022, trong buổi phỏng vấn với Infobae ngày 30/1.</p>
+
+<article>
+<p><em>- Cảm giác khi trở thành nhà vô địch thế giới thế nào?</em></p>
+
+<p>- Tôi từng trao đổi điều này với đồng đội, trước trận chung kết. Nhưng mọi thứ chúng tôi tưởng tượng quá nhỏ bé so với thực tế. Không khí của buổi lễ đăng quang lớn hơn nhiều từ con người, cảm xúc đến gia đình, đất nước Argentina. Tôi biết vô địch thế giới là dịp trang trọng, nhưng vẫn bị choáng ngợp.</p>
+
+<p><em>- Vậy còn những lời cầu chúc cho anh vô địch World Cup thì thế nào?</em></p>
+
+<p>- Đầu tiên, mọi người đều muốn quốc gia của họ vô địch. Nhưng sau khi các đội tuyển bị loại, họ quay sang ủng hộ Argentina vì muốn tôi đăng quang. Tôi đã nghe những lời cầu chúc như thế từ rất lâu trước khi giải đấu bắt đầu. Nếu không ủng hộ đội bóng quê hương, họ sẽ ủng hộ tôi. Tôi không nghĩ chuyện như thế từng xảy ra, và nó tạo động lực cho tôi.</p>
+
+<figure data-size="true" itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject"></figure>
+</article>
+<img alt="Messi cùng đồng đội nâng Cup vô địch sau trận chung kết. Ảnh: Reuters" data-ll-status="loaded" data-src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-6670-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=9eV26KebOMInef1xX4wN6Q" intrinsicsize="680x0" itemprop="contentUrl" loading="lazy" src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-6670-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=9eV26KebOMInef1xX4wN6Q" />
+<p>Messi cùng đồng đội nâng Cup vô địch sau trận chung kết. Ảnh: <em>Reuters</em></p>
+
+<p><em>- Anh nghĩ gì khi nói với vợ "Mọi thứ xong rồi" sau khi vô địch?</em></p>
+
+<p>- Ý tôi là mọi thứ đã kết thúc sau thời gian dài. Chúng tôi đã chịu đựng nhiều, đặc biệt là trong thời gian tôi gặp khó khăn ở đội tuyển. Rất nhiều điều thất vọng, bởi tôi cũng nhiều lần tới gần danh hiệu rồi gục ngã. Tôi nhận đủ thứ chỉ trích trong thời gian dài, và biết gia đình mình cũng chịu lây. Gia đình tôi lúc nào cũng tỏ ra mạnh mẽ, nhưng tôi biết họ tổn thương bên trong, không chỉ bởi tôi lỡ hẹn với danh hiệu, mà còn vì những lời cay nghiệt từ bên ngoài. Đó là thứ khiến tôi phiền lòng và đau đớn. Nhưng chúng tôi vô địch Copa America rồi World Cup. Không còn gì nữa, mọi chuyện đã trôi qua rồi.</p>
+
+<p><em>- Anh cảm thấy ra sao sau khi thắng trận chung kết?</em></p>
+
+<p>- Rất khó giải thích. Có một chút giống những trận chung kết trước đây, với gia đình xung quanh và nhiều tung hô. Rất nhiều thứ chạy trong đầu tôi và đồng thời là cảm giác trống rỗng. Tôi không còn lo nghĩ mà chỉ tận hưởng. Thật khó tin khi chúng tôi đạt mục tiêu. Tôi không thể mô tả cụ thể, nhưng cảm giác như mọi thứ được trút xuống. Chiếc Cup đã thuộc về tôi. Cuối cùng, tôi đã giành mọi danh hiệu cùng đội tuyển, cùng CLB cũng như các danh hiệu cá nhân tại Barca, khép lại sự nghiệp theo cách đặc biệt. Khi bắt đầu, tôi không nghĩ mình sẽ thành công như vậy.</p>
+
+<p><em>- Anh đã xem lại trận chung kết chưa?</em></p>
+
+<p>- Không. Tôi chưa xem lại. Tôi có xem màn ăn mừng khi Argentina đăng quang và những khoảnh khắc khác, nhưng diễn biến 120 phút trận chung kết thì chưa.</p>
+
+<p><em>- Anh đã làm gì khi nhìn thấy chiếc Cup vàng trước lễ trao giải?</em></p>
+
+<p>- Chiếc Cup khiến tôi không thể cưỡng lại. Nó vẫy gọi tôi tiến lại, chạm vào và cầm nó lên. Tôi từng nghe mọi người nói nếu không vô địch thì không được chạm vào hay thậm chí nhìn chiếc Cup. Tôi đã nhìn nó tỏa sáng trong sân vận động tuyệt vời đó. Tôi hôn lên Cup khi bước ngang. Tất nhiên, chiếc Cup vẫn ở đó, nhưng tôi được an ủi rất lớn, vì cũng bước ngang một lần mà không được chạm vào, năm 2014. Ký ức đó chưa biến mất.</p>
+
+<p><em>- Anh nói thế nào về hành động khiêu khích với Louis Van Gaal?</em></p>
+
+<p>- Sự thật là tôi không chủ đích làm thế. Đó chỉ là <a data-itm-added="1" data-itm-source="#vn_source=Detail-TheThao_BongDa_CacGiaiKhac-4565141&amp;vn_campaign=Box-InternalLink&amp;vn_medium=Link-KhoanhKhacBotPhat&amp;vn_term=Desktop&amp;vn_thumb=0" href="https://vnexpress.net/messi-khieu-khich-tuyen-ha-lan-4546469.html" rel="dofollow">khoảnh khắc bột phát</a>. Vài đồng đội thuật lại cho tôi phát biểu của Van Gaal trước trận. Rồi chúng tôi dẫn 2-0 và sự việc xảy ra như vậy. Tôi không thích điều mình làm, kể cả việc xua đuổi cầu thủ đối phương. Đó là khoảnh khắc cực kỳ căng thẳng và nhiều lo lắng. Mọi thứ xảy ra rất nhanh và tôi chẳng kịp suy nghĩ. Nhưng thực tế là không có gì được lên kịch bản trước đâu. Mọi thứ cứ tuần tự diễn ra, và như tôi nói, tôi không thích để lại hình ảnh đó.</p>
+
+<figure data-size="true" itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject"></figure>
+<img alt="Messi nói chuyện với Van Gaal và Edgar Davids sau trận gặp Hà Lan. Ảnh: AFP" data-ll-status="loaded" data-src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-5612-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=-kz50CrngTwInGfk6u-jMw" intrinsicsize="680x0" itemprop="contentUrl" loading="lazy" src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-5612-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=-kz50CrngTwInGfk6u-jMw" />
+<p>Messi nói chuyện với Van Gaal và Edgar Davids sau trận gặp Hà Lan. Ảnh: AFP</p>
+
+<p><em>- Chuyện gì đã xảy ra khi anh mắng tiền đạo Hà Lan Wout Weghorst?</em></p>
+
+<p>- Mọi thứ diễn ra tự nhiên. Nhiều thứ đã xảy ra giữa tôi và cầu thủ đó trên sân. Trong giờ phút căng thẳng như thế, sự thất vọng với trọng tài càng đổ thêm dầu vào lửa. Rồi tôi nói như vậy khi thấy anh ta trong khu phỏng vấn, lúc trận đấu mới kết thúc.</p>
+
+<p><em>- Anh thấy sao về màn đón tiếp hoành tráng tại quê nhà?</em></p>
+
+<p>- Sự thật là nhiều người trong chúng tôi bất ngờ. Chúng tôi cứ nghĩ là ai về nhà nấy khi trở lại Argentina. Nhưng khi về tới Ezeiza, đã có nhiều người ở đó. Đó là một đám đông lớn khiến chúng tôi mất nhiều thời gian để về nhà. Tôi không thể ngủ, nên xem TV tới 6h sáng và đã có nhiều người tụ tập ở Obelisk. Đó là lúc tôi biết tất cả sẽ phát cuồng.</p>
+
+<p><em>- Mọi người có uống nhiều không? Chuyện gì xảy ra khi đội diễu hành dưới nắng vài tiếng?</em></p>
+
+<p>- Tôi không biết nữa. Có người uống soda, người uống rượu thảo mộc. Thực tế, đội không quan tâm đến thời tiết. Có thể lúc ấy không nắng lắm, hoặc ngồi trên xe mui trần nên nhiều gió. Hệ quả là khi về nhà, người tôi đỏ bừng, say khướt, ngủ không ngon, say nắng và nhức đầu. Hai, ba ngày sau, tôi vẫn hơi sốt. Nhưng những người cởi áo mới tệ. Lúc ấy, không ai cảm thấy ánh mặt trời. Nhưng về nhà, mặt tôi bắt đầu bỏng rát một cách kinh khủng.</p>
+
+<figure data-size="true" itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject"></figure>
+<img alt="Messi và đồng đội diễu hành trước năm triệu người Argentina. Ảnh: Gustavo Gavotti" data-ll-status="loaded" data-src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-4205-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=-Yeft8BWGo8--lNqNGqiKQ" intrinsicsize="680x0" itemprop="contentUrl" loading="lazy" src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-4205-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=-Yeft8BWGo8--lNqNGqiKQ" />
+<p>Messi và đồng đội diễu hành trước năm triệu người Argentina. Ảnh: <em>Gustavo Gavotti</em></p>
+
+<p><em>- Cảm xúc của anh khi xem lại hình ảnh về lễ ăn mừng trên mạng thế nào?</em></p>
+
+<p>- Tôi xem nhiều. Đến giờ, tôi vẫn xúc động khi xem lại cảnh mọi người ăn mừng, khoảnh khắc chúng tôi đăng quang, hình ảnh về gia đình, bạn bè, những nhóm người tụ tập xem chung kết và khoảnh khắc Montiel đá quả luân lưu quyết định. Nó thật hấp dẫn. Tôi được sống trong cảm giác của những người theo dõi qua ống kính.</p>
+
+<p>- <em>Anh nhận xét thế nào về bức ảnh nhiều người thích nhất trên Instagram, bức ảnh anh nâng Cup?</em></p>
+
+<p>- Tôi không đăng nó với mục đích trở thành tấm ảnh nhiều lượt thích nhất lịch sử. Nhưng cuối cùng, mọi chuyện là thế. Nhưng nó cũng chứng tỏ có nhiều người muốn tôi nâng chiếc Cup đó. Tôi nghĩ bức ảnh đã chạm đến nhiều người. Thực tế là tôi đọc rất ít bình luận, rất khó đọc hết. Hàng triệu tin nhắn được gửi đến và khiến tài khoản tôi bị khóa.</p>
+
+<figure data-size="true" itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject"></figure>
+<img alt="Bức ảnh Messi nâng Cup sau trận thắng Pháp lập kỷ lục số lượt thích trên Instagram." data-ll-status="loaded" data-src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-9668-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=4CoQOG0Unq2P0t_etgOWtg" intrinsicsize="680x0" itemprop="contentUrl" loading="lazy" src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-9668-1675156495.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=4CoQOG0Unq2P0t_etgOWtg" />
+<p>Bức ảnh Messi nâng Cup sau trận thắng Pháp lập kỷ lục số lượt thích trên <em>Instagram.</em></p>
+
+<p><em>- Thế còn những lời nhắn nhủ từ các nhân vật thể thao khác?</em></p>
+
+<p>- Tôi rất biết ơn vì những người gửi lời đến tôi đều là ngôi sao toàn cầu, những người giỏi nhất trong lĩnh vực của họ. Với tôi, đó là niềm tự hào lớn. Đôi khi, việc được những VĐV khác thừa nhận rất quan trọng. Thực tế, tôi không thường trả lời hay bình luận ảnh trên mạng, mà chỉ bấm "thích". Rồi tôi nhận ra có quá nhiều lời chúc trong thời gian ngắn, và tôi chỉ có thể trả lời một vài người.</p>
+
+<p><em>- Anh cảm thấy thế nào về sự vắng mặt của Maradona và mơ ước trao Cup cho anh của ông ấy?</em></p>
+
+<p>- Nếu Maradona ở đó, ông ấy chắc chắn là người trao Cup cho tôi. Ông ấy còn muốn là một phần của đội. Đó cũng là kịch bản đẹp. Tôi tin ở trên cao, Maradona và những người muốn điều tốt cho tôi đều mạnh mẽ. Đặc biệt ở World Cup lần này, có một bài hát nổi bật nhắc tên ông ấy, kêu gọi sự giúp đỡ từ ông ấy trên cao.</p>
+
+<p><em>- Anh muốn nói đến bài "Muchachos" ư?</em></p>
+
+<p>- Tôi đã nói trước World Cup là rất thích bài đó nhưng nó không được phổ biến. Nhưng rồi từng bước, mọi người hát nó nhiều hơn. Tại World Cup, mọi người đều hát bài đó, cả những người không biết tiếng Tây Ban Nha hay hiểu lời bài hát. Giai điệu của ca khúc có sức lan tỏa, đã kéo mọi người cùng hòa nhịp.</p>
+
+<p><em>- Nếu được nói với bản thân khi còn là đứa trẻ, anh sẽ nói gì?</em></p>
+
+<p>- Tôi sẽ nói điều phi thường đang chờ cậu bé ấy phía trước. Điều cậu ấy thậm chí không thể tưởng tượng. Tôi nói cậu ấy con đường đẹp đẽ đang chờ phía trước với những thử thách mà cậu phải vượt qua, nhưng đừng từ bỏ giấc mơ. Bởi vì cuối cùng, cậu sẽ nhận được phần thưởng xứng đáng và cái kết như trong bộ phim đẹp.</p>
+
+<p><em>- Vô địch World Cup là món quà cho người dân Argentina. Anh nghĩ sao?</em></p>
+
+<p>- Tôi nghĩ đội tuyển đã cho mọi người một tháng không thể quên. Đó là khoảng thời gian không thể phai mờ. Mọi người đổ ra đường vui mừng sau mỗi trận và không quan tâm đến mọi thứ, chỉ đợi đội tuyển ra sân. Đó là hành trình một tháng chứ không riêng trận chung kết hay lễ ăn mừng. Người dân Argentina sống vì World Cup. Cái kết của nó khiến mọi người như bùng nổ trong hạnh phúc. Không còn đảng phái nào nữa, chỉ có World Cup. Không chỉ tôi, mọi thành viên của đội đều cảm nhận được sự cuồng nhiệt của người hâm mộ và tác động từ bóng đá đến họ. Điều này sẽ còn trong ký ức chúng tôi cả đời.</p>
+
+<p><em>- Anh nghĩ sao về việc có thêm hình xăm mới?</em></p>
+
+<p>- Tôi vẫn muốn xăm thêm hình World Cup lên người mình. Tôi đã nhìn thấy nhiều hình xăm đẹp, cũng như những cách xăm đa dạng.</p>
+
+<p><em>- Gia đình anh sống chung với World Cup thế nào?</em></p>
+
+<p>- Thiago như phát cuồng. Tôi thích cách nó tận hưởng World Cup, cách nó chịu đựng rồi khóc sau trận Hà Lan. Hoặc khi Mateo làm toán sau trận thua Saudi Arabia. Ciro có lẽ là đứa hiểu chuyện nhất dù nhỏ nhất. Hai anh của nó trải nghiệm World Cup trên tư cách CĐV Argentina và có lúc đau đớn. Gia đình ở bên tôi trong cả tháng và tận hưởng World Cup. Khi trở lại Paris, chúng tôi vẫn nhớ những ngày tại Qatar.</p>
+
+<figure data-size="true" itemprop="associatedMedia image" itemscope="" itemtype="http://schema.org/ImageObject"></figure>
+<img alt="Messi cùng HLV Scaloni vẫy chào người hâm mộ. Ảnh: Reuters" data-ll-status="loaded" data-src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-3150-1675156496.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=wqZBJnzr-GkvSUQqu2VSCA" intrinsicsize="680x0" itemprop="contentUrl" loading="lazy" src="https://i1-thethao.vnecdn.net/2023/01/31/Untitled-3150-1675156496.jpg?w=680&amp;h=0&amp;q=100&amp;dpr=1&amp;fit=crop&amp;s=wqZBJnzr-GkvSUQqu2VSCA" />
+<p>Messi cùng HLV Scaloni vẫy chào người hâm mộ. Ảnh: <em>Reuters</em></p>
+
+<p><em>- Anh nhận xét thế nào về HLV Scaloni và ban huấn luyện?</em></p>
+
+<p>- Ban huấn luyện của đội tuyển thực sự giỏi. Họ hiểu đội tuyển, sống cùng và đặt tâm huyết vào nó. Họ là những người từng trải nghiệm World Cup, nên biết bản thân cần nói gì, làm gì. Ban huấn luyện còn hơn cả những người truyền đạt lời khuyên về chiến thuật.</p>
+
+<p><em>- Đánh giá thế nào về màn trình diễn của Argentina tại World Cup?</em></p>
+
+<p>- Nhìn chung, tôi nghĩ chúng tôi luôn hay hơn mọi đối thủ trong từng trận. Chúng tôi luôn biết phải làm gì trong mỗi trận để không từ bỏ lối chơi của mình. Những chi tiết nhỏ khiến diễn biến trên sân nghiêng về phía chúng tôi, và tôi nghĩ Scaloni đã không phạm bất kỳ sai lầm nào trong cả 7 trận.</p>
+
+<p><em>- Anh có nghĩ World Cup là món quà từ Chúa?</em></p>
+
+<p>- Tôi từng nói điều này trong một buổi phỏng vấn năm 2014 thì phải. Tôi đã nghĩ về việc này trước đây và nói: ''Tôi nghĩ Chúa sẽ trao cho tôi một World Cup''. Tôi đã cảm thấy như vậy từ khi ở Brazil, và chờ đợi khoảnh khắc này, nghĩ rằng không gì tốt đẹp hơn thế. Nếu được chọn thời điểm vô địch World Cup, tôi vẫn chọn lúc này, khi sự nghiệp cầu thủ chuyên nghiệp gần đến hồi kết.</p>
+', NULL, NULL, N'A', NULL, NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-20T00:34:19.427' AS DateTime), N'sondt24', CAST(N'2023-03-19T17:36:14.393' AS DateTime))
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'BAOCSE', N'Báo CSE', N'TINTUC', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/BAOCSE', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'ABOUT', N'Giới thiệu', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'BIEUMAU', N'Biểu mẫu ĐATN', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/BIEUMAU', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'ANTT', N'Mạng và An toàn thông tin', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/ANTT', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'BOMON', N'Bộ môn-Trung tâm', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'BAOCSE', N'Báo CSE', N'TINTUC', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/BAOCSE', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CHUNGTRINH', N'Mô tả chương trình đào tạo', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CHUNGTRINH', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'BIEUMAU', N'Biểu mẫu ĐATN', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/BIEUMAU', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CNPM', N'CN phần mềm', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CNPM', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'BOMON', N'Bộ môn-Trung tâm', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CNTT', N'Nhóm ngành CNTT', N'TUYENSINH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CNTT', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CHUNGTRINH', N'Mô tả chương trình đào tạo', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CHUNGTRINH', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CONGTRINH', N'Công trình công bố', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CONGTRINH', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CNPM', N'CN phần mềm', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CNPM', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DAIHOC', N'Đào tạo đại học', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DAIHOC', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CNTT', N'Nhóm ngành CNTT', N'TUYENSINH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CNTT', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DAOTAO', N'Đào tạo', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'CONGTRINH', N'Công trình công bố', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/CONGTRINH', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DAURA', N'Chuẩn đầu ra', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DAURA', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DAIHOC', N'Đào tạo đại học', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DAIHOC', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DECUONG', N'Đề cương môn học', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DECUONG', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DAOTAO', N'Đào tạo', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DETAI', N'Các đề tài, dự án', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DETAI', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DAURA', N'Chuẩn đầu ra', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DAURA', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DINHHUONG', N'Định hướng ngành nghề', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DINHHUONG', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DECUONG', N'Đề cương môn học', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DECUONG', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'HOCBONG', N'Học bổng', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/HOCBONG', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DETAI', N'Các đề tài, dự án', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DETAI', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'HOME', N'Trang chủ', N'0', CAST(0 AS Decimal(3, 0)), N'/', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'DINHHUONG', N'Định hướng ngành nghề', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/DINHHUONG', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'HTTT', N'Hệ thống thông tin', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/HTTT', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'HOCBONG', N'Học bổng', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/HOCBONG', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LIENHE', N'Liên hệ', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(9 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'HOME', N'Trang chủ', N'0', CAST(0 AS Decimal(3, 0)), N'/', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LIENKET', N'Hợp tác liên kết', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/LIENKET', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'HTTT', N'Hệ thống thông tin', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/HTTT', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LOGO', N'Logo khoa CNTT', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/LOGO', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LIENHE', N'Liên hệ', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(9 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LUANVAN', N'Luận văn tốt nghiệp', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/LUANVAN', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LIENKET', N'Hợp tác liên kết', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/LIENKET', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'NCKH', N'Nghiên cứu khoa học', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LOGO', N'Logo khoa CNTT', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/LOGO', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'PHONGTN', N'Các phòng thí nghiệm', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/PHONGTN', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'LUANVAN', N'Luận văn tốt nghiệp', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/LUANVAN', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SAUDH', N'Đào tạo sau đại học', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/SAUDH', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'NCKH', N'Nghiên cứu khoa học', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SEMI', N'
-Thông tin seminar', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/SEMI', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'PHONGTN', N'Các phòng thí nghiệm', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/PHONGTN', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SINHVIEN', N'Sinh viên', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(6 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SAUDH', N'Đào tạo sau đại học', N'DAOTAO', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/SAUDH', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SUKIEN', N'Sự kiện', N'TINTUC', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/SUKIEN', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SEMI', N'
+Thông tin seminar', N'NCKH', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/SEMI', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TAILIEUSV', N'Tài liệu sinh viên', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TAILIEUSV', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SINHVIEN', N'Sinh viên', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(6 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TB', N'Thông báo', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(8 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'SUKIEN', N'Sự kiện', N'TINTUC', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/SUKIEN', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TBDAOTAO', N'TB Đào tạo', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TBDAOTAO', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TAILIEUSV', N'Tài liệu sinh viên', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TAILIEUSV', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TBKHAC', N'Thông báo khác', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TBKHAC', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TB', N'Thông báo', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(8 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TBNCKH', N'Nghiên cứu khoa học', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TBNCKH', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TBDAOTAO', N'TB Đào tạo', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TBDAOTAO', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'THONGBAO', N'Thông báo', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/THONGBAO', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TBKHAC', N'Thông báo khác', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TBKHAC', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TINHOC', N'Tin học và Kỹ thuật tính toán', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TINHOC', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TBNCKH', N'Nghiên cứu khoa học', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TBNCKH', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TINTUC', N'Tin tức', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(7 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'THONGBAO', N'Thông báo', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/THONGBAO', CAST(0 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TOAN', N'Toán học', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TOAN', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TINHOC', N'Tin học và Kỹ thuật tính toán', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TINHOC', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TOCHUC', N'Tổ chức', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TOCHUC', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TINTUC', N'Tin tức', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(7 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TOTUVAN', N'Tổ tư vấn học tập', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TOTUVAN', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TOAN', N'Toán học', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TOAN', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TTNT', N'Trí tuệ nhân tạo', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TTNT', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TOCHUC', N'Tổ chức', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TOCHUC', CAST(2 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TUYENDUNG', N'Tuyển dụng', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TUYENDUNG', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TOTUVAN', N'Tổ tư vấn học tập', N'SINHVIEN', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TOTUVAN', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TUYENSINH', N'Tuyển sinh', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TTNT', N'Trí tuệ nhân tạo', N'BOMON', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TTNT', CAST(4 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'WEL', N'Lời chào mừng', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/WEL', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TUYENDUNG', N'Tuyển dụng', N'TB', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/TUYENDUNG', CAST(3 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'TUYENSINH', N'Tuyển sinh', N'0', CAST(0 AS Decimal(3, 0)), N'#', CAST(5 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_Posts_Categories] ([Id], [Name], [PrId], [Lev], [Get_Url], [LstOdr], [Display_On_Menu], [Banner_Url], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (N'WEL', N'Lời chào mừng', N'ABOUT', CAST(1 AS Decimal(3, 0)), N'/danh-sach-bai-viet/WEL', CAST(1 AS Decimal(4, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-12T00:00:00.000' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), NULL, N'1', N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
 GO
@@ -983,7 +1099,7 @@ ALTER TABLE [dbo].[CSE_Group_Function] ADD  CONSTRAINT [DF_CSE_Group_Function_Au
 GO
 ALTER TABLE [dbo].[CSE_Groups] ADD  CONSTRAINT [DF_CSE_Groups_Deleted]  DEFAULT ((0)) FOR [Deleted]
 GO
-ALTER TABLE [dbo].[CSE_Posts] ADD  CONSTRAINT [DF_CSE_Posts_Status]  DEFAULT (N'P') FOR [Status]
+ALTER TABLE [dbo].[CSE_Posts] ADD  CONSTRAINT [DF_CSE_Posts_Status]  DEFAULT (N'A') FOR [Status]
 GO
 ALTER TABLE [dbo].[CSE_Posts] ADD  CONSTRAINT [DF_CSE_Posts_Deleted]  DEFAULT ((0)) FOR [Deleted]
 GO
@@ -997,7 +1113,7 @@ ALTER TABLE [dbo].[CSE_Users] ADD  CONSTRAINT [DF_CSE_Users_Is_Reset_Fucntion]  
 GO
 ALTER TABLE [dbo].[CSE_Users] ADD  CONSTRAINT [DF_CSE_Users_Deleted]  DEFAULT ((0)) FOR [Deleted]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_allcode_get_all]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_allcode_get_all]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1010,7 +1126,7 @@ BEGIN
 	ORDER BY v.LstOdr;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_cse_user_login]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_cse_user_login]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1026,7 +1142,7 @@ BEGIN
 	WHERE u.user_name = @p_user_name AND u.password = @p_password AND u.Deleted = 0;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_function_get_all]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_function_get_all]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1040,7 +1156,7 @@ BEGIN
 	ORDER BY f.PRID, f.Position;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_function_get_by_group_id]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_function_get_by_group_id]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1064,7 +1180,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_function_get_by_user_id]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_function_get_by_user_id]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1080,7 +1196,7 @@ BEGIN
 	WHERE uf.user_id = @p_user_id
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_activeOrUnactive]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_activeOrUnactive]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1111,7 +1227,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_delete]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_delete]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1139,7 +1255,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_function_delete]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_function_delete]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1161,7 +1277,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_function_insert]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_function_insert]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1181,7 +1297,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_get_all]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_get_all]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1195,7 +1311,7 @@ BEGIN
 	ORDER BY v.Group_Name;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_get_by_id]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_get_by_id]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1212,7 +1328,7 @@ BEGIN
 	WHERE a.Group_Id = @p_group_id
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_insert]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_insert]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1247,7 +1363,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_search]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_search]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1373,7 +1489,7 @@ BEGIN
 			@p_startrow = @p_startrow, @p_endrow = @p_endrow;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_update]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_update]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1408,7 +1524,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_user_add]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_user_add]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1458,7 +1574,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_user_get_by_group_id]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_user_get_by_group_id]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1477,7 +1593,7 @@ BEGIN
 	WHERE a.Deleted = 0 AND a.User_Type = @v_group_type;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_user_remove]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_user_remove]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1517,7 +1633,22 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_delete]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_postCategories_get_by_id]    Script Date: 20/03/2023 9:48:02 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_postCategories_get_by_id]
+(
+	@p_id NVARCHAR(500)
+)
+AS
+BEGIN
+	SELECT a.* FROM CSE_Posts_Categories a
+	WHERE a.Id = @p_id
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_posts_delete]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1546,7 +1677,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_get_by_id]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_get_by_id]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1562,7 +1693,7 @@ BEGIN
 	WHERE a.Id = @p_id AND a.Deleted = 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_insert]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_insert]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1602,7 +1733,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_search]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_search]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1630,6 +1761,7 @@ BEGIN
         DECLARE @v_title NVARCHAR(max) = '';
         DECLARE @v_created_date NVARCHAR(max) = '';
 		DECLARE @v_category_id NVARCHAR(max) = '';
+		DECLARE @v_status NVARCHAR(max) = '';
 
 		--SET ORDER BY
 		IF LEN(@p_orderby) > 0 
@@ -1649,8 +1781,10 @@ BEGIN
                 SET @v_title = @item;
             ELSE IF @v_index = 2
                 SET @v_created_date = @item;
-			ELSE IF @v_index = 3 BEGIN
+			ELSE IF @v_index = 3
                 SET @v_category_id = @item;
+			ELSE IF @v_index = 4 BEGIN
+                SET @v_status = @item;
 			END;
 			SET @v_index = @v_index + 1;
 			FETCH NEXT FROM v_cur_condition INTO @item
@@ -1671,10 +1805,14 @@ BEGIN
             SET @v_condition = @v_condition + ' AND dbo.FN_CheckContainList(UPPER(cd.v_category_id), UPPER(a.Category_Id)) = 1';
         END;
 
+		IF LEN(@v_status) > 0 BEGIN
+            SET @v_condition = @v_condition + ' AND a.Status = CD.v_status';
+        END;
+
         SET @v_sqlTableParamSearch = '
 			WITH TableCondition AS 
 			(
-				SELECT @v_title AS v_title, @v_created_date AS v_created_date, @v_category_id AS v_category_id
+				SELECT @v_title AS v_title, @v_created_date AS v_created_date, @v_category_id AS v_category_id, @v_status AS v_status
 			)
 			';
 
@@ -1695,8 +1833,8 @@ BEGIN
 		SET @v_sqlTotal_record = @v_sqlTableParamSearch + 'SELECT @p_total_record = COUNT(*) FROM (' + @v_sql + ') AS o';
 		EXECUTE sp_executesql 
 			@v_sqlTotal_record, 
-			N'@p_total_record decimal(18,0) OUT, @v_title NVARCHAR(max), @v_created_date NVARCHAR(max), @v_category_id NVARCHAR(max)', 
-			@p_total_record OUT, @v_title = @v_title, @v_created_date = @v_created_date, @v_category_id = @v_category_id;
+			N'@p_total_record decimal(18,0) OUT, @v_title NVARCHAR(max), @v_created_date NVARCHAR(max), @v_category_id NVARCHAR(max), @v_status NVARCHAR(max)', 
+			@p_total_record OUT, @v_title = @v_title, @v_created_date = @v_created_date, @v_category_id = @v_category_id, @v_status = @v_status ;
 		
 		--paging list
 		SET @v_sql = 'SELECT ROW_NUMBER() over(' + @v_orderby + ') STT, V.* FROM( ' + @v_sql + ') V ';
@@ -1713,13 +1851,13 @@ BEGIN
 
 		EXECUTE sp_executesql 
 			@v_sql, 
-			N'@v_title NVARCHAR(max), @v_created_date NVARCHAR(max), @v_category_id NVARCHAR(max),
+			N'@v_title NVARCHAR(max), @v_created_date NVARCHAR(max), @v_category_id NVARCHAR(max), @v_status NVARCHAR(max),
 			@p_startrow INT, @p_endrow INT', 
-			@v_title = @v_title, @v_created_date = @v_created_date, @v_category_id = @v_category_id,
+			@v_title = @v_title, @v_created_date = @v_created_date, @v_category_id = @v_category_id, @v_status = @v_status,
 			@p_startrow = @p_startrow, @p_endrow = @p_endrow;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_update]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_update]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1762,7 +1900,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_updateStatus]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_updateStatus]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1793,7 +1931,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_postsCategories_get_all]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_postsCategories_get_all]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1806,7 +1944,7 @@ BEGIN
 	ORDER BY v.LstOdr;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_set_func_for_user_in_gr]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_set_func_for_user_in_gr]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1847,7 +1985,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_activeOrUnactive]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_activeOrUnactive]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1878,7 +2016,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_changePass]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_changePass]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1908,7 +2046,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_delete]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_delete]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1936,7 +2074,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_function_by_user_id]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_function_by_user_id]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1969,7 +2107,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_function_reset]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_function_reset]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1994,7 +2132,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_function_update]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_function_update]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2027,7 +2165,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_get_all]    Script Date: 19/03/2023 4:15:24 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_get_all]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2041,7 +2179,7 @@ BEGIN
 	ORDER BY v.User_Name;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_get_by_id]    Script Date: 19/03/2023 4:15:25 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_get_by_id]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2058,7 +2196,7 @@ BEGIN
 	WHERE a.User_Id = @p_user_id
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_insert]    Script Date: 19/03/2023 4:15:25 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_insert]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2105,7 +2243,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_search]    Script Date: 19/03/2023 4:15:25 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_search]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2231,7 +2369,7 @@ BEGIN
 			@p_startrow = @p_startrow, @p_endrow = @p_endrow;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_update]    Script Date: 19/03/2023 4:15:25 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_update]    Script Date: 20/03/2023 9:48:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
