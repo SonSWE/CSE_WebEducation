@@ -95,6 +95,8 @@ namespace CSE_WebEducation
                 var client = new RestClient(ConstData.httpApiClientHost);
                 var request = new RestRequest("api/quan-tri/group/update", Method.POST);
                 request.RequestFormat = DataFormat.Json;
+                request.JsonSerializer = new JsonSerializer();
+
                 request.AddHeader("Authorization", $"Bearer {p_token}");
                 request.AddJsonBody(info);
                 IRestResponse response = client.Execute(request);

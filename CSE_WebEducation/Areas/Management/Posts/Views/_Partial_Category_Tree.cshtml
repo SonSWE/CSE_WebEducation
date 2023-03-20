@@ -42,6 +42,10 @@
 
 
 <select name="slCategory" id="slCategory" class="items-select" multiple tabindex="1">
+    @if (Model == "-1")
+    {
+        <option value="">-- Tất cả --</option>
+    }
     @{
         RenderCategoryAsTree(_LstCategory, "0", 0, _idSelected);
     }

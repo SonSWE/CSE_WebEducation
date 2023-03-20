@@ -38,7 +38,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                 p_record_on_page = p_record_on_page != 0 ? p_record_on_page : CommonData.RecordsPerPage;
                 int p_to = 0;
                 int p_from = CommonFunc.GetFromToPaging(curentPage, p_record_on_page, out p_to);
-                SearchResponseInfo _search = ApiClient_Posts.Search( keysearch, p_from.ToString(), p_to.ToString(), user.Token, " ");
+                SearchResponseInfo _search = ApiClient_Posts.Search( keysearch, p_from.ToString(), p_to.ToString(), user.Token, "");
 
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(curentPage, p_record_on_page, (int)_search.totalrows);
@@ -93,7 +93,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
 
         [Route("them-moi"), HttpPost]
         //[CustomActionFilter]
-        public IActionResult Insert(CSE_PostsInfo info)
+        public IActionResult Insert(CSE_PostsInfo info, string Start_Date, string End_Date)
         {
             decimal _success = -1;
             string _str_error = "";
@@ -102,6 +102,16 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                 var user = this.HttpContext.GetCurrentUser();
                 info.Created_By = user.User_Name;
                 info.Created_Date = DateTime.Now;
+
+                if (!string.IsNullOrEmpty(Start_Date))
+                {
+                    info.Start_Date = ConvertData.ConvertString2DateWithTime(Start_Date);
+                }
+
+                if (!string.IsNullOrEmpty(End_Date))
+                {
+                    info.End_Date = ConvertData.ConvertString2DateWithTime(End_Date);
+                }
 
                 var formFiles = this.HttpContext.Request.Form.Files;
                 if (formFiles != null && formFiles.Count > 0)
@@ -166,7 +176,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
 
         [Route("cap-nhat"), HttpPost]
         //[CustomActionFilter]
-        public IActionResult Update(CSE_PostsInfo info)
+        public IActionResult Update(CSE_PostsInfo info, string Start_Date, string End_Date)
         {
             decimal _success = -1;
             string _str_error = "";
@@ -175,6 +185,16 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
                 var user = this.HttpContext.GetCurrentUser();
                 info.Modified_By = user.User_Name;
                 info.Modified_Date = DateTime.Now;
+
+                if (!string.IsNullOrEmpty(Start_Date))
+                {
+                    info.Start_Date = ConvertData.ConvertString2DateWithTime(Start_Date);
+                }
+
+                if (!string.IsNullOrEmpty(End_Date))
+                {
+                    info.End_Date = ConvertData.ConvertString2DateWithTime(End_Date);
+                }
 
                 var formFiles = this.HttpContext.Request.Form.Files;
                 if (formFiles != null && formFiles.Count > 0)

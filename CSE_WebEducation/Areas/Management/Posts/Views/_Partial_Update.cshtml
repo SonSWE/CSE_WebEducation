@@ -13,6 +13,7 @@
     }
 
     string strStartDate = info.Start_Date == DateTime.MinValue?"": info.Start_Date.ToString("dd/MM/yyyy hh:mm");
+    string strEndDate = info.End_Date == DateTime.MinValue?"": info.End_Date.ToString("dd/MM/yyyy hh:mm");
 }
 <style>
     .holder {
@@ -92,7 +93,6 @@
                         </div>
                     </div>
                 </div>*@
-                <div>
                     <div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
@@ -101,6 +101,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Ngày kết thúc <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="dtEndDate" placeholder="__/__/____" disabled tabindex="7" value="@strEndDate">
+                        </div>
+                    </div>
+                </div>
                     <div class="col-lg-12">
                         <div class="flex-report">
                             <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
@@ -168,9 +176,11 @@
 
         if($("#slCategory").val() == "SUKIEN"){
             $("#dtStartDate").prop('disabled', false);
+            $("#dtEndDate").prop('disabled', false);
             $("#txtLocation").prop('disabled', false);
         }else{
             $("#dtStartDate").prop('disabled', true);
+            $("#dtEndDate").prop('disabled', true);
             $("#txtLocation").prop('disabled', true);
         }
 
@@ -184,7 +194,7 @@
         removePlugins: 'image'
     });
 
-    $('#dtStartDate').datetimepicker({
+    $('#dtStartDate,#dtEndDate').datetimepicker({
         format: 'd/m/Y H:i',
             formatTime: 'H:i',
             formatDate: 'd/m/Y',
@@ -209,9 +219,11 @@
     $('#slCategory').change(function(){
         if($("#slCategory").val() == "SUKIEN"){
             $("#dtStartDate").prop('disabled', false);
+            $("#dtEndDate").prop('disabled', false);
             $("#txtLocation").prop('disabled', false);
         }else{
             $("#dtStartDate").prop('disabled', true);
+            $("#dtEndDate").prop('disabled', true);
             $("#txtLocation").prop('disabled', true);
         }
     });
@@ -278,6 +290,9 @@
         if (file) {
             formData.append('file_Content', file);
         }
+
+        formData.append('Start_Date', $('#dtStartDate').val().replace("__/__/____", ""));
+        formData.append('End_Date', $('#dtEndDate').val().replace("__/__/____", ""));
     }
 
     function validateAdd() {
@@ -287,9 +302,11 @@
             var _title = $("#txtTitle").val().trim();
             var _descripttion = $("#txtDescription").val().trim();
             var _start_date = $('#dtStartDate').val().replace("__/__/____", "");
+            var _end_date = $('#dtEndDate').val().replace("__/__/____", "");
             var _location = $("#txtLocation").val().trim();
             var _content = CKEDITOR.instances["Content"].getData();
-            console.log(_start_date);
+            
+           
             if (_category == null || _category == "") {
                 showError('Danh mục không được để trống.')
                 $("#slCategory").focus();
@@ -333,6 +350,26 @@
                     $('#dtStartDate').focus();
                     return false;
                 }
+
+                if (_end_date == null || _end_date == "") {
+                    showError('Ngày, giờ kết thúc không được để trống.')
+                    $("#dtEndDate").focus();
+                    return false;
+                }
+                // check đúng định dạng format
+                var _Time_end_date = _end_date.substring(11, 18).trim();
+                if (Check_fomat_Hours("Ngày, giờ kết thúc", _Time_end_date) == false) {
+                    $('#dtEndDate').focus();
+                    return false;
+                }
+
+                var _Date_end_date = _end_date.substring(0, 11).trim();
+                if (_Date_end_date && !isDate_ddMMyyyy(_Date_end_date)) {
+                    showError('Ngày, giờ kết thúc không hợp lệ');
+                    $('#dtEndDate').focus();
+                    return false;
+                }
+
                 if (!_location) {
                     showError('Địa điểm không được để trống.')
                     $("#txtLocation").focus();

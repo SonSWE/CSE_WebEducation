@@ -77,6 +77,8 @@ namespace CSE_WebEducation
                 var client = new RestClient(ConstData.httpApiClientHost);
                 var request = new RestRequest("api/trang-khoa/bai-viet/update", Method.POST);
                 request.RequestFormat = DataFormat.Json;
+                request.JsonSerializer = new JsonSerializer();
+
                 request.AddHeader("Authorization", $"Bearer {p_token}");
                 request.AddJsonBody(info);
                 IRestResponse response = client.Execute(request);

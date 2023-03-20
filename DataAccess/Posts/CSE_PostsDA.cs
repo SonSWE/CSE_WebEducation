@@ -35,7 +35,8 @@ namespace DataAccess
                 lstParam[3] = new SqlParameter("@p_orderby", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Input,
-                    Value = order_by == null ? "" : order_by
+                    Value = order_by,
+                    IsNullable = true,
                 };
                 lstParam[4] = new SqlParameter("@p_total_record", SqlDbType.Decimal)
                 {
@@ -136,6 +137,12 @@ namespace DataAccess
                     Direction = ParameterDirection.Input,
                     Value = _info.Post_Type,
                 };
+                lstParam[11] = new SqlParameter("@p_end_date", SqlDbType.DateTime)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.End_Date == DateTime.MinValue ? null : _info.End_Date,
+                    IsNullable = true
+                };
 
                 SQLHelper.ExecuteNonQuery(CommonData.connectionString, CommandType.StoredProcedure, "sp_posts_insert", lstParam);
 
@@ -212,6 +219,12 @@ namespace DataAccess
                 {
                     Direction = ParameterDirection.Input,
                     Value = _info.Id,
+                };
+                lstParam[11] = new SqlParameter("@p_end_date", SqlDbType.DateTime)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = _info.End_Date == DateTime.MinValue ? null : _info.End_Date,
+                    IsNullable = true
                 };
 
 

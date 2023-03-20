@@ -70,7 +70,7 @@
                                 <img width="10%" src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2018/08/hp2-col-1-icon.png" alt="">
                                 <div>
                                     <h3>Tin tức</h3>
-                                    <a href="./New.html">Xem tiếp</a>
+                                    <a href="#">Xem tiếp</a>
                                 </div>
                             </div>
                             <div class="main-category-img">
@@ -81,7 +81,7 @@
                                     A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot.
                                 </p>
                                 <div>
-                                    <a href="/danh-sach-bai-viet/DAIHOC">Xem tiếp</a>
+                                    <a href="/danh-sach-bai-viet/BAOCSE">Xem tiếp</a>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +263,7 @@
         </div>
 
         <div class="events-content-wrapper">
-            <div class="row events-list" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+            <div class="events-list">
                 @if (_LstEvent != null && _LstEvent.Count > 0)
                 {
                     foreach (CSE_PostsInfo item in _LstEvent)
@@ -272,7 +272,7 @@
                         if (item.Title.Length > 61)
                             title = item.Title.Substring(0, 60) + "...";
 
-                        <div class="col-lg-3 col-mobile">
+                        <div class="">
                             <div class="event-content">
                                 <div class="event-thumbnail">
                                     <img width="100%" src="@item.Thumbnail" alt="">

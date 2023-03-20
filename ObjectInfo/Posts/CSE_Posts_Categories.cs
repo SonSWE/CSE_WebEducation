@@ -17,6 +17,7 @@ namespace ObjectInfo
         public decimal Lev { get; set; }
         public decimal Display_On_Menu { get; set; }
         public decimal LstOdr { get; set; }
+        public decimal IsLast { get; set; }
         public decimal Deleted { get; set; }
         public string Created_By { get; set; }
         public DateTime Created_Date { get; set; }

@@ -46,7 +46,8 @@
                     <div class="flex-report">
                         <div class="title-report">Tiêu đề <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input type="text" id="txtTitle" name="" autocomplete="off" autofocus maxlength="1000" tabindex="2">
+                            <input type="text" id="txtTitle" name="" autocomplete="off" autofocus maxlength="1000"
+                                tabindex="2">
                         </div>
                     </div>
                 </div>
@@ -58,7 +59,8 @@
                             <div class="holder">
                                 <img class="img-preview" id="imgPreview" src="~/img/upload.jpg" alt="pic" />
                             </div>
-                            <input type="file" name="photograph" id="thumbnail" class="cs-input-file" accept=".png, .jpg, .jpeg"  tabindex="3" style=" width: unset; padding: 0; border: 0;"/>
+                            <input type="file" name="photograph" id="thumbnail" class="cs-input-file"
+                                accept=".png, .jpg, .jpeg" tabindex="3" style=" width: unset; padding: 0; border: 0;" />
 
                         </div>
                     </div>
@@ -68,50 +70,47 @@
                     <div class="flex-report">
                         <div class="title-report">Mô tả <span class="clr-red">(*)</span></div>
                         <div class="field-report">
-                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000"  tabindex="4">
-                        </div>
-                    </div>
-                </div>
-               @* <div class="col-lg-12">
-                    <div class="flex-report">
-                        <div class="title-report">Loại bài viết <span class="clr-red">(*)</span></div>
-                        <div class="field-report">
-                            <select id="slPost_Type"  tabindex="5">
-                                @foreach (var item in AllCodeMemory.Allcode_GetByCdnameCdtype("POSTS", "POST_TYPE"))
-                                {
-                                    <option value="@item.CDVal">@item.Content</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                </div>*@
-                <div>
-                    <div class="col-lg-12">
-                        <div class="flex-report">
-                            <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
-                            <div class="field-report">
-                                <input type="text" id="dtStartDate" placeholder="__/__/____" disabled  tabindex="6">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="flex-report">
-                            <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
-                            <div class="field-report">
-                                <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000" disabled  tabindex="7">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="flex-report">
-                        <div class="title-report">Nội dung <span class="clr-red">(*)</span></div>
-                        <div class="field-report">
-                            <textarea type="file" id="Content" name="Content" maxlength="4000"></textarea  tabindex="8">
+                            <input type="text" id="txtDescription" name="" autocomplete="off" autofocus maxlength="1000"
+                                tabindex="4">
                         </div>
                     </div>
                 </div>
 
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Ngày bắt đầu <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="dtStartDate" placeholder="__/__/____" disabled tabindex="6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Ngày kết thúc <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="dtEndDate" placeholder="__/__/____" disabled tabindex="7">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Địa điểm <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <input type="text" id="txtLocation" name="" autocomplete="off" autofocus maxlength="1000" disabled tabindex="8">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="flex-report">
+                        <div class="title-report">Nội dung <span class="clr-red">(*)</span></div>
+                        <div class="field-report">
+                            <textarea type="file" id="Content" name="Content" maxlength="4000" tabindex="9"></textarea >
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -124,44 +123,48 @@
 </form>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         //$("#slPost_Type").val(1);
     });
+
     var file;
-    CKEDITOR.replace( 'Content', {
+
+    CKEDITOR.replace('Content', {
         extraPlugins: 'timestamp',
         removeButtons: 'Underline',
         removePlugins: 'image'
     });
 
-    $('#dtStartDate').datetimepicker({
+    $('#dtStartDate,#dtEndDate').datetimepicker({
         format: 'd/m/Y H:i',
-            formatTime: 'H:i',
-            formatDate: 'd/m/Y',
-            timepicker: true,
-            mask: '39/19/9999',
-            validateOnBlur: false,
-            scrollInput: false
+        formatTime: 'H:i',
+        formatDate: 'd/m/Y',
+        timepicker: true,
+        mask: '39/19/9999',
+        validateOnBlur: false,
+        scrollInput: false
     });
 
-    $('#thumbnail').change(function(){
+    $('#thumbnail').change(function () {
         file = this.files[0];
         console.log(file);
-        if (file){
-          let reader = new FileReader();
-          reader.onload = function(event){
-            $('#imgPreview').attr('src', event.target.result);
-          }
-          reader.readAsDataURL(file);
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function (event) {
+                $('#imgPreview').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
         }
-      });
+    });
 
-    $('#slCategory').change(function(){
-        if($("#slCategory").val() == "SUKIEN"){
+    $('#slCategory').change(function () {
+        if ($("#slCategory").val() == "SUKIEN") {
             $("#dtStartDate").prop('disabled', false);
+            $("#dtEndDate").prop('disabled', false);
             $("#txtLocation").prop('disabled', false);
-        }else{
+        } else {
             $("#dtStartDate").prop('disabled', true);
+            $("#dtEndDate").prop('disabled', true);
             $("#txtLocation").prop('disabled', true);
         }
     });
@@ -194,8 +197,7 @@
                             setTimeout(function () {
                                 window.location.href = '/trang-khoa/bai-viet/danh-sach';
                             }, 1000);
-                        }else if(data.success == -600011)
-                        {
+                        } else if (data.success == -600011) {
                             $("#txtTitle").focus();
                             showError(data.responseMessage);
                         }
@@ -229,6 +231,9 @@
         if (file) {
             formData.append('file_Content', file);
         }
+
+        formData.append('Start_Date', $('#dtStartDate').val().replace("__/__/____", ""));
+        formData.append('End_Date', $('#dtEndDate').val().replace("__/__/____", ""));
     }
 
     function validateAdd() {
@@ -238,6 +243,7 @@
             var _title = $("#txtTitle").val().trim();
             var _descripttion = $("#txtDescription").val().trim();
             var _start_date = $('#dtStartDate').val().replace("__/__/____", "");
+            var _end_date = $('#dtEndDate').val().replace("__/__/____", "");
             var _location = $("#txtLocation").val().trim();
             var _content = CKEDITOR.instances["Content"].getData();
             console.log($('#dtStartDate').val())
@@ -270,6 +276,38 @@
                     $("#dtStartDate").focus();
                     return false;
                 }
+                // check đúng định dạng format
+                var _Time_start_date = _start_date.substring(11, 18).trim();
+                if (Check_fomat_Hours("Ngày, giờ bắt đầu", _Time_start_date) == false) {
+                    $('#dtStartDate').focus();
+                    return false;
+                }
+
+                var _Date_start_date = _start_date.substring(0, 11).trim();
+                if (_Date_start_date && !isDate_ddMMyyyy(_Date_start_date)) {
+                    showError('Ngày, giờ bắt đầu không hợp lệ');
+                    $('#dtStartDate').focus();
+                    return false;
+                }
+
+                if (_end_date == null || _end_date == "") {
+                    showError('Ngày, giờ kết thúc không được để trống.')
+                    $("#dtEndDate").focus();
+                    return false;
+                }
+                // check đúng định dạng format
+                var _Time_end_date = _end_date.substring(11, 18).trim();
+                if (Check_fomat_Hours("Ngày, giờ kết thúc", _Time_end_date) == false) {
+                    $('#dtEndDate').focus();
+                    return false;
+                }
+
+                var _Date_end_date = _end_date.substring(0, 11).trim();
+                if (_Date_end_date && !isDate_ddMMyyyy(_Date_end_date)) {
+                    showError('Ngày, giờ kết thúc không hợp lệ');
+                    $('#dtEndDate').focus();
+                    return false;
+                }
 
                 if (!_location) {
                     showError('Địa điểm không được để trống.')
@@ -293,8 +331,7 @@
         history.back();
     }
 
-    function confirmSubmit()
-    {
+    function confirmSubmit() {
         try {
             nvsConfirm("Bạn có chắc chắn muốn lưu thông tin không?", function () {
                 $('#formAddPosts').submit();
@@ -305,8 +342,7 @@
     }
 
 
-    function closeFormAdd()
-    {
+    function closeFormAdd() {
         try {
             nvsConfirm("Bạn có chắc chắn muốn thoát không?", function () {
                 BackList();
