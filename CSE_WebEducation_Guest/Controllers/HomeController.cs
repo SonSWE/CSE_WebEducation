@@ -31,7 +31,23 @@ namespace CSE_WebEducation_Guest.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            ViewBag.curTab = "HOME";
+            
+            try
+            {
+                ViewBag.curTab = "HOME";
+
+                //danh sách 6 bài viết mới nhất
+                SearchResponseInfo _search = ApiClient_Posts.Search("||BAOCSE|A", "1", "6", "", "Created_By DESC");
+                ViewBag.LstNews = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
+
+                //danh sách 6 bài viết mới nhất
+                SearchResponseInfo _search2 = ApiClient_Posts.Search("||SUKIEN|A", "1", "10", "", "Start_Date DESC");
+                ViewBag.LstEvent = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
+            }
+            catch (Exception ex)
+            {
+
+            }
             return View("~/Views/Home/Index.cshtml");
         }
 
@@ -49,13 +65,13 @@ namespace CSE_WebEducation_Guest.Controllers
                 ViewBag.curTab = info.Category_Id;
 
                 //danh sách 4 bài viết mới nhất
-                SearchResponseInfo _search = ApiClient_Posts.Search("|||", "1", "4", "", "Created_By DESC");
+                SearchResponseInfo _search = ApiClient_Posts.Search("|||A", "1", "4", "", "Created_By DESC");
                 ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
 
                 //lấy danh sách 10 để sự kiện gợi ý 
                 if (info.Category_Id == "SUKIEN")
                 {
-                    _search = ApiClient_Posts.Search("|||2", "1", "10", "", "Start_Date DESC");
+                    _search = ApiClient_Posts.Search("||SUKIEN|A", "1", "10", "", "Start_Date DESC");
                     ViewBag.LstTenEvent = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
                 }
             }
@@ -79,7 +95,7 @@ namespace CSE_WebEducation_Guest.Controllers
                 ViewBag.curTab = id;
 
                 //danh sách 4 bài viết mới nhất
-                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||", "1", "4", "", " ");
+                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||A", "1", "4", "", " ");
                 ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
             }
             catch (Exception ex)

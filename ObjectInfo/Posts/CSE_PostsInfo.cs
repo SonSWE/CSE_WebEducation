@@ -19,6 +19,7 @@ namespace ObjectInfo
         public string Description { get; set; }
         public string Content { get; set; }
         public DateTime Start_Date { get; set; }
+        public DateTime End_Date { get; set; }
         public string Location { get; set; }
         public string Status { get; set; }
         public string Status_Text { get; set; }

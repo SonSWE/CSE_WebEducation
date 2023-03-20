@@ -71,9 +71,10 @@
 .news-video_wrapper{
     padding: 30px 0;
 }
-.video-box{
+.video-box {
     display: block;
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .video-icon{
     display: inline-block;
@@ -228,6 +229,7 @@
     color: white;
 }
 .events-start-date span:last-child{
+    white-space:nowrap;
     font-size: 12px;
     display: block;
     font-weight: 700;

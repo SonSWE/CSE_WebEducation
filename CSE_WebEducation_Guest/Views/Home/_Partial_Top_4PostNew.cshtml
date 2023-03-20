@@ -6,9 +6,6 @@
     {
         _lstPostNew = ViewBag.LstFourPostsNew;
     }
-
-    string a = "";
-    a = _lstPostNew[0].Title;
 }
 
 <div class="newest-new-container">
@@ -22,7 +19,7 @@
             {
                 string title = item.Title;
                 if (item.Title.Length > 61)
-                    title = item.Title.Substring(0, 30) + "...";
+                    title = item.Title.Substring(0, 60) + "...";
 
                 <li class="newsest-item">
                     <img class="thumbnail-post-new" src="@item.Thumbnail" alt="">
