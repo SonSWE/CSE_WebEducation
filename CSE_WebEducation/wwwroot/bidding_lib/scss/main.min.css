@@ -3851,11 +3851,17 @@ table.dataTable thead tr th:not(:first-child), table.dataTable thead tr td:not(:
 
 .body-report {
     padding: 32px 16px;
-    /*max-height: calc(100vh - 172px);
-    overflow-y: auto;*/
+    max-height: calc(100vh - 172px);
+    overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #c4c4c4 #fff
 }
+
+    .body-report.no-scroll {
+        padding: 32px 16px;
+        max-height: none;
+        overflow-y: hidden;
+    }
 
 @media only screen and (max-width:767px) {
     .body-report {

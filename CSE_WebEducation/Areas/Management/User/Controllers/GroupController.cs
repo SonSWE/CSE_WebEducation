@@ -171,7 +171,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
         }
 
         [Route("cap-nhat-trang-thai"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Update(decimal user_id, string status)
         {
             decimal _success = -1;
@@ -236,50 +236,6 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
             return Json(new { success = _id });
         }
 
-
-        //[Route("thay-doi-trang-thai"), HttpPut]
-        //[CustomActionFilter]
-        //public IActionResult ChangeStatusAuGroup(decimal group_id, string group_status)
-        //{
-        //    decimal _success = -1;
-        //    string _str_error = "Thay đổi trạng thái của nhóm không thành công!";
-        //    try
-        //    {
-        //        var user = this.HttpContext.GetCurrentUser();
-
-        //        Au_Group_Info _Au_Group_Info = new Au_Group_Info();
-        //        _Au_Group_Info.Status = group_status;
-        //        _Au_Group_Info.Group_Id = group_id;
-        //        _Au_Group_Info.Modified_By = user.User_Name;
-        //        _Au_Group_Info.Modified_Date = DateTime.Now;
-        //        _success = ApiClient_Group.ChangeStatus(_Au_Group_Info, user.Token);
-        //        if (_success > 0)
-        //        {
-        //            _str_error = "Thay đổi trạng thái của nhóm thành công!";
-        //            Au_Group_Info info = ApiClient_Group.GetBygroupId(group_id, user.Token);
-        //            if (group_status == Au_Group_Status.HieuLuc)
-        //            {
-        //                Api_TraceLog.Client_Log_Insert(this.HttpContext, "Kích hoạt", $"Người dùng \"{user.User_Name}\" kích hoạt nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
-        //            }
-        //            else if (group_status == Au_Group_Status.HetHieuLuc)
-        //            {
-        //                Api_TraceLog.Client_Log_Insert(this.HttpContext, "Hết hiệu lực", $"Người dùng \"{user.User_Name}\" hết hiệu lực nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
-        //            }
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.nlog.Error(ex.ToString());
-        //    }
-        //    return Json(new
-        //    {
-        //        success = _success,
-        //        responseMessage = _str_error
-        //    });
-        //}
-
-
         [Route("xep-nhom-nguoi-dung/{groupId}"), HttpGet]
         [CustomActionFilter(FunctionCode = "GROUP_USER")]
         public IActionResult LoadGroupUser(decimal groupId)
@@ -311,6 +267,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
         public IActionResult SaveUserGroup(int act, decimal groupId, string userId)
         {
             decimal success = -1;
+            string _str_error = "Gán/ gỡ người dùng thất bại";
             try
             {
                 CSE_UsersInfo user = this.HttpContext.GetCurrentUser();
@@ -332,11 +289,13 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                         if (act == 1)
                         {
+                            _str_error = "Gán người dùng vào nhóm thành công!";
                             success = ApiClient_Group_User.AddUserToGroup(groupUser, user.Token);
                             //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xếp nhóm NSD", $"Người dùng \"{user.User_Name}\" thêm tài khoản \"{userinfo.User_Name}\" vào nhóm \"{groupInfo.Group_Name}\" ", "Nhóm người dùng");
                         }
                         else
                         {
+                            _str_error = "Gỡ người dùng khỏi nhóm thành công!";
                             success = ApiClient_Group_User.RemoveUserFromGroup(groupUser, user.Token);
                             //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xếp nhóm NSD", $"Người dùng \"{user.User_Name}\" xóa tài khoản \"{userinfo.User_Name}\" khỏi nhóm \"{groupInfo.Group_Name}\" ", "Nhóm người dùng");
                         }
@@ -349,9 +308,14 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
             }
             catch (Exception ex)
             {
+                _str_error = "Gán/ gỡ người dùng thất bại";
                 Logger.log.Error(ex.ToString());
             }
-            return Json(new { success = success });
+            return Json(new
+            {
+                success = success,
+                responseMessage = _str_error
+            });
         }
 
 

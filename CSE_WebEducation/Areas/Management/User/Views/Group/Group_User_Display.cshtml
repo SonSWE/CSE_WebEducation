@@ -226,52 +226,14 @@
                 },
                 success: function (data) {
                     if (preHandleDataResult(data)) {
-                        if (data.success == 1) {
-                            //showSuccess("Thêm người dùng vào nhóm thành công");
+                        if (data.success > 0) {
+                            showSuccess(data.responseMessage);
                             setTimeout(function () {
                                     window.location.reload(true);
                                 }, 200);
-                            refreshData();
-                            getUsersByGroupId();
-                        } else if (data.success == 2) {
-                            //showSuccess("Cập nhật thông tin thành công");
-                            refreshData();
-                            //getUsersByGroupId();
-                            setTimeout(function () {
-                                    window.location.reload(true);
-                                }, 1000);
                         } else {
-                            //showError("Lỗi, không thực hiện được thao tác!")
+                            showError(data.responseMessage);
                         }
-                    }
-                },
-                error: function (data) {
-                    console.log(data.error);
-                },
-                complete: function () {
-                    SpinLoading(false);
-                }
-            });
-
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
-
-    function getUsersByGroupId() {
-        try {
-            $.ajax({
-                type: "Get",
-                url: "/quan-tri/nhom-nguoi-dung/nguoi-dung-trong-nhom",
-                data: {
-                    groupId: $('#hdfGroupID').val(),
-                },
-                beforeSend: function () {
-                    SpinLoading(true);
-                },
-                success: function (data) {
-                    if (preHandleDataResult(data)) {
-                        $('#divListUserOfGroup').html(data);
                     }
                 },
                 error: function (data) {
@@ -307,15 +269,13 @@
                     },
                     success: function (data) {
                         if (preHandleDataResult(data)) {
-                            if (data.success >= 0) {
-                                showSuccess("Đã xóa người dùng khỏi nhóm thành công!");
-                                getUsersByGroupId();
+                            if (data.success > 0) {
+                                showSuccess(data.responseMessage);
                                 setTimeout(function () {
-                                    window.location.reload(true);
-                                }, 500);
-                            }
-                            else {
-                                showError("Lỗi,Không xóa được người dùng khỏi nhóm!")
+                                        window.location.reload(true);
+                                    }, 200);
+                            } else {
+                                showError(data.responseMessage);
                             }
                         }
                     },
@@ -333,14 +293,7 @@
         });
     }
 
-    function refreshData() {
-        $('input[name="notright"]').each(function () {
-                $(this).prop("checked", false);
-        });
-    }
-
     function BackList() {
-        //window.location = '/giai-ma-xac-thuc-phieu-du-thau/danh-sach';
         history.back();
     }
 

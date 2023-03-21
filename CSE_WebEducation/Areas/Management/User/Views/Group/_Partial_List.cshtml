@@ -92,19 +92,24 @@
                                     </span>
                                     <div class="name-function-fix">Xóa</div>
                                 </a>
-                                <a href="javascript:;" onclick="LoadSetFunction(@item.Group_Id)" class="btn-function">
-                                    <span>
-                                        <img class="imgbefore-hv" src="~/bidding_lib/img/wrench.svg" alt="img">
-                                    </span>
-                                    <div class="name-function-fix">Phân quyền</div>
-                                </a>
+                                @if (@item.Status.ToUpper() == CSE_Group_Status.HieuLuc)
+                                {
+                                    <a href="javascript:;" onclick="LoadSetFunction(@item.Group_Id)" class="btn-function">
+                                        <span>
+                                            <img class="imgbefore-hv" src="~/bidding_lib/img/wrench.svg" alt="img">
+                                        </span>
+                                        <div class="name-function-fix">Phân quyền</div>
+                                    </a>
 
-                                <a href="javascript:;" onclick="LoadGroupUser(@item.Group_Id)" class="btn-function">
-                                    <span>
-                                        <img class="imgbefore-hv" src="~/bidding_lib/img/users.svg" alt="img">
-                                    </span>
-                                    <div class="name-function-fix">Gán/ gỡ NSD</div>
-                                </a>
+                                    <a href="javascript:;" onclick="LoadGroupUser(@item.Group_Id)" class="btn-function">
+                                        <span>
+                                            <img class="imgbefore-hv" src="~/bidding_lib/img/users.svg" alt="img">
+                                        </span>
+                                        <div class="name-function-fix">Gán/ gỡ NSD</div>
+                                    </a>
+                                }
+
+
 
                                 @if (@item.Status.ToUpper() == CSE_Group_Status.HieuLuc)
                                 {
@@ -145,28 +150,37 @@
 </div>
 
 <script>
-    //$(function() {
-    //     //inittitlefuction();
-    //})
-
-    //window.onload = funcFixTable();
-    //window.onresize = funcFixTable();
-    //function funcFixTable() {
-    //    let options = {
-    //        fnDrawCallback: function () {
-    //            if (window.currentScrollLeft > 0) {
-    //                document.getElementById("test-tb").parentElement.scrollLeft = window.currentScrollLeft;
-    //            }
-    //            //
-    //            document.getElementById("test-tb").parentElement.addEventListener("scroll", function () {
-    //                window.currentScrollLeft = this.scrollLeft;
-    //            });
-    //        }
-    //    };
-    //    let fixColumnOptions = {
-    //        leftColumns: 0,
-    //        rightColumns: 1
-    //    };
-    //    CreateFixedTable('#test-tb', fixColumnOptions, options);
-    //}
+    $(function () {
+        //ChangeIconSortTable();
+        inittitlefuction();
+        focusTableFixed();
+    });
+    window.onload = funcFixTable();
+    window.onresize = funcFixTable();
+    function funcFixTable() {
+        let options = {
+            "paging": false,
+            fnDrawCallback: function () {
+                if (window.currentScrollLeft > 0) {
+                    document.getElementById("test-tb").parentElement.scrollLeft = window.currentScrollLeft;
+                }
+                //
+                document.getElementById("test-tb").parentElement.addEventListener("scroll", function () {
+                    window.currentScrollLeft = this.scrollLeft;
+                });
+                //$("th[data-sort]").off("click").on("click", function () {
+                //    SortTable($(this).attr("data-sort"), function () {
+                //        if (!!window.SearchAuction) {
+                //            SearchAuction("",'@CommonData.pageDefaut');
+                //        }
+                //    });
+                //});
+            }
+        };
+        let fixColumnOptions = {
+            leftColumns: 2,
+            rightColumns: 1
+        };
+        CreateFixedTable('#test-tb', fixColumnOptions, options);
+    }
 </script>

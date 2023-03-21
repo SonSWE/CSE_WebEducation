@@ -70,7 +70,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("them-moi"), HttpGet]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Insert()
         {
             try
@@ -86,7 +86,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("them-moi"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Insert(CSE_UsersInfo info)
         {
             decimal _success = -1;
@@ -123,7 +123,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("cap-nhat"), HttpGet]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Update(decimal user_id)
         {
             try
@@ -140,7 +140,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("cap-nhat"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Update(CSE_UsersInfo info)
         {
             decimal _success = -1;
@@ -175,7 +175,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("cap-nhat-trang-thai"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Update(decimal user_id, string status)
         {
             decimal _success = -1;
@@ -215,7 +215,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         }
 
         [Route("xoa"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Delete(decimal user_id)
         {
             decimal _id = -1;

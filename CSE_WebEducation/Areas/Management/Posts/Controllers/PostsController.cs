@@ -55,7 +55,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("chi-tiet/{id}"), HttpGet]
-        //[CustomActionFilter]
+        [CustomActionFilter(FunctionCode = "POST_VIEW")]
         public IActionResult ViewDetail(decimal id)
         {
             try
@@ -74,7 +74,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("them-moi"), HttpGet]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Insert()
         {
             try
@@ -92,7 +92,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("them-moi"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Insert(CSE_PostsInfo info, string Start_Date, string End_Date)
         {
             decimal _success = -1;
@@ -156,7 +156,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("cap-nhat/{id}"), HttpGet]
-        //[CustomActionFilter]
+        [CustomActionFilter(FunctionCode = "POST_UPDATE")]
         public IActionResult Update(decimal id)
         {
             try
@@ -175,7 +175,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("cap-nhat"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Update(CSE_PostsInfo info, string Start_Date, string End_Date)
         {
             decimal _success = -1;
@@ -239,7 +239,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("xoa"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult Delete(decimal id)
         {
             decimal _id = -1;
@@ -265,7 +265,7 @@ namespace CSE_WebEducation.Areas.Management.Posts.Controllers
         }
 
         [Route("cap-nhat-trang-thai"), HttpPost]
-        //[CustomActionFilter]
+        [CustomActionFilter]
         public IActionResult ShowOrHide(decimal id, string status)
         {
             decimal _id = -1;
