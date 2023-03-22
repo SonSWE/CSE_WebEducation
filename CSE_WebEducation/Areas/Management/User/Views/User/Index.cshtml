@@ -2,7 +2,7 @@
 @using CommonLib;
 @{
     Layout = "~/Views/Shared/_ManaLayout.cshtml";
-    ViewBag.Title = "Danh sách người dùng";
+    ViewBag.Title = "Danh sách tài khoản";
 }
 
 <div id="pupup"></div>
@@ -61,7 +61,7 @@
         width: '100%',
         single: false,
         filter: true,
-        placeholder: "-- Chọn loại người dùng --",
+        placeholder: "-- Chọn loại tài khoản --",
     });
 
      $('#slStatus').multipleSelect({
@@ -125,7 +125,7 @@
                     SpinLoading(false);
                     if (preHandleDataResult(data)) {
                         $("#dPopup").html(data);
-                        ShowPopupDialog("dPopup", "Thêm mới người dùng");
+                        ShowPopupDialog("dPopup", "Thêm mới tài khoản");
                     }
                 }
             });
@@ -184,7 +184,7 @@
 
     function Delete(user_id) {
         try {
-            nvsConfirm("Bạn có chắc chắn muốn xóa người dùng này không?", function () {
+            nvsConfirm("Bạn có chắc chắn muốn xóa tài khoản này không?", function () {
                 $.ajax({
                     type: 'POST',
                     url: '/quan-tri/nguoi-dung/xoa',
@@ -223,10 +223,10 @@
             console.log(status)
             var strQuestion = "";
             if(status == '@CSE_User_Status.Active'){
-                strQuestion = "Bạn có chắc chắn muốn kích hoạt người dùng này không?";
+                strQuestion = "Bạn có chắc chắn muốn kích hoạt tài khoản này không?";
             }
             else{
-                strQuestion = "Bạn có chắc chắn muốn ngưng hoạt động người dùng này không?";
+                strQuestion = "Bạn có chắc chắn muốn ngưng hoạt động tài khoản này không?";
             }
             
             nvsConfirm(strQuestion, function () {

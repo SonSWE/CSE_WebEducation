@@ -100,7 +100,7 @@ namespace CSE_WebEducation.Helper
         public static IHtmlContent CreateMenuLeft2(this IHtmlHelper htmlHelper, List<CSE_FunctionsInfo> lstAllFunctionsByUser, decimal rootId, decimal functionLev1, decimal funcLev2)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<div class=\"sidebar hide\" ><div class=\"logo-details\"> <i class='bx bxl-c-plus-plus'></i> <span class=\"logo_name\">CSE admin</span></div>");
+            sb.Append("<div class=\"sidebar hide\" ><div class=\"logo-details\"> <img src=\"/img/csewhite.png\" alt=\"img\"> <span class=\"logo_name\">CSE admin</span></div>");
             string htmlString = GetTreeMenuLeft2(lstAllFunctionsByUser, rootId, functionLev1, funcLev2);
             sb.Append(htmlString);
             //sb.Append("</nav>");

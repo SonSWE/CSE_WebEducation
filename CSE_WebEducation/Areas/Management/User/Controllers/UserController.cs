@@ -41,7 +41,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 ViewBag.Record_On_Page = p_record_on_page;
                 //ViewBag.UserType = user.User_Type;
 
-                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Tìm kiếm", $"Người dùng \"{user.User_Name}\" tìm kiếm thông tin nhóm người dùng", "Quản lý nhóm người sử dụng");
+                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Tìm kiếm", $"tài khoản \"{user.User_Name}\" tìm kiếm thông tin nhóm tài khoản", "Quản lý nhóm người sử dụng");
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 CSE_UsersInfo user_Info = ApiClient_User.GetById(user_id, user.Token);
                 ViewBag.User_Info = user_Info;
 
-                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xem thông tin", $"Người dùng \"{user.User_Name}\" xem thông tin nhóm người dùng. Tên nhóm NSD " + _Au_Group_Info.Group_Name, "Quản lý nhóm người sử dụng");
+                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xem thông tin", $"tài khoản \"{user.User_Name}\" xem thông tin nhóm tài khoản. Tên nhóm NSD " + _Au_Group_Info.Group_Name, "Quản lý nhóm người sử dụng");
             }
             catch (Exception ex)
             {
@@ -100,7 +100,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
 
                 if (_success > 0)
                 {
-                    _str_error = "Thêm mới người dùng thành công!";
+                    _str_error = "Thêm mới tài khoản thành công!";
                 }
                 else if(_success == -2)
                 {
@@ -108,7 +108,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 }
                 else
                 {
-                    _str_error = "Thêm mới người dùng thất bại!";
+                    _str_error = "Thêm mới tài khoản thất bại!";
                 }
             }
             catch (Exception ex)
@@ -155,12 +155,12 @@ namespace CSE_WebEducation.Areas.User.Controllers
 
                 if (_success > 0)
                 {
-                    _str_error = "Chỉnh sửa người dùng thành công!";
-                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                    _str_error = "Chỉnh sửa tài khoản thành công!";
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"tài khoản \"{user.User_Name}\" sửa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
                 }
                 else
                 {
-                    _str_error = "Chỉnh sửa người dùng thất bại!";
+                    _str_error = "Chỉnh sửa tài khoản thất bại!";
                 }
             }
             catch (Exception ex)
@@ -195,12 +195,12 @@ namespace CSE_WebEducation.Areas.User.Controllers
 
                 if (_success > 0)
                 {
-                    _str_error = "Cập nhật trạng thái người dùng thành công!";
-                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                    _str_error = "Cập nhật trạng thái tài khoản thành công!";
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"tài khoản \"{user.User_Name}\" sửa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
                 }
                 else
                 {
-                    _str_error = "Cập nhật trạng thái người dùng thất bại!";
+                    _str_error = "Cập nhật trạng thái tài khoản thất bại!";
                 }
             }
             catch (Exception ex)
@@ -231,7 +231,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
 
                 _id = ApiClient_User.Delete(_user_info, user.Token);
 
-                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xóa", $"Người dùng \"{user.User_Name}\" xóa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xóa", $"tài khoản \"{user.User_Name}\" xóa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
             }
             catch (Exception ex)
             {
@@ -269,18 +269,18 @@ namespace CSE_WebEducation.Areas.User.Controllers
         {
             var user = this.HttpContext.GetCurrentUser();
             decimal _success = -1;
-            string _str_error = "Phân quyền cho người dùng thất bại";
+            string _str_error = "Phân quyền cho tài khoản thất bại";
             try
             {
                 _success = ApiClient_User_Function.ResetFunction(userId, user.Token);
 
                 if (_success > 0)
                 {
-                    _str_error = "Phân quyền cho người dùng thành công";
+                    _str_error = "Phân quyền cho tài khoản thành công";
 
                     ApiClient_User_Function.UpdateFunction(lstFunctionsOfUser, user.Token);
 
-                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Phân quyền", $"Người dùng \"{user.User_Name}\" phân quyền nhóm \"{groupInfo.Group_Name}\"", "Nhóm người dùng");
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Phân quyền", $"tài khoản \"{user.User_Name}\" phân quyền nhóm \"{groupInfo.Group_Name}\"", "Nhóm tài khoản");
                 }
             }
             catch (Exception ex)
@@ -318,7 +318,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         public IActionResult ChangePassword(CSE_UsersInfo user)
         {
             CSE_UsersInfo user_session = this.HttpContext.GetCurrentUser();
-            //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Đổi mật khẩu", $"Người dùng \"{user_session.User_Name}\" đổi mật khẩu người dùng", "Người dùng");
+            //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Đổi mật khẩu", $"tài khoản \"{user_session.User_Name}\" đổi mật khẩu tài khoản", "tài khoản");
             decimal _success = -1;
             string _message = "Đổi mật khẩu thất bại";
             try
@@ -334,7 +334,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 if (userinfo.User_Id != user_session.User_Id)
                 {
                     _success = -2;
-                    _message = "Người dùng không có quyền thực hiện chức năng này";
+                    _message = "tài khoản không có quyền thực hiện chức năng này";
                     return Json(new { success = _success, message = _message });
                 }
 

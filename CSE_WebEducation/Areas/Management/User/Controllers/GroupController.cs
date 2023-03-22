@@ -41,7 +41,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
                 ViewBag.Record_On_Page = p_record_on_page;
                 //ViewBag.UserType = user.User_Type;
 
-                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Tìm kiếm", $"Người dùng \"{user.User_Name}\" tìm kiếm thông tin nhóm người dùng", "Quản lý nhóm người sử dụng");
+                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Tìm kiếm", $"tài khoản \"{user.User_Name}\" tìm kiếm thông tin nhóm tài khoản", "Quản lý nhóm người sử dụng");
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
                 CSE_GroupsInfo Group_Info = ApiClient_Group.GetById(group_id, user.Token);
                 ViewBag.Group_Info = Group_Info;
 
-                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xem thông tin", $"Người dùng \"{user.User_Name}\" xem thông tin nhóm người dùng. Tên nhóm NSD " + _Au_Group_Info.Group_Name, "Quản lý nhóm người sử dụng");
+                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xem thông tin", $"tài khoản \"{user.User_Name}\" xem thông tin nhóm tài khoản. Tên nhóm NSD " + _Au_Group_Info.Group_Name, "Quản lý nhóm người sử dụng");
             }
             catch (Exception ex)
             {
@@ -100,11 +100,11 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                 if (_success > 0)
                 {
-                    _str_error = "Thêm mới nhóm người dùng thành công!";
+                    _str_error = "Thêm mới nhóm tài khoản thành công!";
                 }
                 else
                 {
-                    _str_error = "Thêm mới nhóm người dùng thất bại!";
+                    _str_error = "Thêm mới nhóm tài khoản thất bại!";
                 }
             }
             catch (Exception ex)
@@ -151,12 +151,12 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                 if (_success > 0)
                 {
-                    _str_error = "Chỉnh sửa nhóm người dùng thành công!";
-                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                    _str_error = "Chỉnh sửa nhóm tài khoản thành công!";
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"tài khoản \"{user.User_Name}\" sửa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
                 }
                 else
                 {
-                    _str_error = "Chỉnh sửa nhóm người dùng thất bại!";
+                    _str_error = "Chỉnh sửa nhóm tài khoản thất bại!";
                 }
             }
             catch (Exception ex)
@@ -191,12 +191,12 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                 if (_success > 0)
                 {
-                    _str_error = "Cập nhật trạng thái nhóm người dùng thành công!";
-                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"Người dùng \"{user.User_Name}\" sửa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                    _str_error = "Cập nhật trạng thái nhóm tài khoản thành công!";
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"tài khoản \"{user.User_Name}\" sửa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
                 }
                 else
                 {
-                    _str_error = "Cập nhật trạng thái nhóm người dùng thất bại!";
+                    _str_error = "Cập nhật trạng thái nhóm tài khoản thất bại!";
                 }
             }
             catch (Exception ex)
@@ -227,7 +227,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                 _id = ApiClient_Group.Delete(_Au_Group_Info, user.Token);
 
-                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xóa", $"Người dùng \"{user.User_Name}\" xóa nhóm người dùng. Tên nhóm NSD " + info.Group_Name, "Người dùng");
+                //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xóa", $"tài khoản \"{user.User_Name}\" xóa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
             }
             catch (Exception ex)
             {
@@ -267,7 +267,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
         public IActionResult SaveUserGroup(int act, decimal groupId, string userId)
         {
             decimal success = -1;
-            string _str_error = "Gán/ gỡ người dùng thất bại";
+            string _str_error = "Gán/ gỡ tài khoản thất bại";
             try
             {
                 CSE_UsersInfo user = this.HttpContext.GetCurrentUser();
@@ -289,15 +289,15 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                         if (act == 1)
                         {
-                            _str_error = "Gán người dùng vào nhóm thành công!";
+                            _str_error = "Gán tài khoản vào nhóm thành công!";
                             success = ApiClient_Group_User.AddUserToGroup(groupUser, user.Token);
-                            //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xếp nhóm NSD", $"Người dùng \"{user.User_Name}\" thêm tài khoản \"{userinfo.User_Name}\" vào nhóm \"{groupInfo.Group_Name}\" ", "Nhóm người dùng");
+                            //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xếp nhóm NSD", $"tài khoản \"{user.User_Name}\" thêm tài khoản \"{userinfo.User_Name}\" vào nhóm \"{groupInfo.Group_Name}\" ", "Nhóm tài khoản");
                         }
                         else
                         {
-                            _str_error = "Gỡ người dùng khỏi nhóm thành công!";
+                            _str_error = "Gỡ tài khoản khỏi nhóm thành công!";
                             success = ApiClient_Group_User.RemoveUserFromGroup(groupUser, user.Token);
-                            //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xếp nhóm NSD", $"Người dùng \"{user.User_Name}\" xóa tài khoản \"{userinfo.User_Name}\" khỏi nhóm \"{groupInfo.Group_Name}\" ", "Nhóm người dùng");
+                            //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xếp nhóm NSD", $"tài khoản \"{user.User_Name}\" xóa tài khoản \"{userinfo.User_Name}\" khỏi nhóm \"{groupInfo.Group_Name}\" ", "Nhóm tài khoản");
                         }
                         if (success < 0)
                         {
@@ -308,7 +308,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
             }
             catch (Exception ex)
             {
-                _str_error = "Gán/ gỡ người dùng thất bại";
+                _str_error = "Gán/ gỡ tài khoản thất bại";
                 Logger.log.Error(ex.ToString());
             }
             return Json(new
@@ -347,7 +347,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
         {
             var user = this.HttpContext.GetCurrentUser();
             decimal _success = -1;
-            string _str_error = "Phân quyền cho nhóm người dùng thất bại";
+            string _str_error = "Phân quyền cho nhóm tài khoản thất bại";
             try
             {
                 if (lstFunctionsInGroup?.Count > 0)
@@ -363,11 +363,11 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
 
                 if (_success > 0)
                 {
-                    _str_error = "Phân quyền cho nhóm người dùng thành công";
+                    _str_error = "Phân quyền cho nhóm tài khoản thành công";
 
                     ApiClient_Group_Function.SetFunctionsForUser(groupId, user.Token);
                     
-                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Phân quyền", $"Người dùng \"{user.User_Name}\" phân quyền nhóm \"{groupInfo.Group_Name}\"", "Nhóm người dùng");
+                    //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Phân quyền", $"tài khoản \"{user.User_Name}\" phân quyền nhóm \"{groupInfo.Group_Name}\"", "Nhóm tài khoản");
                 }
             }
             catch (Exception ex)

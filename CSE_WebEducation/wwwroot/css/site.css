@@ -760,7 +760,7 @@ input.error {
   .add-group-list:hover:after {
     display: block; }
   .add-group-list:before {
-    content: 'Thêm người dùng';
+    content: 'Thêm tài khoản';
     color: #fff;
     background: #164989;
     padding: 5px 10px;

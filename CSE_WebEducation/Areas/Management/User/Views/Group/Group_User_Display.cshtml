@@ -254,7 +254,7 @@
         $('input[name="right"]:checked').each(function () {
              userId = userId + "," + $(this).val()
         });
-        nvsConfirm("Bạn chắc chắn muốn xóa người dùng khỏi nhóm?", function () {
+        nvsConfirm("Bạn chắc chắn muốn xóa tài khoản khỏi nhóm?", function () {
             try {
                 $.ajax({
                     type: "POST",
