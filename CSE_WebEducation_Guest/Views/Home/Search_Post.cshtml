@@ -5,6 +5,8 @@
     ViewBag.Title = "Danh sách bài viết";
 }
 
+<input hidden id="tmpKeySearch" Value="@ViewBag.keysearch"/>
+
 <!-- content -->
 <div class="container-content">
     <div class="slider-home">
@@ -32,7 +34,7 @@
 
 
     $(document).ready(function () {
-        $('#txtSearch').val('@ViewBag.keysearch');
+        $('#txtSearch').val($('#tmpKeySearch').val());
 
         Search(@CommonData.pageDefaut);
     });

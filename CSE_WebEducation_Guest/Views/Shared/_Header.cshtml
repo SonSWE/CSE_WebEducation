@@ -9,9 +9,9 @@
                 <div class="top-bar-contact-container">
                     <span> 000-111-2222</span>
                 </div>
-                <div class="logo-smaller-screen">
+                @*<div class="logo-smaller-screen">
                     <img width="100%" src="../assets/hoptac-ava/ces 1.png" alt="">
-                </div>
+                </div>*@
             </div>
             <div class="top-bar-right">
                 <div class="header-find-box">
@@ -34,7 +34,7 @@
     function LoadSearch() {
         try {
             var keySearch = $('#txtSearch').val();
-            window.location.href = '/tim-kiem-bai-viet/'+keySearch;
+            window.location.href = '/tim-kiem-bai-viet?keysearch='+keySearch;
         } catch (ex) {
             console.log(ex);
         }

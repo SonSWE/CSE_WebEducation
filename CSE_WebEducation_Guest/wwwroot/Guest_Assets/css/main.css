@@ -1,9 +1,13 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Italianno&display=swap%27'); 
+
+*
+{
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inder', sans-serif;
+    font-family: 'Italianno', cursive;
 }
 
 :root {
@@ -17,7 +21,8 @@
 body, html {
     width: 100%;
     height: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inder', sans-serif;
+    font-family: 'Italianno', cursive;
 }
 
 .container-fluid {
@@ -42,7 +47,7 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font-size: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inder', sans-serif;
     vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -701,7 +706,9 @@ a {
 
 
 @media (max-width: 1200px) {
-
+    .sticky-header {
+        display: none;
+    }
     /* header responsesive */
 
 

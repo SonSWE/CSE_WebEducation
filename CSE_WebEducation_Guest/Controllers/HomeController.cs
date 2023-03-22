@@ -118,11 +118,16 @@ namespace CSE_WebEducation_Guest.Controllers
 
 
 
-        [Route("tim-kiem-bai-viet/{keysearch?}"), HttpGet]
-        public IActionResult LoadSearchPost(string keysearch = "")
+        [Route("tim-kiem-bai-viet"), HttpGet]
+        public IActionResult LoadSearchPost()
         {
             try
             {
+                string keysearch = "";
+
+                if (!String.IsNullOrEmpty(HttpContext.Request.Query["keysearch"]))
+                    keysearch = HttpContext.Request.Query["keysearch"];
+
                 ViewBag.curTab = "HOME";
                 ViewBag.keysearch = keysearch;
 
