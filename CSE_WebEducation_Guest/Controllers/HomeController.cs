@@ -123,6 +123,7 @@ namespace CSE_WebEducation_Guest.Controllers
         {
             try
             {
+                ViewBag.curTab = "HOME";
                 ViewBag.keysearch = keysearch;
 
                 //danh sách 4 bài viết mới nhất
@@ -137,10 +138,11 @@ namespace CSE_WebEducation_Guest.Controllers
         }
 
         [Route("tim-kiem-bai-viet"), HttpPost]
-        public IActionResult ListPostsSearch(string keysearch, int curentPage)
+        public IActionResult ListPostsSearch(string keysearch, int curentPage, string curTab)
         {
             try
             {
+                ViewBag.curTab = curTab;
                 ViewBag.keyseach = keysearch;
                 keysearch = keysearch + "||A";
                 int p_to = 0;

@@ -74,7 +74,6 @@
                 if (data != null && preHandleDataResult(data)) {
                     if (data.success > 0) {
                         showSuccess("Phân quyền thành công", "Thông báo");
-                        alert(data.responseMessage);
                         setTimeout(function () {
                              window.location.href = '/quan-tri/nhom-nguoi-dung/danh-sach';
                         }, 1000);

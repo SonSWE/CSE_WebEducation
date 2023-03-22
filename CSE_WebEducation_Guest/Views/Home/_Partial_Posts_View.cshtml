@@ -17,6 +17,12 @@
     }
     string _banner_url = string.IsNullOrEmpty(Posts_CategoriesInfo.Banner_Url) ? "/Guest_Assets/Img/backgroud_login.jpg" : Posts_CategoriesInfo.Banner_Url;
     ViewBag.Title = Posts_CategoriesInfo.Name;
+
+    List<CSE_PostsInfo> LstTenEvent = new List<CSE_PostsInfo>();
+    if (ViewBag.LstTenEvent != null)
+    {
+        LstTenEvent = ViewBag.LstTenEvent;
+    }
 }
 <div class="container-content">
     <div class="slider-home">
@@ -34,7 +40,7 @@
     @if (posts_info?.Id > 0)
     {
         <div class="container-xxl container">
-            <div class="container-inner-news" >
+            <div class="container-inner-news">
                 <div class="row news-row">
                     <div class="col-lg-8">
                         <div class="news-container">
@@ -56,7 +62,7 @@
                     <div class="col-lg-4">
                         <div class="more-news-container">
                             <h3>
-                                <a class="more-news-title-link" href="">Đọc thêm bài viết khác</a>
+                                <a class="more-news-title-link" href="javascript;">Đọc thêm bài viết khác</a>
                             </h3>
                             @Html.Partial("_Partail_Other_Post.cshtml")
                         </div>
@@ -68,7 +74,16 @@
 
         @if (posts_info.Category_Id == "SUKIEN")
         {
-            @Html.Partial("_Partial_List_Post_Suggest.cshtml")
+            <div class="container-fluid events-big-container">
+                <div class="container-xxl container">
+                    <div class="events-container">
+                        <div class="events-title title-news_wrapper">
+                            <h3 class="news-title">Sự kiện</h3>
+                        </div>
+                        @Html.Partial("_Partial_List_Event_Suggest.cshtml", LstTenEvent)
+                    </div>
+                </div>
+            </div>
         }
     }
 

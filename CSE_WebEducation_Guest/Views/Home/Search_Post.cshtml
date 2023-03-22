@@ -37,11 +37,11 @@
         Search(@CommonData.pageDefaut);
     });
 
-    $(document).on('keypress', function (e) {
-        if (e.which == 13) {
-          Search('@CommonData.pageDefaut');
-        }
-      });
+    //$(document).on('keypress', function (e) {
+    //    if (e.which == 13) {
+    //      Search('@CommonData.pageDefaut');
+    //    }
+    //  });
 
       function ChangePage(curentPage) {
         Search(curentPage);
@@ -55,7 +55,8 @@
             url: '/tim-kiem-bai-viet',
             data: {
               keysearch: keySearch,
-              curentPage: curentPage
+              curentPage: curentPage,
+              curTab: 'HOME'
             },
             async: true, cache: false, traditional: true,
             beforeSend: function () {

@@ -25,16 +25,24 @@ namespace CSE_WebEducation.Controllers
                 _user = ApiClient_User.Login(userName, textPass);
                 if (_user != null)
                 {
-                    _responseCode = 1;
-                    _responseMessage = "Đăng nhập thành công!";
+                    if (_user.Status == CSE_User_Status.UnActive)
+                    {
+                        _responseCode = -1;
+                        _responseMessage = "Đăng nhập thất bại, tài khoản này đã bị ngưng hoạt động!";
+                    }
+                    else if (_user.Status == CSE_User_Status.Active)
+                    {
+                        _responseCode = 1;
+                        _responseMessage = "Đăng nhập thành công!";
 
-                    //lấy quyền
-                    List<CSE_FunctionsInfo> _lstFunctions = new List<CSE_FunctionsInfo>();
-                    _lstFunctions = ApiClient_User_Function.GetByUserId(_user.User_Id, _user.Token);
+                        //lấy quyền
+                        List<CSE_FunctionsInfo> _lstFunctions = new List<CSE_FunctionsInfo>();
+                        _lstFunctions = ApiClient_User_Function.GetByUserId(_user.User_Id, _user.Token);
 
-                    MemoryData.c_dic_Function_ByUser[_user.User_Id] = _lstFunctions;
+                        MemoryData.c_dic_Function_ByUser[_user.User_Id] = _lstFunctions;
 
-                    await Update_ManageSuccessLoginAsync(_user);
+                        await Update_ManageSuccessLoginAsync(_user);
+                    }
                 }
             }
             catch (Exception ex)
@@ -94,7 +102,7 @@ namespace CSE_WebEducation.Controllers
                     };
                 var claimsIdentity = new ClaimsIdentity(claims, ConstData.authType);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-       
+
                 //lưu tài khoản sau khi đăng nhập vào session
                 this.HttpContext.Session.SetObjectAsJson("user", _user);
             }

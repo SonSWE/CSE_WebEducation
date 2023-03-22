@@ -65,11 +65,11 @@
                             <td>@item.Category_Name</td>
                             @if (item.Status == CSE_Post_Status.Active)
                             {
-                                <td style=" color: greenyellow; font-weight: 600;">@item.Status_Text</td>
+                                <td class="text-success">@item.Status_Text</td>
                             }
                             else if (item.Status == CSE_Post_Status.Hide)
                             {
-                                <td style=" color: cornflowerblue; font-weight: 600;">@item.Status_Text</td>
+                                <td class="text-danger">@item.Status_Text</td>
                             }
 
                             <td class="text-center">@item.Created_Date</td>

@@ -2470,7 +2470,7 @@ table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, ta
 
 .footer-form {
     position: fixed;
-    z-index: 999;
+    z-index: 1;
 }
 
 .footer-form {

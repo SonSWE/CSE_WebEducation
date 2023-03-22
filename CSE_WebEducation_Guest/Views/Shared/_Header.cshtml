@@ -4,10 +4,10 @@
         <div class="top-bar-container container-xxl">
             <div class="top-bar-contact">
                 <div class="top-bar-contact-container">
-                    <span>tlu.edu.vn</span>
+                    <span>cse@tlu.edu.vn</span>
                 </div>
                 <div class="top-bar-contact-container">
-                    <span> +1-3435-2356-222</span>
+                    <span> 000-111-2222</span>
                 </div>
                 <div class="logo-smaller-screen">
                     <img width="100%" src="../assets/hoptac-ava/ces 1.png" alt="">
@@ -18,16 +18,13 @@
                     <input type="text" placeholder="Tìm kiếm" id="txtSearch">
                     <i class="fa-solid fa-magnifying-glass" onclick="LoadSearch();"></i>
                 </div>
-                <button>
-
-                </button>
 
                 @*<a href="/dang-nhap" class="top-bar-right-button_main"><i class="fa-solid fa-user"></i> Đăng nhập</a>*@
+                <div id="menu-btn" class="top-bar-right-mobile">
+                    <i class="fa-solid fa-bars" style="font-size: 24px;"></i>
+                </div>
+            </div>
 
-            </div>
-            <div id="menu-btn" class="top-bar-right-mobile">
-                <i class="fa-solid fa-bars"></i>
-            </div>
         </div>
     </div>
     <partial name="~/Views/Shared/_Menu_Top.cshtml" />
@@ -41,6 +38,6 @@
         } catch (ex) {
             console.log(ex);
         }
-    }  
+    }
 
 </script>

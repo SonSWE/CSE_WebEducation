@@ -1,0 +1,110 @@
+﻿@using ObjectInfo
+@model List<CSE_PostsInfo>
+@{
+    List<CSE_PostsInfo> _LstData = new List<CSE_PostsInfo>();
+    if (Model != null)
+    {
+        _LstData = Model;
+    }
+}
+<div class="events-content-wrapper">
+    <div class="events-list">
+        @if (_LstData != null && _LstData.Count > 0)
+        {
+            foreach (CSE_PostsInfo item in _LstData)
+            {
+                string title = item.Title;
+                if (item.Title.Length > 61)
+                    title = item.Title.Substring(0, 60) + "...";
+
+                <div class="">
+                    <div class="event-content">
+                        <div class="event-thumbnail">
+                            <img width="100%" src="@item.Thumbnail" alt="">
+                        </div>
+                        <div class="items-events-wrap">
+                            <div class="events-start-date">
+                                <div>
+                                    <span>Tháng @item.Start_Date.ToString("MM")</span>
+                                    <span>@item.Start_Date.ToString("dd")</span>
+                                </div>
+                            </div>
+
+                            <div class="events-detail">
+                                <a href="">@title</a>
+                                <div class="events-info">
+                                    <span><i class="fa-regular fa-clock"></i> @item.Start_Date.ToString("HH:mm")</span>
+                                </div>
+                                <div class="events-info">
+                                    <span><i class="fas fa-map-marker-alt"></i> @item.Location</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <a href="/danh-sach-bai-viet/SUKIEN" class="more-news-btn">Xem thêm ...</a>
+</div>
+
+<script type="text/javascript"
+        src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript"
+        src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.events-list').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            infinite: true,
+            arrows: true,
+            draggable: false,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            prevArrow: `<button type='button' class='slick-prev slick-arrow'><</button>`,
+            nextArrow: `<button type='button' class='slick-next slick-arrow'>></button>`,
+            dots: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 950,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 800,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: false,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: false,
+                        dots: false
+                    }
+                }
+            ]
+        });
+    });
+</script>

@@ -372,7 +372,7 @@ table.dataTable.no-footer {
 
 .footer-form {
     position: fixed;
-    z-index: 999
+    z-index: 1
 }
 
 .fixed-head {

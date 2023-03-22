@@ -7,12 +7,12 @@
     <form id="frmLogin">
         <div class="field email-field">
             <div class="input-field">
-                <input type="text" placeholder="Tài khoản" class="email" id="txtUserName" />
+                <input type="text" placeholder="Tài khoản" class="email" id="txtUserName" maxlength="20"/>
             </div>
         </div>
         <div class="field create-password">
             <div class="input-field">
-                <input type="password" placeholder="Mật khẩu" class="password" id="txtPassword" />
+                <input type="password" placeholder="Mật khẩu" class="password" id="txtPassword"  maxlength="30"/>
                 <i class="bx bx-hide show-hide"></i>
             </div>
         </div>
@@ -71,12 +71,14 @@
         var txt_username = $('#txtUserName').val().trim();
         if (txt_username == "") {
           showError("Tài khoản không được để trống");
+          $('#txtUserName').focus();
           return false;
         }
 
         var txt_password = $('#txtPassword').val().trim();
         if (txt_password == "") {
           showError("Mật khẩu không được để trống");
+          $('#txtPassword').focus();
           return false;
         }
 

@@ -94,6 +94,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
             try
             {
                 var user = this.HttpContext.GetCurrentUser();
+                info.Password = CommonFunc.Encrypt_MD5(info.Password);
                 info.Created_By = user.User_Name;
                 info.Created_Date = DateTime.Now;
                 _success = ApiClient_User.Insert(info, user.Token);
@@ -102,7 +103,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 {
                     _str_error = "Thêm mới tài khoản thành công!";
                 }
-                else if(_success == -2)
+                else if (_success == -2)
                 {
                     _str_error = "Tên đăng nhập đã tồn tại trong hệ thống!";
                 }
@@ -219,6 +220,7 @@ namespace CSE_WebEducation.Areas.User.Controllers
         public IActionResult Delete(decimal user_id)
         {
             decimal _id = -1;
+            string _str_error = "Xóa tài khoản thành công!";
             try
             {
                 var user = this.HttpContext.GetCurrentUser();
@@ -229,15 +231,30 @@ namespace CSE_WebEducation.Areas.User.Controllers
                 _user_info.Modified_By = user.User_Name;
                 _user_info.Modified_Date = DateTime.Now;
 
-                _id = ApiClient_User.Delete(_user_info, user.Token);
-
+                if (_user_info.User_Id == user.User_Id)
+                {
+                    _id = -1;
+                    _str_error = "Không thể xóa tài khoản đang đăng nhập!";
+                }
+                else
+                {
+                    _id = ApiClient_User.Delete(_user_info, user.Token);
+                    if (_id < 0)
+                    {
+                        _str_error = "Xóa tài khoản thất bại!";
+                    }
+                }
                 //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Xóa", $"tài khoản \"{user.User_Name}\" xóa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
             }
             catch (Exception ex)
             {
                 Logger.nlog.Error(ex.ToString());
             }
-            return Json(new { success = _id });
+            return Json(new
+            {
+                success = _id,
+                responseMessage = _str_error
+            });
         }
 
 
@@ -357,10 +374,10 @@ namespace CSE_WebEducation.Areas.User.Controllers
                     user.Modified_Date = DateTime.Now;
                     user.Modified_By = user_session.User_Name;
                     //user.User_Type = user_session.User_Type;
-                  
+
                     _success = ApiClient_User.ChangePass(user, user_session.Token);
-                    
-                    if(_success > 0)
+
+                    if (_success > 0)
                     {
 
                         _message = "Đổi mật khẩu thành công";

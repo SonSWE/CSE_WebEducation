@@ -1,0 +1,16 @@
+<div class="col-lg-12">
+                                            <div class="news-item-wrapper">
+                                                <div class="news-item-avatar">                                               
+                                                    <div class="avatar-overlay"></div>
+                                                    <img width="100%" src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2016/06/shutterstock_135948689-150x150.jpg" alt="">                                                                           
+                                                </div>                                                    
+                                                <div class="title-wrapper">
+                                                    <h3>
+                                                        <a href="">Xu hướng ngành nghề qua nguyện vọng của...</a>
+                                                    </h3>
+                                                    <p>Nhằm tạo ra sân chơi lành mạnh, phát huy tính sáng tạo...</p>
+                                                    <span>11-12-2022</span>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>

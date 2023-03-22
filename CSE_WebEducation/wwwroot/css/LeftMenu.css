@@ -130,6 +130,10 @@ s
     color: white;
 }
 
+.sidebar .nav-links .nav-links-item .icon-link a {
+    height: 32px;
+}
+
     .sidebar .nav-links li.showMenu i.arrow {
         transform: rotate(-180deg);
     }

@@ -50,7 +50,7 @@
                         <div class="flex-report">
                             <div class="title-report">Trạng thái <span class="clr-red">(*)</span></div>
                             <div class="field-report">
-                                <select id="slGroupStatus" multiple>
+                                <select id="slGroupStatus" multiple disabled>
                                     @foreach (var it in AllCodeMemory.Allcode_GetByCdnameCdtype("GROUP", "STATUS"))
                                     {
                                         if (@_Group_Info.Status.ToUpper() == it.CDVal.ToUpper())
@@ -136,7 +136,7 @@
                     success: function (data) {
                         if (data && preHandleDataResult(data)) {
                             if (data.success > 0) {
-                                showSuccess(data.responseMessagej );
+                                showSuccess(data.responseMessage );
                                 setTimeout(function () {
                                     SearchUser('@CommonData.pageDefaut');
                                     ClosePopupDialog('dPopup', false);

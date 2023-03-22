@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Trang chủ";
 
-     CSE_PostsInfo _news = new CSE_PostsInfo();
+    CSE_PostsInfo _news = new CSE_PostsInfo();
     if (ViewBag.News != null)
     {
         _news = ViewBag.News;
@@ -27,6 +27,7 @@
     {
         _LstEvent = ViewBag.LstEvent;
     }
+
 }
 <!-- content -->
 <div class="container-content">
@@ -76,70 +77,85 @@
             <div class="main-categories_container">
                 <div class="row">
                     <div class="col-lg">
-                        <div class="main-category-wrapper">
-                            <div class="main-category_header">
-                                <img width="10%" src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2018/08/hp2-col-1-icon.png" alt="">
-                                <div>
-                                    <h3>Tin tức</h3>
-                                    <a href="#">Xem tiếp</a>
+                        @if (_news != null)
+                        {
+                            string title = _news.Title;
+                            if (_news.Title.Length > 60)
+                                title = _news.Title.Substring(0, 60) + "...";
+                            <div class="main-category-wrapper">
+                                <div class="main-category_header" style=" border-radius: 12px 0 0 0;  background-color: #C82629;">
+                                    <img width="10%" src="/Guest_Assets/Img/free-news-icon-4301-thumb 2.png" alt="">
+                                    <div>
+                                        <h3>Tin tức</h3>
+
+                                    </div>
+                                </div>
+                                <div class="main-category-img">
+                                    <img width="100%" src="@_news.Thumbnail" alt="">
+                                </div>
+                                <div class="main-category-content">
+                                    <h3>@title</h3>
+                                    <p>
+                                        @_news.Description
+                                    </p>
+                                    <div>
+                                        <a href="/bai-viet/@_news.Id">Xem thêm ></a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="main-category-img">
-                                <img width="100%" src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2019/06/building-700x450.jpg" alt="">
-                            </div>
-                            <div class="main-category-content">
-                                <p>
-                                    A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot.
-                                </p>
-                                <div>
-                                    <a href="/danh-sach-bai-viet/BAOCSE">Xem tiếp</a>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="col-lg">
                         <div class="main-category-wrapper">
-                            <div class="main-category_header" style="background-color:var(--secondary-red);">
-                                <img width="10%"  src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2019/06/book.png" alt="">
+                            <div class="main-category_header" style="background-color: #C50227;">
+                                <img width="10%" src="/Guest_Assets/Img/png-transparent-computer-icons-book-reading-book-angle-logo-author 1.png" alt="">
                                 <div>
-                                    <h3>Đào tạo</h3>
-                                    <a>Chương trình đào tạo</a>
+                                    <h3>Chương trình đào tạo</h3>
+
                                 </div>
                             </div>
                             <div class="main-category-img">
-                                <img width="100%"  src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2019/06/business-man-700x450.jpg" alt="">
+                                <img width="100%" src="/Guest_Assets/Img/daotao.png" alt="">
                             </div>
                             <div class="main-category-content">
+                                <h3>Chương trình đào tạo khoa công nghệ thông tin</h3>
                                 <p>
                                     Chương trình đào tạo khoa công nghệ thông tin đại học thủy lợi là một chương trình tiên tiến được cập nhập và đổi mới liên tục để bắt kịp xu hướng.
                                 </p>
                                 <div>
-                                    <a href="/danh-sach-bai-viet/DAIHOC">Xem tiếp</a>
+                                    <a href="/danh-sach-bai-viet/DAIHOC">Xem thêm ></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg">
-                        <div class="main-category-wrapper">
-                            <div class="main-category_header" style="background-color:var(--third-red) ;">
-                                <img width="10%" src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2019/06/sport-center.png" alt="">
-                                <div>
-                                    <h3>Chương trình</h3>
-                                    <a>Xem tiếp</a>
+                        @if (_event != null)
+                        {
+                            string title = _event.Title;
+                            if (_event.Title.Length > 60)
+                                title = _event.Title.Substring(0, 60) + "...";
+                            <div class="main-category-wrapper">
+                                <div class="main-category_header" style=" border-radius: 0 12px 0 0; background-color: #78091E;">
+                                    <img width="10%" src="/Guest_Assets/Img/icon-sukien.png" alt="">
+                                    <div>
+                                        <h3>Sự kiện</h3>
+
+                                    </div>
+                                </div>
+                                <div class="main-category-img">
+                                    <img width="100%" src="@_event.Thumbnail" alt="">
+                                </div>
+                                <div class="main-category-content">
+                                    <h3>@title</h3>
+                                    <p>
+                                        @_event.Description
+                                    </p>
+                                    <div>
+                                        <a href="/bai-viet/@_event.Id">Xem thêm ></a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="main-category-img">
-                                <img width="100%" src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2019/06/working-700x450.jpg" alt="">
-                            </div>
-                            <div class="main-category-content">
-                                <p>
-                                    A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot.
-                                </p>
-                                <div>
-                                    <a href="">Chương trình</a>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -153,25 +169,6 @@
 <div class="container-xxl container">
     <div class="news-big-container">
         <div class="row">
-            <div class="col-lg-4 col-mobile" style="margin-left: -12px;">
-                <div class="title-news_wrapper">
-                    <h3 class="news-title">Cse trên facebook</h3>
-                </div>
-                <div class="news-video-container">
-                    <div class="news-video_wrapper">
-                        <a href="" class="video-box">
-                            <img width="100%" src="/Guest_Assets/Img/CSE_fanpage.png" alt="">
-                            @*<span class="video-icon">
-                                <img width="60%" src="https://a6e8z9v6.stackpathcdn.com/kingster/highschool/wp-content/uploads/2019/06/play-icon.png" alt="">
-                                </span>*@
-                        </a>
-
-                    </div>
-                    <div class="news-video-content">
-                        <p>Take a tour in Kingster and you will find the best school in the state. The video will take you to every places in this school.</p>
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-8 col-mobile" style="margin-right:-12px ;">
                 <div class="title-news_wrapper">
                     <h3 class="news-title">Tin tức khoa</h3>
@@ -186,25 +183,40 @@
                                 if (item.Title.Length > 61)
                                     title = item.Title.Substring(0, 60) + "...";
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="news-item-wrapper">
-                                        <div class="news-item-avatar">
+                                        <a href="/bai-viet/@item.Id" class="news-item-avatar">
                                             <div class="avatar-overlay"></div>
                                             <img width="100%" src="@item.Thumbnail" alt="">
-                                        </div>
+                                        </a>
                                         <div class="title-wrapper">
-                                            <a>@item.Created_Date</a>
                                             <h3>
-                                                <a href="#">@title</a>
+                                                <a href="/bai-viet/@item.Id">@title</a>
                                             </h3>
+                                            <p>@item.Description</p>
+                                            <span>Ngày đăng: @item.Created_Date.ToString("dd/MM/yyy HH:mm")</span>
+
                                         </div>
                                     </div>
                                 </div>
                             }
                         }
                     </div>
-                    <a href="/danh-sach-bai-viet/BAOCSE" class="more-news-btn">Đọc tin tức</a>
-
+                    <a href="/danh-sach-bai-viet/BAOCSE" class="more-news-btn">Xem thêm ></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-mobile" style="margin-left: 12px;">
+                <div class="title-news_wrapper">
+                    <h3 class="news-title">Cse trên facebook</h3>
+                </div>
+                <div class="news-video-container">
+                    <div class="news-video_wrapper">
+                        <a href="https://www.facebook.com/cse.tlu.edu.vn/" class="video-box">
+                            <img width="100%" src="/Guest_Assets/Img/CSE_fanpage.png" alt="">
+                        </a>
+                    </div>
+                    <div class="news-video-content">
+                    </div>
                 </div>
             </div>
         </div>
@@ -267,54 +279,16 @@
 
 </div>
 
-<div class="container-xxl container">
-    <div class="events-container">
-        <div class="events-title title-news_wrapper">
-            <h3 class="news-title">CSE sự kiện</h3>
-        </div>
-
-        <div class="events-content-wrapper">
-            <div class="events-list">
-                @if (_LstEvent != null && _LstEvent.Count > 0)
-                {
-                    foreach (CSE_PostsInfo item in _LstEvent)
-                    {
-                        string title = item.Title;
-                        if (item.Title.Length > 61)
-                            title = item.Title.Substring(0, 60) + "...";
-
-                        <div class="">
-                            <div class="event-content">
-                                <div class="event-thumbnail">
-                                    <img width="100%" src="@item.Thumbnail" alt="">
-                                </div>
-                                <div class="items-events-wrap">
-                                    <div class="events-start-date">
-                                        <div>
-                                            <span>@item.Start_Date.ToString("dd")</span>
-                                            <span>TH @item.Start_Date.ToString("MM")</span>
-                                        </div>
-                                    </div>
-                                    <div class="events-detail">
-                                        <a href="">@title</a>
-                                        <div class="events-info">
-                                            <span>@item.Start_Date.ToString("HH:mm") - @item.End_Date.ToString("HH:mm")</span>
-                                        </div>
-                                        <div class="events-info">
-                                            <span>@item.Location</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
+<div class="container-fluid events-big-container">
+    <div class="container-xxl container">
+        <div class="events-container">
+            <div class="events-title title-news_wrapper">
+                <h3 class="news-title">Sự kiện</h3>
             </div>
-            <a href="/danh-sach-bai-viet/SUKIEN" class="more-news-btn">Xem tất cả sự kiện</a>
+            @Html.Partial("_Partial_List_Event_Suggest.cshtml", _LstEvent)
         </div>
     </div>
 </div>
-
 
 <div class="container-xxl container">
     <div class="events-container">
@@ -343,7 +317,7 @@
                 </div>
                 <div class="col-lg">
                     <a href="" class="cooperate-item">
-                        <img src="~/Guest_Assets/Img/logo_vnpt.png">
+                        <img src="~/Guest_Assets/Img/VNPT_Logo.png">
                     </a>
 
                 </div>

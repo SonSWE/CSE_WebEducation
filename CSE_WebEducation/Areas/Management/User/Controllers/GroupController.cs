@@ -102,6 +102,10 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
                 {
                     _str_error = "Thêm mới nhóm tài khoản thành công!";
                 }
+                else if(_success == -2)
+                {
+                    _str_error = "Tên nhóm tài khoản đã tồn tại trong hệ thống!";
+                }    
                 else
                 {
                     _str_error = "Thêm mới nhóm tài khoản thất bại!";
@@ -140,7 +144,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
         public IActionResult Update(CSE_GroupsInfo info)
         {
             decimal _success = -1;
-            string _str_error = "";
+            string _str_error = "Chỉnh sửa nhóm tài khoản thành công!";
             try
             {
                 var user = this.HttpContext.GetCurrentUser();
@@ -153,6 +157,10 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
                 {
                     _str_error = "Chỉnh sửa nhóm tài khoản thành công!";
                     //Api_TraceLog.Client_Log_Insert(this.HttpContext, "Sửa", $"tài khoản \"{user.User_Name}\" sửa nhóm tài khoản. Tên nhóm NSD " + info.Group_Name, "tài khoản");
+                }
+                else if (_success == -2)
+                {
+                    _str_error = "Tên nhóm tài khoản đã tồn tại trong hệ thống!";
                 }
                 else
                 {
