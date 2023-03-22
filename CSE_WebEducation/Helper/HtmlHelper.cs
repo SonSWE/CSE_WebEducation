@@ -100,7 +100,7 @@ namespace CSE_WebEducation.Helper
         public static IHtmlContent CreateMenuLeft2(this IHtmlHelper htmlHelper, List<CSE_FunctionsInfo> lstAllFunctionsByUser, decimal rootId, decimal functionLev1, decimal funcLev2)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<div class=\"sidebar\"><div class=\"logo-details\"> <i class='bx bxl-c-plus-plus'></i> <span class=\"logo_name\">CSE admin</span></div>");
+            sb.Append("<div class=\"sidebar hide\" ><div class=\"logo-details\"> <i class='bx bxl-c-plus-plus'></i> <span class=\"logo_name\">CSE admin</span></div>");
             string htmlString = GetTreeMenuLeft2(lstAllFunctionsByUser, rootId, functionLev1, funcLev2);
             sb.Append(htmlString);
             //sb.Append("</nav>");
@@ -147,17 +147,17 @@ namespace CSE_WebEducation.Helper
                         if (hasChild)
                         {
                             sb.Append("<li class=\"nav-links-item " + classRotateDown + "\">");
-                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href=\"javascript:;\">" + "<img class=\"icon-nav\" src=\"" + item.Function_Icon + "\" alt=\"img\">" + "<span class=\"links-name\">" + item.Function_Name + "</span>" + "<i class='bx bxs-chevron-down arrow' ></i>");
+                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href=\"javascript:;\">" + "<img class=\"icon-nav\" src=\"" + item.Function_Icon + "\" alt=\"img\">" + "<span class=\"links-name hide\">" + item.Function_Name + "</span>" + "<i class='bx bxs-chevron-down arrow' ></i>");
                         }
                         else if (hasChild == false && item.Prid == 0)
                         {
                             sb.Append("<li class=\"nav-links-item\">");
-                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href='" + (item.Function_Url != null && item.Function_Url.Length > 0 ? item.Function_Url : "javascript:;") + "'>" + "<img class=\"icon-nav\" src=\"" + item.Function_Icon + "\" alt=\"img\">" + "<span class=\"links-name\">" + item.Function_Name + "</span>");
+                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href='" + (item.Function_Url != null && item.Function_Url.Length > 0 ? item.Function_Url : "javascript:;") + "'>" + "<img class=\"icon-nav\" src=\"" + item.Function_Icon + "\" alt=\"img\">" + "<span class=\"links-name hide\">" + item.Function_Name + "</span>");
                         }
                         else
                         {
                             sb.Append("<li class=\"nav-links-item\">");
-                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href='" + (item.Function_Url != null && item.Function_Url.Length > 0 ? item.Function_Url : "javascript:;") + "'>" + "<span class=\"links-name\">" + item.Function_Name + "</span>");
+                            sb.Append("<div class='icon-link'><a class=\"" + classActive + "\" href='" + (item.Function_Url != null && item.Function_Url.Length > 0 ? item.Function_Url : "javascript:;") + "'>" + "<span class=\"links-name hide\">" + item.Function_Name + "</span>");
                         }
 
                         sb.Append("</a></div>");

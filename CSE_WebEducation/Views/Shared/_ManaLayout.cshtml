@@ -32,7 +32,7 @@
         <link href="~/lib/notify/animate.min.css" rel="stylesheet" />
         <link href="~/lib/notify/notify.css" rel="stylesheet" />
         <script src="~/lib/notify/bootstrap-notify.min.js"></script>
-        <script src="~/lib/notify/bootstrap-notify-init.js"></script> 
+        <script src="~/lib/notify/bootstrap-notify-init.js"></script>
     </head>
     <body>
         @RenderBody()
@@ -64,12 +64,21 @@ else
         <link href="~/css/font-awesome.css" rel="stylesheet" />
         <link href="~/bidding_lib/libs/css/datepicker.min.css" rel="stylesheet" />
 
+        
         @*datatables*@
         <script type="text/javascript" src="~/bidding_lib/libs/js/jquery.min.js"></script>
         <script type="text/javascript" src="~/bidding_lib/libs/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="~/bidding_lib/libs/js/swiper.js"></script>
         <script type="text/javascript" src="~/bidding_lib/libs/js/jquery.multiple.select.js"></script>
         <script type="text/javascript" src="~/bidding_lib/libs/js/jquery.datetimepicker.full.min.js"></script>
+
+        <link href="~/lib/datatable_new/jquery.dataTables.min.css" rel="stylesheet" />
+        <link href="~/lib/datatable_new/fixedHeader.dataTables.min.css" rel="stylesheet" />
+        <link href="~/lib/datatable_new/fixedColumns.dataTables1.min.css" rel="stylesheet" />
+        <script src="~/lib/datatable_new/jquery.dataTables.min.js"></script>
+        <script src="~/lib/datatable_new/dataTables.fixedHeader.min.js"></script>
+        <script src="~/lib/datatable_new/dataTables.fixedColumns1.min.js"></script>
+        <script src="~/lib/datatable_new/dataTables.colReorder.min.js"></script>
 
         @* datetimepicker month year *@
         <script type="text/javascript" src="~/bidding_lib/libs/js/bootstrap-datepicker-my.min.js"></script>
@@ -88,7 +97,7 @@ else
         <link href="~/lib/notify/notify.css" rel="stylesheet" />
         <script src="~/lib/notify/bootstrap-notify.min.js"></script>
         <script src="~/lib/notify/bootstrap-notify-init.js"></script>
-
+         <link href="~/css/_cusStyle.css" rel="stylesheet" asp-append-version="true" />
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
@@ -125,7 +134,7 @@ else
                                         <span><img src="~/bidding_lib/img/icon-mk.svg" alt="img"></span>
                                         <span>Đổi mật khẩu</span>
                                     </a>
-                                    <a href="/logout">
+                                    <a href="javascript:0;" onclick="Logout()">
                                         <span><img src="~/bidding_lib/img/icon-dx.svg" alt="img"></span>
                                         <span>Đăng xuất</span>
                                     </a>
@@ -165,48 +174,58 @@ else
     </body>
 
     <script>
-            $( "#sidebarbtn" ).click(function() {
-                if($(".sidebar").hasClass("hide")){
-                    $(".sidebar").removeClass("hide");
-                    $(".links-name").removeClass("hide")
-                    $(".icon-agldown").removeClass("hide")
-                }else{
-                    $(".sidebar").addClass("hide");
-                    $(".links-name").addClass("hide")
-                    $(".icon-agldown").addClass("hide")
-                }
-            });
-
-            function preHandleDataResult(data) {
-                if (data.success == '@ActionResultConfig.TIME_OUT') {
-                    window.location.href = '@RouteConfig.TIME_OUT';
-                } else if (data.success == '@ActionResultConfig.UNAUTHORIZED_AJAX') {
-                    nvsAlert("Thông báo", "Không có quyền thực hiện chức năng này");
-                } else {
-                    return true;
-                }
-                return false;
+            function Logout() {
+            try {
+                nvsConfirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống không?", function () {
+                    showSuccess("Đăng xuất thành công");
+                    location.href = '/logout';
+                })
+            } catch (ex) {
+                console.log(ex);
             }
-
-            function showFormChangePassword() {
-                try {
-                    $.ajax({
-                        type: "GET",
-                        url: "/quan-tri/nguoi-dung/doi-mat-khau",
-                        success: function (data) {
-                            if (data != null && preHandleDataResult(data)) {
-                                $("#dPopupChangePass").html(data);
-                                ShowPopupDialog("dPopupChangePass", "Đổi mật khẩu");
-                            }
-                        },
-                        error: function (data) {
-                            console.log(data.error);
-                        }
-                    });
-                } catch (e) {
-                    console.log(e);
-                }
         }
+                $( "#sidebarbtn" ).click(function() {
+                    if($(".sidebar").hasClass("hide")){
+                        $(".sidebar").removeClass("hide");
+                        $(".links-name").removeClass("hide")
+                        $(".icon-agldown").removeClass("hide")
+                    }else{
+                        $(".sidebar").addClass("hide");
+                        $(".links-name").addClass("hide")
+                        $(".icon-agldown").addClass("hide")
+                    }
+                });
+
+                function preHandleDataResult(data) {
+                    if (data.success == '@ActionResultConfig.TIME_OUT') {
+                        window.location.href = '@RouteConfig.TIME_OUT';
+                    } else if (data.success == '@ActionResultConfig.UNAUTHORIZED_AJAX') {
+                        nvsAlert("Thông báo", "Không có quyền thực hiện chức năng này");
+                    } else {
+                        return true;
+                    }
+                    return false;
+                }
+
+                function showFormChangePassword() {
+                    try {
+                        $.ajax({
+                            type: "GET",
+                            url: "/quan-tri/nguoi-dung/doi-mat-khau",
+                            success: function (data) {
+                                if (data != null && preHandleDataResult(data)) {
+                                    $("#dPopupChangePass").html(data);
+                                    ShowPopupDialog("dPopupChangePass", "Đổi mật khẩu");
+                                }
+                            },
+                            error: function (data) {
+                                console.log(data.error);
+                            }
+                        });
+                    } catch (e) {
+                        console.log(e);
+                    }
+            }
 
     </script>
 }

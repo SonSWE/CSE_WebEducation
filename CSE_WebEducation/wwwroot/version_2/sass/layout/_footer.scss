@@ -1,0 +1,28 @@
+// ======================================================
+// Layout :: Footer
+// ======================================================
+
+#back-to-top{
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 31px;
+  height: 31px;
+  background: $c-bl;
+  color: #fff;
+  text-align: center;
+  line-height: 31px;
+  font-size: 18px;
+  font-weight: bold;
+  background-size: 100% 100%;
+  display: none;
+  z-index: 100;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  &:hover{
+    background: rgb(8, 51, 107);
+  }
+}

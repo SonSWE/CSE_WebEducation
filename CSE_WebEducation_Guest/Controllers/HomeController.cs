@@ -31,18 +31,29 @@ namespace CSE_WebEducation_Guest.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            
+
             try
             {
                 ViewBag.curTab = "HOME";
 
-                //danh sách 6 bài viết mới nhất
-                SearchResponseInfo _search = ApiClient_Posts.Search("||BAOCSE|A", "1", "6", "", "Created_By DESC");
-                ViewBag.LstNews = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
+                //danh sách 3 bài viết mới nhất
+                SearchResponseInfo _search1 = ApiClient_Posts.Search("||BAOCSE|A", "1", "3", "", "Created_Date DESC");
+                List<CSE_PostsInfo> _lstNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
+                ViewBag.LstNews = _lstNew;
 
-                //danh sách 6 bài viết mới nhất
+                //danh sách 10 sự kiện mới nhất
                 SearchResponseInfo _search2 = ApiClient_Posts.Search("||SUKIEN|A", "1", "10", "", "Start_Date DESC");
-                ViewBag.LstEvent = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
+                List<CSE_PostsInfo> _lstEnvet = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search2.jsondata);
+                ViewBag.LstEvent = _lstEnvet;
+
+
+                //1 tin tức mới nhất
+                if (_lstNew != null && _lstNew.Count > 0)
+                    ViewBag.News = _lstNew[0];
+
+                //sự kiện mới nhất
+                if (_lstEnvet != null && _lstEnvet.Count > 0)
+                    ViewBag.Event = _lstEnvet[0];
             }
             catch (Exception ex)
             {
@@ -65,7 +76,7 @@ namespace CSE_WebEducation_Guest.Controllers
                 ViewBag.curTab = info.Category_Id;
 
                 //danh sách 4 bài viết mới nhất
-                SearchResponseInfo _search = ApiClient_Posts.Search("|||A", "1", "4", "", "Created_By DESC");
+                SearchResponseInfo _search = ApiClient_Posts.Search("|||A", "1", "4", "", "Created_Date DESC");
                 ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
 
                 //lấy danh sách 10 để sự kiện gợi ý 
@@ -95,7 +106,7 @@ namespace CSE_WebEducation_Guest.Controllers
                 ViewBag.curTab = id;
 
                 //danh sách 4 bài viết mới nhất
-                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||A", "1", "4", "", " ");
+                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||A", "1", "4", "", "");
                 ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
             }
             catch (Exception ex)
@@ -104,9 +115,9 @@ namespace CSE_WebEducation_Guest.Controllers
             }
             return View("~/Views/Home/Display_Post_List.cshtml");
         }
-       
 
-        
+
+
         [Route("tim-kiem-bai-viet/{keysearch?}"), HttpGet]
         public IActionResult LoadSearchPost(string keysearch = "")
         {
@@ -115,7 +126,7 @@ namespace CSE_WebEducation_Guest.Controllers
                 ViewBag.keysearch = keysearch;
 
                 //danh sách 4 bài viết mới nhất
-                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||A", "1", "4", "", " ");
+                SearchResponseInfo _search1 = ApiClient_Posts.Search("|||A", "1", "4", "", "");
                 ViewBag.LstFourPostsNew = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search1.jsondata);
             }
             catch (Exception ex)
@@ -134,7 +145,7 @@ namespace CSE_WebEducation_Guest.Controllers
                 keysearch = keysearch + "||A";
                 int p_to = 0;
                 int p_from = CommonFunc.GetFromToPaging(curentPage, CommonData.RecordsPerPage, out p_to);
-                SearchResponseInfo _search = ApiClient_Posts.Search(keysearch, p_from.ToString(), p_to.ToString(), " ");
+                SearchResponseInfo _search = ApiClient_Posts.Search(keysearch, p_from.ToString(), p_to.ToString(), "");
 
                 ViewBag.LstData = JsonConvert.DeserializeObject<List<CSE_PostsInfo>>(_search.jsondata);
                 ViewBag.Paging = CommonFunc.PagingData(curentPage, CommonData.RecordsPerPage, (int)_search.totalrows);

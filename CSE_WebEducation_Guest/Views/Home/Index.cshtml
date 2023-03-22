@@ -4,6 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Trang chủ";
 
+     CSE_PostsInfo _news = new CSE_PostsInfo();
+    if (ViewBag.News != null)
+    {
+        _news = ViewBag.News;
+    }
+
+    CSE_PostsInfo _event = new CSE_PostsInfo();
+    if (ViewBag.Event != null)
+    {
+        _event = ViewBag.Event;
+    }
 
     List<CSE_PostsInfo> _LstNews = new List<CSE_PostsInfo>();
     if (ViewBag.LstNews != null)

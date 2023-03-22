@@ -193,15 +193,21 @@
 }
 
 table.dataTable.no-footer {
+    /*width: 100% !important;*/
     border-bottom: none;
     z-index: 9;
 }
-
+/*
+.dataTables_scrollHeadInner {
+    width: auto !important;
+    padding-right: 17px !important;
+}
+*/
 .over-flow-x {
     overflow-x: auto;
     max-width: 1665px;
     width: 100% !important;
-/*    height: 386px !important;
+    /*    height: 386px !important;
     margin-bottom: 8px;*/
 }
 

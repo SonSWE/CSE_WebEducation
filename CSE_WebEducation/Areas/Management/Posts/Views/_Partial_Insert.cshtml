@@ -30,7 +30,7 @@
 <form id="formAddPosts" enctype="multipart/form-data">
     <div class="block-add">
         <div class="box-top">
-            <h3 class="title-add">Thêm mới tin tức</h3>
+            <h3 class="title-add">Thêm mới bài viết</h3>
         </div>
         <div class="body-report no-scroll pt-0">
             <div class="row">
@@ -333,7 +333,7 @@
 
     function confirmSubmit() {
         try {
-            nvsConfirm("Bạn có chắc chắn muốn lưu thông tin không?", function () {
+            nvsConfirmInfo("Bạn có chắc chắn muốn lưu thông tin không?", function () {
                 $('#formAddPosts').submit();
             })
         } catch (ex) {

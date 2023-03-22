@@ -1,0 +1,53 @@
+// ======================================================
+// Layout :: Grid
+// ======================================================
+
+.container{
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+  //@media (min-width: 1367px) {
+  //  min-width: 85%;
+  //}
+}
+.row-vsd{
+  margin: 0 -6px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.row-vsd:after{
+  content: '';
+  display: table;
+  clear: both;
+}
+.row-10{
+  margin: 0 -10px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.row-10:after{
+  content: '';
+  display: table;
+  clear: both;
+}
+.col-pc-6{
+  padding: 0 10px;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  margin-bottom: 7px;
+}
+.row-form{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}

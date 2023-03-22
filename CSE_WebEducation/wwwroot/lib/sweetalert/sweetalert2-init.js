@@ -84,11 +84,11 @@
             swal({
                 title: "Thông báo",
                 text: $content,
-                type: "info",
+                type: "question",
                 showCancelButton: true,
                 allowEscapeKey: false,
-                confirmButtonText: 'Chấp nhận',
-                cancelButtonText: "Hủy bỏ",
+                confirmButtonText: 'Đồng ý',
+                cancelButtonText: "Hủy",
             }).then(function () {
                 if (typeof $fnokcallback === "function") {
                     $fnokcallback();
