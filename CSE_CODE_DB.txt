@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [CSE_CODE]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Database [CSE_CODE]    Script Date: 11/04/2023 10:00:25 PM ******/
 CREATE DATABASE [CSE_CODE]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ USE [CSE_CODE]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_functions]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Sequence [dbo].[seq_cse_functions]    Script Date: 11/04/2023 10:00:25 PM ******/
 CREATE SEQUENCE [dbo].[seq_cse_functions] 
  AS [bigint]
  START WITH 1
@@ -95,7 +95,7 @@ CREATE SEQUENCE [dbo].[seq_cse_functions]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_groups]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Sequence [dbo].[seq_cse_groups]    Script Date: 11/04/2023 10:00:25 PM ******/
 CREATE SEQUENCE [dbo].[seq_cse_groups] 
  AS [bigint]
  START WITH 1
@@ -106,7 +106,7 @@ CREATE SEQUENCE [dbo].[seq_cse_groups]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_posts]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Sequence [dbo].[seq_cse_posts]    Script Date: 11/04/2023 10:00:25 PM ******/
 CREATE SEQUENCE [dbo].[seq_cse_posts] 
  AS [bigint]
  START WITH 1
@@ -117,7 +117,7 @@ CREATE SEQUENCE [dbo].[seq_cse_posts]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_user_function]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Sequence [dbo].[seq_cse_user_function]    Script Date: 11/04/2023 10:00:25 PM ******/
 CREATE SEQUENCE [dbo].[seq_cse_user_function] 
  AS [bigint]
  START WITH -9223372036854775808
@@ -128,7 +128,7 @@ CREATE SEQUENCE [dbo].[seq_cse_user_function]
 GO
 USE [CSE_CODE]
 GO
-/****** Object:  Sequence [dbo].[seq_cse_users]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Sequence [dbo].[seq_cse_users]    Script Date: 11/04/2023 10:00:25 PM ******/
 CREATE SEQUENCE [dbo].[seq_cse_users] 
  AS [bigint]
  START WITH 1
@@ -137,7 +137,7 @@ CREATE SEQUENCE [dbo].[seq_cse_users]
  MAXVALUE 999999999999999999
  CACHE 
 GO
-/****** Object:  UserDefinedFunction [dbo].[FN_CheckContainList]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  UserDefinedFunction [dbo].[FN_CheckContainList]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -171,7 +171,7 @@ BEGIN
 	RETURN @v_count;
 END
 GO
-/****** Object:  UserDefinedFunction [dbo].[FN_ParserStrToRow]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  UserDefinedFunction [dbo].[FN_ParserStrToRow]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +194,7 @@ BEGIN
     RETURN 
 END
 GO
-/****** Object:  Table [dbo].[CSE_AllCode]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_AllCode]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +207,7 @@ CREATE TABLE [dbo].[CSE_AllCode](
 	[LstOdr] [int] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Functions]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_Functions]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -235,7 +235,7 @@ CREATE TABLE [dbo].[CSE_Functions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Group_Function]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_Group_Function]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -248,7 +248,7 @@ CREATE TABLE [dbo].[CSE_Group_Function](
 	[Created_Date] [datetime] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Group_User]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_Group_User]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -263,7 +263,7 @@ CREATE TABLE [dbo].[CSE_Group_User](
 	[Modified_Date] [datetime] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Groups]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_Groups]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -285,7 +285,7 @@ CREATE TABLE [dbo].[CSE_Groups](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Posts]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_Posts]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -315,7 +315,7 @@ CREATE TABLE [dbo].[CSE_Posts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Posts_Categories]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_Posts_Categories]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -341,7 +341,7 @@ CREATE TABLE [dbo].[CSE_Posts_Categories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_User_Function]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_User_Function]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -357,7 +357,7 @@ CREATE TABLE [dbo].[CSE_User_Function](
 	[Modified_Date] [datetime] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CSE_Users]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  Table [dbo].[CSE_Users]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -422,13 +422,13 @@ INSERT [dbo].[CSE_AllCode] ([CDName], [CDType], [CDVal], [Content], [LstOdr]) VA
 GO
 INSERT [dbo].[CSE_AllCode] ([CDName], [CDType], [CDVal], [Content], [LstOdr]) VALUES (N'USER', N'STATUS', N'P', N'Ngừng hoạt động', 1)
 GO
-INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), N'MANAGEMENT', N'Quản trị', CAST(0 AS Decimal(1, 0)), N'/', N'/', CAST(1 AS Decimal(3, 0)), CAST(0 AS Decimal(3, 0)), CAST(0 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), N'/bidding_lib/img/icon-mana.png', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), N'MANAGEMENT', N'Quản trị', CAST(0 AS Decimal(1, 0)), N'/', N'/', CAST(1 AS Decimal(3, 0)), CAST(0 AS Decimal(3, 0)), CAST(0 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), N'/img/icquantri.png', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), N'DASHBOARD', N'Trang chủ', CAST(0 AS Decimal(1, 0)), N'/quan-tri/trang-chu', NULL, CAST(0 AS Decimal(3, 0)), CAST(0 AS Decimal(3, 0)), CAST(0 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), N'/bidding_lib/img/icon-home.png', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), N'DASHBOARD', N'Trang chủ', CAST(0 AS Decimal(1, 0)), N'/quan-tri/trang-chu', NULL, CAST(0 AS Decimal(3, 0)), CAST(0 AS Decimal(3, 0)), CAST(0 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), N'/img/ichome.png', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(3 AS Decimal(18, 0)), N'GROUP', N'Nhóm người dùng', CAST(0 AS Decimal(1, 0)), N'/quan-tri/nhom-nguoi-dung/danh-sach', N'/quan-tri/nhom-nguoi-dung/tim-kiem', CAST(0 AS Decimal(3, 0)), CAST(1 AS Decimal(3, 0)), CAST(1 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(3 AS Decimal(18, 0)), N'GROUP', N'Nhóm tài khoản', CAST(0 AS Decimal(1, 0)), N'/quan-tri/nhom-nguoi-dung/danh-sach', N'/quan-tri/nhom-nguoi-dung/tim-kiem', CAST(0 AS Decimal(3, 0)), CAST(1 AS Decimal(3, 0)), CAST(1 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(4 AS Decimal(18, 0)), N'USER', N'Người dùng', CAST(0 AS Decimal(1, 0)), N'/quan-tri/nguoi-dung/danh-sach', N'/quan-tri/nguoi-dung/tim-kiem', CAST(1 AS Decimal(3, 0)), CAST(1 AS Decimal(3, 0)), CAST(1 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(4 AS Decimal(18, 0)), N'USER', N'Tài khoản', CAST(0 AS Decimal(1, 0)), N'/quan-tri/nguoi-dung/danh-sach', N'/quan-tri/nguoi-dung/tim-kiem', CAST(1 AS Decimal(3, 0)), CAST(1 AS Decimal(3, 0)), CAST(1 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(5 AS Decimal(18, 0)), N'GROUP_INSERT', N'Thêm mới', CAST(0 AS Decimal(1, 0)), N'/quan-tri/nhom-nguoi-dung/them-moi', N'/quan-tri/nhom-nguoi-dung/them-moi', CAST(0 AS Decimal(3, 0)), CAST(2 AS Decimal(3, 0)), CAST(3 AS Decimal(9, 0)), CAST(0 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
 GO
@@ -452,7 +452,7 @@ INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [
 GO
 INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(15 AS Decimal(18, 0)), N'USER_RIGHT', N'Phân quyền', CAST(0 AS Decimal(1, 0)), N'/quan-tri/nguoi-dung/phan-quyen', N'/quan-tri/nguoi-dung/phan-quyen', CAST(4 AS Decimal(3, 0)), CAST(2 AS Decimal(3, 0)), CAST(4 AS Decimal(9, 0)), CAST(0 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(16 AS Decimal(18, 0)), N'WEB_CSE', N'Quản lý web khoa', CAST(0 AS Decimal(1, 0)), NULL, NULL, CAST(2 AS Decimal(3, 0)), CAST(1 AS Decimal(3, 0)), CAST(0 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), N'/bidding_lib/img/icon-web.png', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(16 AS Decimal(18, 0)), N'WEB_CSE', N'Quản lý web khoa', CAST(0 AS Decimal(1, 0)), NULL, NULL, CAST(2 AS Decimal(3, 0)), CAST(1 AS Decimal(3, 0)), CAST(0 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), N'/img/icbaiviet.png', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_Functions] ([Function_Id], [Function_Code], [Function_Name], [Function_Type], [Function_Url], [Function_Url_Post], [Position], [Lev], [PRID], [Display_On_Menu], [Function_Icon], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(17 AS Decimal(18, 0)), N'POSTS', N'Bài viết', CAST(0 AS Decimal(1, 0)), N'/trang-khoa/bai-viet/danh-sach', N'/trang-khoa/bai-viet/tim-kiem', CAST(0 AS Decimal(3, 0)), CAST(2 AS Decimal(3, 0)), CAST(16 AS Decimal(9, 0)), CAST(1 AS Decimal(1, 0)), NULL, CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-13T00:00:00.000' AS DateTime), NULL, NULL)
 GO
@@ -576,6 +576,54 @@ INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Creat
 GO
 INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(2 AS Decimal(18, 0)), CAST(24 AS Decimal(18, 0)), 1, NULL, NULL)
 GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(2 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(3 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(5 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(7 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(6 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(10 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(9 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(18 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(4 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(12 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(13 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(14 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(15 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(19 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(16 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(17 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(20 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(21 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(22 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(23 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(11 AS Decimal(18, 0)), CAST(24 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
 INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(8 AS Decimal(18, 0)), CAST(2 AS Decimal(18, 0)), 1, NULL, NULL)
 GO
 INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(8 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), 1, NULL, NULL)
@@ -583,6 +631,54 @@ GO
 INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(8 AS Decimal(18, 0)), CAST(3 AS Decimal(18, 0)), 1, NULL, NULL)
 GO
 INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(8 AS Decimal(18, 0)), CAST(4 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(2 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(3 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(5 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(7 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(6 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(10 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(9 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(18 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(4 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(12 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(13 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(14 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(15 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(19 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(16 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(17 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(20 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(21 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(22 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(23 AS Decimal(18, 0)), 1, NULL, NULL)
+GO
+INSERT [dbo].[CSE_Group_Function] ([Group_Id], [Function_Id], [Authcode], [Created_By], [Created_Date]) VALUES (CAST(19 AS Decimal(18, 0)), CAST(24 AS Decimal(18, 0)), 1, NULL, NULL)
 GO
 INSERT [dbo].[CSE_Group_User] ([Group_Id], [User_Id], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
 GO
@@ -610,8 +706,6 @@ INSERT [dbo].[CSE_Group_User] ([Group_Id], [User_Id], [Deleted], [Created_By], [
 GO
 INSERT [dbo].[CSE_Group_User] ([Group_Id], [User_Id], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(8 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), NULL, N'sondt24', CAST(N'2023-03-21T10:54:03.067' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Group_User] ([Group_Id], [User_Id], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(8 AS Decimal(18, 0)), CAST(2 AS Decimal(18, 0)), NULL, N'sondt24', CAST(N'2023-03-21T10:55:17.940' AS DateTime), NULL, NULL)
-GO
 INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), N'Cán bộ', CAST(0 AS Decimal(1, 0)), N'nhóm', N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), N'Sơn', CAST(0 AS Decimal(1, 0)), NULL, N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-10T00:00:00.000' AS DateTime), NULL, NULL)
@@ -626,7 +720,7 @@ INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Stat
 GO
 INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(8 AS Decimal(18, 0)), N'tesst 4', CAST(0 AS Decimal(1, 0)), NULL, N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-15T10:02:29.267' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(9 AS Decimal(18, 0)), N'Test 8', CAST(0 AS Decimal(1, 0)), N'abc', N'C', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-15T10:05:37.177' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(9 AS Decimal(18, 0)), N'Test 8', NULL, N'abc', N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-15T10:05:37.177' AS DateTime), N'sondt24', CAST(N'2023-03-22T21:20:00.527' AS DateTime))
 GO
 INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(10 AS Decimal(18, 0)), N'test 9', CAST(0 AS Decimal(1, 0)), NULL, N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-02-15T10:07:01.217' AS DateTime), N'sondt24', CAST(N'2023-03-19T15:24:31.917' AS DateTime))
 GO
@@ -637,6 +731,12 @@ GO
 INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(15 AS Decimal(18, 0)), N'phúkoica', CAST(0 AS Decimal(1, 0)), NULL, N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-15T21:10:26.730' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(16 AS Decimal(18, 0)), N'sơn thêm', CAST(0 AS Decimal(1, 0)), N'không xóa', N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-16T10:35:27.497' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(17 AS Decimal(18, 0)), N'phus', NULL, N'a', N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-22T21:22:30.413' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(18 AS Decimal(18, 0)), N'sontest them', NULL, NULL, N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-22T21:47:38.443' AS DateTime), N'sondt24', CAST(N'2023-03-22T21:58:58.977' AS DateTime))
+GO
+INSERT [dbo].[CSE_Groups] ([Group_Id], [Group_Name], [Group_Type], [Note], [Status], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(19 AS Decimal(18, 0)), N'Nhóm full quyền', NULL, NULL, N'A', CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-22T22:27:28.817' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_Posts] ([Id], [Category_Id], [Post_Type], [Title], [Thumbnail], [Description], [Content], [Start_Date], [End_Date], [Location], [Status], [Comfirm_By], [Reason], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), N'SUKIEN', CAST(2 AS Decimal(3, 0)), N'dsafsd', N'https://localhost:7138/file_attach/20230319114540441viet-nam-thinh-vuong-18273128.jpg', N'gádg', N'Ngày 12/3, Hội đồng Nghĩa vụ quân sự huyện Giồng Trôm (tỉnh Bến Tre) cho biết xử phạt hơn 60 triệu đồng thanh niên không chấp hành lệnh nhập ngũ.
 <table>
@@ -1226,21 +1326,71 @@ INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcod
 GO
 INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(4 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), N'1', N'sondt24', CAST(N'2023-03-21T10:54:03.067' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), CAST(2 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), N'1', N'sondt24', CAST(N'2023-03-21T10:55:17.940' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(2 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), N'1', N'sondt24', CAST(N'2023-03-21T10:55:17.940' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(1 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), CAST(3 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), N'1', N'sondt24', CAST(N'2023-03-21T10:55:17.940' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(3 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), CAST(4 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), N'1', N'sondt24', CAST(N'2023-03-21T10:55:17.940' AS DateTime), NULL, NULL)
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(5 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(7 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(6 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(8 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(10 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(9 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(18 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(4 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(12 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(13 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(14 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(15 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(19 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(16 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(17 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(20 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(21 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(22 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(23 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_User_Function] ([User_Id], [Function_Id], [Group_Id], [Authcode], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), CAST(24 AS Decimal(18, 0)), CAST(11 AS Decimal(18, 0)), N'1', N'', CAST(N'2023-03-22T22:13:54.213' AS DateTime), NULL, NULL)
 GO
 INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(1 AS Decimal(18, 0)), N'sondt24', N'c030437f6e8e94d244bc602606df5235', N'Đặng Tiến Sơn', N'A', CAST(0 AS Decimal(1, 0)), NULL, N'dangtiensonuh@gmai.com', NULL, CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'admin', CAST(N'2023-02-09T00:00:00.000' AS DateTime), N'sondt24', CAST(N'2023-03-19T16:12:47.687' AS DateTime))
 GO
 INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(2 AS Decimal(18, 0)), N'sonabc', N'c030437f6e8e94d244bc602606df5235', N'sơn', N'A', CAST(0 AS Decimal(1, 0)), NULL, NULL, NULL, CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'admin', CAST(N'2023-02-09T00:00:00.000' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(3 AS Decimal(18, 0)), N'phu', N'c030437f6e8e94d244bc602606df5235', N'sơn', N'P', CAST(0 AS Decimal(1, 0)), NULL, NULL, NULL, CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'admin', CAST(N'2023-02-09T00:00:00.000' AS DateTime), N'sondt24', CAST(N'2023-03-18T10:54:46.183' AS DateTime))
+INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(3 AS Decimal(18, 0)), N'phu', N'c030437f6e8e94d244bc602606df5235', N'sơn', N'P', CAST(0 AS Decimal(1, 0)), NULL, NULL, NULL, CAST(1 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'admin', CAST(N'2023-02-09T00:00:00.000' AS DateTime), N'sondt24', CAST(N'2023-03-22T22:16:57.013' AS DateTime))
 GO
-INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(5 AS Decimal(18, 0)), N'sondt245', N'123456aA@', N'Đặng Tiến Sơn', N'A', CAST(0 AS Decimal(1, 0)), N'3124', N'sơn', N'1241', CAST(0 AS Decimal(1, 0)), CAST(1 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-17T22:52:18.997' AS DateTime), N'sondt24', CAST(N'2023-03-17T23:33:34.927' AS DateTime))
+INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(5 AS Decimal(18, 0)), N'sondt245', N'123456aA@', N'Đặng Tiến Sơn', N'A', CAST(0 AS Decimal(1, 0)), N'3124', N'sơn', N'1241', CAST(0 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-17T22:52:18.997' AS DateTime), N'sondt24', CAST(N'2023-03-17T23:33:34.927' AS DateTime))
+GO
+INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(6 AS Decimal(18, 0)), N'binhgon', N'123456aA@', N'binh', N'A', CAST(0 AS Decimal(1, 0)), NULL, NULL, NULL, CAST(0 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-22T16:10:52.640' AS DateTime), N'sondt24', CAST(N'2023-03-22T21:50:12.297' AS DateTime))
+GO
+INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(7 AS Decimal(18, 0)), N'sondt24bd', N'123456aA@', N'sadfsd', N'A', CAST(0 AS Decimal(1, 0)), NULL, N'gádg', NULL, CAST(0 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-22T21:51:10.210' AS DateTime), N'sondt24', CAST(N'2023-03-22T21:51:15.623' AS DateTime))
+GO
+INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(8 AS Decimal(18, 0)), N'sondt246', N'c030437f6e8e94d244bc602606df5235', N'sơn', N'A', CAST(0 AS Decimal(1, 0)), N'0894652', N'sơn', N'123456767', CAST(0 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-22T22:13:18.500' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(9 AS Decimal(18, 0)), N'sondt248768', N'c030437f6e8e94d244bc602606df5235', N'ádf', N'A', CAST(0 AS Decimal(1, 0)), N'123', N'sơn', N'412', CAST(0 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-22T22:26:44.657' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[CSE_Users] ([User_Id], [User_Name], [Password], [Full_Name], [Status], [User_Type], [Phone], [Email], [Identity_Card], [Is_Reset_Fucntion], [Deleted], [Created_By], [Created_Date], [Modified_By], [Modified_Date]) VALUES (CAST(10 AS Decimal(18, 0)), N'sondt3', N'c030437f6e8e94d244bc602606df5235', N'Sơn', N'A', CAST(0 AS Decimal(1, 0)), NULL, NULL, NULL, CAST(0 AS Decimal(1, 0)), CAST(0 AS Decimal(1, 0)), N'sondt24', CAST(N'2023-03-30T00:23:40.360' AS DateTime), NULL, NULL)
 GO
 ALTER TABLE [dbo].[CSE_Group_Function] ADD  CONSTRAINT [DF_CSE_Group_Function_Authcode]  DEFAULT ((1)) FOR [Authcode]
 GO
@@ -1256,11 +1406,13 @@ ALTER TABLE [dbo].[CSE_Posts_Categories] ADD  CONSTRAINT [DF_CSE_News_Categories
 GO
 ALTER TABLE [dbo].[CSE_User_Function] ADD  CONSTRAINT [DF_CSE_User_Function_Authcode]  DEFAULT ('0') FOR [Authcode]
 GO
+ALTER TABLE [dbo].[CSE_Users] ADD  CONSTRAINT [DF_CSE_Users_User_Type]  DEFAULT ((0)) FOR [User_Type]
+GO
 ALTER TABLE [dbo].[CSE_Users] ADD  CONSTRAINT [DF_CSE_Users_Is_Reset_Fucntion]  DEFAULT ((0)) FOR [Is_Reset_Fucntion]
 GO
 ALTER TABLE [dbo].[CSE_Users] ADD  CONSTRAINT [DF_CSE_Users_Deleted]  DEFAULT ((0)) FOR [Deleted]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_allcode_get_all]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_allcode_get_all]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1273,7 +1425,7 @@ BEGIN
 	ORDER BY v.LstOdr;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_cse_user_login]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_cse_user_login]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1289,7 +1441,7 @@ BEGIN
 	WHERE u.user_name = @p_user_name AND u.password = @p_password AND u.Deleted = 0;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_function_get_all]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_function_get_all]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1303,7 +1455,7 @@ BEGIN
 	ORDER BY f.PRID, f.Position;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_function_get_by_group_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_function_get_by_group_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1327,7 +1479,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_function_get_by_user_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_function_get_by_user_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1343,7 +1495,7 @@ BEGIN
 	WHERE uf.user_id = @p_user_id
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_activeOrUnactive]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_activeOrUnactive]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1374,7 +1526,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_delete]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_delete]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1402,7 +1554,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_function_delete]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_function_delete]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1424,7 +1576,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_function_insert]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_function_insert]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1444,7 +1596,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_get_all]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_get_all]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1458,7 +1610,7 @@ BEGIN
 	ORDER BY v.Group_Name;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_get_by_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_get_by_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1475,7 +1627,7 @@ BEGIN
 	WHERE a.Group_Id = @p_group_id
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_insert]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_insert]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1493,24 +1645,30 @@ CREATE PROCEDURE [dbo].[sp_group_insert]
 AS
 BEGIN
 	BEGIN TRY
-		DECLARE @v_id decimal(18,0);
-		SELECT @v_id = NEXT VALUE FOR seq_cse_groups;
+		declare @v_exits decimal(18,0);
+		SELECT @v_exits = COUNT(*) FROM CSE_Groups WHERE Group_Name = @p_group_name AND Deleted = 0;
+		if @v_exits <= 0 BEGIN 
+			DECLARE @v_id decimal(18,0);
+			SELECT @v_id = NEXT VALUE FOR seq_cse_groups;
 
-		INSERT INTO CSE_Groups(
-			Group_Id, Group_Name, Group_Type, Status, Note, Created_By, Created_Date
-		)
-		VALUES(
-			@v_id, @p_group_name, @p_group_type, @p_status, @p_note, @p_created_by, @p_created_date
-		)
+			INSERT INTO CSE_Groups(
+				Group_Id, Group_Name, Group_Type, Status, Note, Created_By, Created_Date
+			)
+			VALUES(
+				@v_id, @p_group_name, @p_group_type, @p_status, @p_note, @p_created_by, @p_created_date
+			)
 
-		SET @p_result = @v_id;
+			SET @p_result = @v_id;
+		END ELSE BEGIN
+			SET @p_result = -2;
+		END;
 	END TRY
 	BEGIN CATCH
 		SET @p_result = -1;
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_search]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_search]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1636,7 +1794,7 @@ BEGIN
 			@p_startrow = @p_startrow, @p_endrow = @p_endrow;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_update]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_update]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1655,23 +1813,29 @@ CREATE PROCEDURE [dbo].[sp_group_update]
 AS
 BEGIN
 	BEGIN TRY
-		UPDATE CSE_Groups SET
-			Group_Name = @p_group_name,
-			Group_Type = @p_group_type,
-			Status = @p_status,
-			Note = @p_note,
-			Modified_By = @p_modified_by,
-			Modified_Date = @p_modified_date
-		WHERE Group_Id = @p_group_id;
+		declare @v_exits decimal(18,0);
+		SELECT @v_exits = COUNT(*) FROM CSE_Groups WHERE Group_Name = @p_group_name AND Group_Id != @p_group_id AND Deleted = 0;
+		if @v_exits <= 0 BEGIN
+			UPDATE CSE_Groups SET
+				Group_Name = @p_group_name,
+				Group_Type = @p_group_type,
+				Status = @p_status,
+				Note = @p_note,
+				Modified_By = @p_modified_by,
+				Modified_Date = @p_modified_date
+			WHERE Group_Id = @p_group_id;
 
-		SET @p_result = @p_group_id;
+			SET @p_result = @p_group_id;
+		END ELSE BEGIN
+			SET @p_result = -2;
+		END;
 	END TRY
 	BEGIN CATCH 
 		SET @p_result = -1;
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_user_add]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_user_add]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1721,7 +1885,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_user_get_by_group_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_user_get_by_group_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1732,15 +1896,15 @@ CREATE PROCEDURE [dbo].[sp_group_user_get_by_group_id]
 )
 AS
 BEGIN
-	DECLARE @v_group_type DECIMAL(18,0);
-	SELECT @v_group_type = Group_Type FROM CSE_Groups WHERE Group_Id = @p_group_id;
+	--DECLARE @v_group_type DECIMAL(18,0);
+	--SELECT @v_group_type = Group_Type FROM CSE_Groups WHERE Group_Id = @p_group_id;
 
 	SELECT a.*, CASE WHEN b.User_Id IS NULL THEN 0 ELSE 1 END AS Of_Group FROM CSE_Users a
 	LEFT JOIN CSE_Group_User b ON a.User_Id = b.User_Id and b.Group_Id = @p_group_id
-	WHERE a.Deleted = 0 AND a.User_Type = @v_group_type;
+	WHERE a.Deleted = 0;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_group_user_remove]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_group_user_remove]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1760,7 +1924,7 @@ BEGIN
 
         SELECT @v_existed = COUNT(*) FROM CSE_Group_User WHERE user_id = @p_user_id AND group_id = @p_group_id;
 
-        IF @v_existed = 0 BEGIN
+        IF @v_existed > 0 BEGIN
 			DELETE FROM CSE_Group_User WHERE user_id = @p_user_id AND group_id = @p_group_id;
 
             -- xoa quyen thuoc nhom
@@ -1780,7 +1944,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_postCategories_get_by_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_postCategories_get_by_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1795,7 +1959,7 @@ BEGIN
 	WHERE a.Id = @p_id
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_delete]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_delete]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1824,7 +1988,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_get_by_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_get_by_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1840,7 +2004,7 @@ BEGIN
 	WHERE a.Id = @p_id AND a.Deleted = 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_insert]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_insert]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1881,7 +2045,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_search]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_search]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2005,7 +2169,7 @@ BEGIN
 			@p_startrow = @p_startrow, @p_endrow = @p_endrow;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_update]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_update]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2050,7 +2214,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_posts_updateStatus]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_posts_updateStatus]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2081,7 +2245,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_postsCategories_get_all]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_postsCategories_get_all]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2094,7 +2258,7 @@ BEGIN
 	ORDER BY v.LstOdr;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_set_func_for_user_in_gr]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_set_func_for_user_in_gr]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2135,7 +2299,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_activeOrUnactive]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_activeOrUnactive]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2166,7 +2330,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_changePass]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_changePass]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2196,7 +2360,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_delete]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_delete]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2224,7 +2388,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_function_by_user_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_function_by_user_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2257,7 +2421,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_function_reset]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_function_reset]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2282,7 +2446,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_function_update]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_function_update]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2315,7 +2479,7 @@ BEGIN
 	END CATCH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_get_all]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_get_all]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2329,7 +2493,7 @@ BEGIN
 	ORDER BY v.User_Name;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_get_by_id]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_get_by_id]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2346,7 +2510,7 @@ BEGIN
 	WHERE a.User_Id = @p_user_id
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_insert]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_insert]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2355,7 +2519,6 @@ CREATE PROCEDURE [dbo].[sp_user_insert]
 (
 	@p_user_name NVARCHAR(50),
 	@p_password NVARCHAR(100),
-	@p_user_type DECIMAL(2,0),
 	@p_status NVARCHAR(2),
 	@p_phone NVARCHAR(20),
 	@p_email NVARCHAR(50),
@@ -2375,10 +2538,10 @@ BEGIN
 			SELECT @v_id = NEXT VALUE FOR seq_cse_users;
 
 			INSERT INTO CSE_Users(
-				User_Id, User_Name, Password, Full_Name, User_Type, Status, Phone, Email, Identity_Card, Created_By, Created_Date
+				User_Id, User_Name, Password, Full_Name, Status, Phone, Email, Identity_Card, Created_By, Created_Date
 			)
 			VALUES(
-				@v_id, @p_user_name, @p_password, @p_full_name, @p_user_type, @p_status, @p_phone, @p_email, @p_identity_card, @p_created_by, @p_created_date
+				@v_id, @p_user_name, @p_password, @p_full_name, @p_status, @p_phone, @p_email, @p_identity_card, @p_created_by, @p_created_date
 			)
 
 			SET @p_result = @v_id;
@@ -2393,7 +2556,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_search]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_search]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2519,7 +2682,7 @@ BEGIN
 			@p_startrow = @p_startrow, @p_endrow = @p_endrow;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_user_update]    Script Date: 22/03/2023 11:55:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_user_update]    Script Date: 11/04/2023 10:00:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
