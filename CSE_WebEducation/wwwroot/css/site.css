@@ -24,6 +24,13 @@
   100% {
     transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); } }
 
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Italianno&display=swap%27');
+
+* {
+    
+    font-family: 'Inder', sans-serif !important;
+}
+
 /*# sourceMappingURL=main.css.map */
 ul {
   margin: 0;

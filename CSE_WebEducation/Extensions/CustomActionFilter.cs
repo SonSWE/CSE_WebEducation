@@ -159,7 +159,7 @@ namespace CSE_WebEducation
         {
             try
             {
-                return authUser.List_User_Functions.Any(o => o.Function_Code.ToUpper() == functionCode?.ToUpper());
+                return authUser.List_User_Functions.Any(o => o.Function_Code.ToUpper() == functionCode?.ToUpper() && o.Authcode == "1");
             }
             catch (Exception ex)
             {

@@ -43,7 +43,7 @@ namespace CSE_WebEducation
             try
             {
                 List<CSE_FunctionsInfo> lst_tem = lstFunction.FindAll(x => x.Function_Type.ToNumberStringN0() == p_user_type.ToNumberStringN0()).ToList();
-                return lst_tem.FirstOrDefault(x => x.Function_Code.ToUpper().Equals(functionCode.ToUpper()));
+                return lstFunction.FirstOrDefault(x => x.Function_Code.ToUpper().Equals(functionCode.ToUpper()));
             }
             catch (Exception ex)
             {

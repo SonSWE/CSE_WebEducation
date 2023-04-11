@@ -136,10 +136,9 @@
                     success: function (data) {
                         if (data && preHandleDataResult(data)) {
                             if (data.success > 0) {
-                                showSuccess(data.responseMessage );
+                                showSuccess(data.responseMessage);
                                 setTimeout(function () {
-                                    SearchUser('@CommonData.pageDefaut');
-                                    ClosePopupDialog('dPopup', false);
+                                    window.location.href = '/quan-tri/nhom-nguoi-dung/danh-sach';
                                 }, 1000);
                             }
                             else {

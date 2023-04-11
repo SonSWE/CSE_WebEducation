@@ -23,6 +23,12 @@ namespace CSE_WebEducation.Controllers
             return View();
         }
 
+        [Route("access-denied")]
+        public IActionResult accessDenied()
+        {
+            return View("~/Views/Shared/None_Function.cshtml");
+        }
+
         public IActionResult Privacy()
         {
             return View();

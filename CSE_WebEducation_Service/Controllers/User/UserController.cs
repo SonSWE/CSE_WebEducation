@@ -46,12 +46,13 @@ namespace CSE_WebEducation_Service.Controllers.User
 
         private string GenerateJSONWebToken(CSE_UsersInfo CSE_UsersInfo)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            string key = _config["Jwt:Key"];
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, CSE_UsersInfo.User_Name),
-                new Claim(JwtRegisteredClaimNames.Email, CSE_UsersInfo.Email),
+                new Claim(JwtRegisteredClaimNames.Email, ""),
                 //new Claim("DateOfJoing", userInfo.DateOfJoing.ToString("yyyy-MM-dd")),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };

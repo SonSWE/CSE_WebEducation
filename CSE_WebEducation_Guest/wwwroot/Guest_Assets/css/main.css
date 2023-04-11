@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inder&family=Italianno&display=swap%27'); 
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Italianno&display=swap%27');
 
-*
-{
+* {
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    font-family: 'Inder', sans-serif;
+    font-family: 'Inder', sans-serif !important;
     font-family: 'Italianno', cursive;
 }
 
@@ -21,7 +20,7 @@
 body, html {
     width: 100%;
     height: 100%;
-    font-family: 'Inder', sans-serif;
+    font-family: 'Inder', sans-serif !important;
     font-family: 'Italianno', cursive;
 }
 
@@ -82,7 +81,7 @@ table {
 a {
     text-decoration: none;
     color: black;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inder', sans-serif;
 }
 
 /* title */
@@ -380,7 +379,7 @@ a {
         line-height: 60px;
         font-weight: 400;
         color: white;
-        font-family: 'Italianno';
+        font-family: 'Italianno' !important;
         padding: 0;
     }
 

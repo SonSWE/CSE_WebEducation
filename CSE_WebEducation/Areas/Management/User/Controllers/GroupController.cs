@@ -51,7 +51,7 @@ namespace CSE_WebEducation.Areas.Management.User.Controllers
         }
 
         [Route("chi-tiet"), HttpGet]
-        [CustomActionFilter]
+        [CustomActionFilter(FunctionCode = "GROUP_VIEW")]
         public IActionResult ViewDetail(decimal group_id)
         {
             try
